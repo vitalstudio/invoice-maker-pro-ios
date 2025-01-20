@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDqYx0C-a2mNTPJ1z68g8q7-1xB9axLH7Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>753840338594</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.InvoiceMaker.ReceiptCreator.Billing.app</string>
+	<key>PROJECT_ID</key>
+	<string>invoice-maker-pro-7788e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>invoice-maker-pro-7788e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:753840338594:ios:39c710adb8f8bdfd6849fb</string>
+</dict>
+</plist>

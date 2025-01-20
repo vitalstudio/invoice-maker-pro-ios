@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "753840338594",
+    "project_id": "invoice-maker-pro-7788e",
+    "storage_bucket": "invoice-maker-pro-7788e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753840338594:android:aeb81dbc620120396849fb",
+        "android_client_info": {
+          "package_name": "com.InvoiceMaker.ReceiptCreator.Billing.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPIHEkOGkm-zbrxTb2wQ_eXKcytrLl5E4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
