@@ -2,7 +2,7 @@ class AdHelper {
 
   // test app Id: ca-app-pub-3940256099942544~3347511713
 
-  static bool productionMode = false;
+  static bool productionMode = true;
 
   static String get bannerAdUnitId {
     if(productionMode) {
