@@ -8,7 +8,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   permission_handler_windows
   printing
-  screen_retriever
+  screen_retriever_windows
   share_plus
   syncfusion_pdfviewer_windows
   url_launcher_windows

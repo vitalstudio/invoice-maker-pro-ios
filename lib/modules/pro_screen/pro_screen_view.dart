@@ -13,14 +13,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 class ProScreenView extends GetView<ProScreenController> {
   @override
   Widget build(BuildContext context) {
-
     bool checkIsMobileLayout = AppConstants.isMobileScreen.value;
 
     return checkIsMobileLayout
         ? mainMobileLayout(context)
         : mainDesktopLayout(context);
   }
-  
+
   Widget mainMobileLayout(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -73,7 +72,7 @@ class ProScreenView extends GetView<ProScreenController> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             controller.getRestoreProduct();
                           },
                           child: Container(
@@ -81,7 +80,8 @@ class ProScreenView extends GetView<ProScreenController> {
                               borderRadius: BorderRadius.circular(50),
                               color: mainPurpleColor,
                             ),
-                            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
                             child: const Text(
                               'RESTORE',
                               style: TextStyle(
@@ -182,7 +182,7 @@ class ProScreenView extends GetView<ProScreenController> {
                       ),
                     ),
 
-                    const SizedBox(height:10,),
+                    const SizedBox(height: 10,),
 
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -207,7 +207,7 @@ class ProScreenView extends GetView<ProScreenController> {
 
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: const  Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -224,329 +224,428 @@ class ProScreenView extends GetView<ProScreenController> {
                       ),
                     ),
 
+                    const SizedBox(height: 10,),
+
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
+                      child: const ProScreenTextRow(
+                          iconData: Icons.check_circle_rounded,
+                          text: 'Ads Free'),
+                    ),
+
                     const SizedBox(
                       height: 20,
                     ),
 
-                    Obx(() => Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: [
-                          Row(
+                    Obx(() =>
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
                             children: [
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    AppSingletons.selectedPlanForProInvoice.value = 1;
-                                    debugPrint('Yearly Value: ${controller.yearlyPurchaseValue.value}');
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                        ? mainPurpleColor
-                                        : sWhite,
-                                        border: Border.all(
-                                          color:  mainPurpleColor,
-                                          width: 2,
-                                        ),
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                           color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                           ? sWhite
-                                           : mainPurpleColor,
-                                           borderRadius: BorderRadius.circular(5)
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        AppSingletons.selectedPlanForProInvoice
+                                            .value = 1;
+                                        debugPrint('Yearly Value: ${controller
+                                            .yearlyPurchaseValue.value}');
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 10),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              10),
+                                          color: AppSingletons
+                                              .selectedPlanForProInvoice
+                                              .value == 1
+                                              ? mainPurpleColor
+                                              : sWhite,
+                                          border: Border.all(
+                                            color: mainPurpleColor,
+                                            width: 2,
                                           ),
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .center,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 1
+                                                      ? sWhite
+                                                      : mainPurpleColor,
+                                                  borderRadius: BorderRadius
+                                                      .circular(5)
+                                              ),
 
-                                          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                          child: Text(
-                                             'SAVE 21%',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontFamily: 'Montserrat',
-                                                color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                                    ? mainPurpleColor
-                                                    : sWhite,
-                                                fontWeight: FontWeight.w800,),
-                                          ),
+                                              padding: const EdgeInsets
+                                                  .symmetric(
+                                                  horizontal: 15, vertical: 3),
+                                              child: Text(
+                                                '3 Days Free Trail',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 1
+                                                      ? mainPurpleColor
+                                                      : sWhite,
+                                                  fontWeight: FontWeight.w800,),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              'Yearly',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 1
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 17),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              controller.yearlyPurchaseValue
+                                                  .isEmpty
+                                                  ||
+                                                  controller.yearlyPurchaseValue
+                                                      .value == ''
+                                                  ? '00.00'
+                                                  : '${controller
+                                                  .yearlyPurchaseValue.value}',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 1
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 17),
+                                            ),
+                                          ],
                                         ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                         'Yearly',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 17),
-                                        ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          controller.yearlyPurchaseValue.isEmpty
-                                              || controller.yearlyPurchaseValue.value == ''
-                                              ? '00.00'
-                                              : '${controller.yearlyPurchaseValue.value}',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 17),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),),
-                              const SizedBox(width: 15,),
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    AppSingletons.selectedPlanForProInvoice.value = 2;
-                                    debugPrint('Monthly Value: ${controller.monthlyPurchaseValue.value}');
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                          ? mainPurpleColor
-                                          : sWhite,
-                                      border: Border.all(
-                                        color:  mainPurpleColor,
-                                        width: 2,
                                       ),
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                  ? sWhite
-                                                  : mainPurpleColor,
-                                              borderRadius: BorderRadius.circular(5)
+                                    ),),
+                                  const SizedBox(width: 15,),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        AppSingletons.selectedPlanForProInvoice
+                                            .value = 2;
+                                        debugPrint('Monthly Value: ${controller
+                                            .monthlyPurchaseValue.value}');
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 10),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              10),
+                                          color: AppSingletons
+                                              .selectedPlanForProInvoice
+                                              .value == 2
+                                              ? mainPurpleColor
+                                              : sWhite,
+                                          border: Border.all(
+                                            color: mainPurpleColor,
+                                            width: 2,
                                           ),
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .center,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 2
+                                                      ? sWhite
+                                                      : mainPurpleColor,
+                                                  borderRadius: BorderRadius
+                                                      .circular(5)
+                                              ),
 
-                                          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                          child: Text(
-                                            'GOLD',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                  ? mainPurpleColor
-                                                  : sWhite,
-                                              fontWeight: FontWeight.w800,),
+                                              padding: const EdgeInsets
+                                                  .symmetric(
+                                                  horizontal: 15, vertical: 3),
+                                              child: Text(
+                                                'GOLD',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 2
+                                                      ? mainPurpleColor
+                                                      : sWhite,
+                                                  fontWeight: FontWeight.w800,),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              'Monthly',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 2
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 17),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              controller.monthlyPurchaseValue
+                                                  .isEmpty
+                                                  || controller
+                                                  .monthlyPurchaseValue.value ==
+                                                  ''
+                                                  ? '00.00'
+                                                  : '${controller
+                                                  .monthlyPurchaseValue.value}',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 2
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 17),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),),
+
+                                ],
+                              ),
+                              const SizedBox(height: 15,),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        AppSingletons.selectedPlanForProInvoice
+                                            .value = 3;
+                                        debugPrint('Weekly Value: ${controller
+                                            .weeklyPurchaseValue.value}');
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 10),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              10),
+                                          color: AppSingletons
+                                              .selectedPlanForProInvoice
+                                              .value == 3
+                                              ? mainPurpleColor
+                                              : sWhite,
+                                          border: Border.all(
+                                            color: mainPurpleColor,
+                                            width: 2,
                                           ),
                                         ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          'Monthly',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 17),
-                                        ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          controller.monthlyPurchaseValue.isEmpty
-                                              || controller.monthlyPurchaseValue.value == ''
-                                              ? '00.00'
-                                              : '${controller.monthlyPurchaseValue.value}',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 17),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),),
+                                        alignment: Alignment.center,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .center,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 3
+                                                      ? sWhite
+                                                      : mainPurpleColor,
+                                                  borderRadius: BorderRadius
+                                                      .circular(5)
+                                              ),
 
+                                              padding: const EdgeInsets
+                                                  .symmetric(
+                                                  horizontal: 15, vertical: 3),
+                                              child: Text(
+                                                'BASIC',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 3
+                                                      ? mainPurpleColor
+                                                      : sWhite,
+                                                  fontWeight: FontWeight.w800,),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              'Weekly',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 3
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 17),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              controller.weeklyPurchaseValue
+                                                  .isEmpty
+                                                  ||
+                                                  controller.weeklyPurchaseValue
+                                                      .value == ''
+                                                  ? '00.00'
+                                                  : '${controller
+                                                  .weeklyPurchaseValue.value}',
+
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 3
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 17),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),),
+                                  const SizedBox(width: 15,),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        AppSingletons.selectedPlanForProInvoice
+                                            .value = 4;
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 10),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              10),
+                                          color: AppSingletons
+                                              .selectedPlanForProInvoice
+                                              .value == 4
+                                              ? mainPurpleColor
+                                              : sWhite,
+                                          border: Border.all(
+                                            color: mainPurpleColor,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .center,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .center,
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 4
+                                                      ? sWhite
+                                                      : mainPurpleColor,
+                                                  borderRadius: BorderRadius
+                                                      .circular(5)
+                                              ),
+
+                                              padding: const EdgeInsets
+                                                  .symmetric(
+                                                  horizontal: 15, vertical: 3),
+                                              child: Text(
+                                                '50% OFF',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 4
+                                                      ? mainPurpleColor
+                                                      : sWhite,
+                                                  fontWeight: FontWeight.w800,),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              'Life Time',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 4
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 17),
+                                            ),
+                                            const SizedBox(height: 3,),
+                                            Text(
+                                              controller.lifeTimeValue.isEmpty
+                                                  || controller.lifeTimeValue
+                                                  .value == ''
+                                                  ? '00.00'
+                                                  : '${controller.lifeTimeValue
+                                                  .value}',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppSingletons
+                                                      .selectedPlanForProInvoice
+                                                      .value == 4
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 17),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),),
+                                ],
+                              ),
                             ],
                           ),
-                          const SizedBox(height: 15,),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    AppSingletons.selectedPlanForProInvoice.value = 3;
-                                    debugPrint('Weekly Value: ${controller.weeklyPurchaseValue.value}');
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                          ? mainPurpleColor
-                                          : sWhite,
-                                      border: Border.all(
-                                        color:  mainPurpleColor,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                  ? sWhite
-                                                  : mainPurpleColor,
-                                              borderRadius: BorderRadius.circular(5)
-                                          ),
-
-                                          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                          child: Text(
-                                            'BASIC',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                  ? mainPurpleColor
-                                                  : sWhite,
-                                              fontWeight: FontWeight.w800,),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          'Weekly',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 17),
-                                        ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          controller.weeklyPurchaseValue.isEmpty
-                                          || controller.weeklyPurchaseValue.value == ''
-                                              ? '00.00'
-                                              : '${controller.weeklyPurchaseValue.value}',
-
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 17),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),),
-                              const SizedBox(width: 15,),
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    AppSingletons.selectedPlanForProInvoice.value = 4;
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                          ? mainPurpleColor
-                                          : sWhite,
-                                      border: Border.all(
-                                        color:  mainPurpleColor,
-                                        width: 2,
-                                      ),
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                  ? sWhite
-                                                  : mainPurpleColor,
-                                              borderRadius: BorderRadius.circular(5)
-                                          ),
-
-                                          padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                          child: Text(
-                                            'SAVE 45%',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                  ? mainPurpleColor
-                                                  : sWhite,
-                                              fontWeight: FontWeight.w800,),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          'Life Time',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 17),
-                                        ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          controller.lifeTimeValue.isEmpty
-                                              || controller.lifeTimeValue.value == ''
-                                              ? '00.00'
-                                              : '${controller.lifeTimeValue.value}',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                  ? sWhite
-                                                  : blackColor,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 17),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )),
+                        )),
 
                     const SizedBox(
                       height: 20,
@@ -554,43 +653,67 @@ class ProScreenView extends GetView<ProScreenController> {
 
                     GestureDetector(
                       onTap: () {
-
-                        if(Platform.isAndroid){
-                          if (AppSingletons.selectedPlanForProInvoice.value == 1) {
-                            controller.buyProduct(controller.productsDetailsAndroid.value[3]);
-                            debugPrint('VALUE: ${controller.productsDetailsAndroid.value[3].rawPrice}');
+                        if (Platform.isAndroid) {
+                          if (AppSingletons.selectedPlanForProInvoice.value ==
+                              1) {
+                            controller.buyProduct(
+                                controller.productsDetailsAndroid.value[3]);
+                            debugPrint(
+                                'VALUE: ${controller.productsDetailsAndroid
+                                    .value[3].rawPrice}');
                           }
-                          else if (AppSingletons.selectedPlanForProInvoice.value == 2) {
-                            controller.buyProduct(controller.productsDetailsAndroid.value[1]);
-                            debugPrint('VALUE: ${controller.productsDetailsAndroid.value[1].rawPrice}');
+                          else
+                          if (AppSingletons.selectedPlanForProInvoice.value ==
+                              2) {
+                            controller.buyProduct(
+                                controller.productsDetailsAndroid.value[1]);
+                            debugPrint(
+                                'VALUE: ${controller.productsDetailsAndroid
+                                    .value[1].rawPrice}');
                           }
-                          else if (AppSingletons.selectedPlanForProInvoice.value == 3) {
-                            controller.buyProduct(controller.productsDetailsAndroid.value[2]);
-                            debugPrint('VALUE: ${controller.productsDetailsAndroid.value[2].rawPrice}');
+                          else
+                          if (AppSingletons.selectedPlanForProInvoice.value ==
+                              3) {
+                            controller.buyProduct(
+                                controller.productsDetailsAndroid.value[2]);
+                            debugPrint(
+                                'VALUE: ${controller.productsDetailsAndroid
+                                    .value[2].rawPrice}');
                           }
                           else {
-                            controller.buyProduct(controller.productsDetailsAndroid.value[0]);
-                            debugPrint('VALUE: ${controller.productsDetailsAndroid.value[0].rawPrice}');
+                            controller.buyProduct(
+                                controller.productsDetailsAndroid.value[0]);
+                            debugPrint(
+                                'VALUE: ${controller.productsDetailsAndroid
+                                    .value[0].rawPrice}');
                           }
                         }
-                        else if(Platform.isIOS) {
-
+                        else if (Platform.isIOS) {
                           // 1 = yearly
                           // 2 = Monthly
                           // 3 = Weekly
                           // 4 = Lifetime
 
-                          if(AppSingletons.selectedPlanForProInvoice.value == 1) {
-                            controller.buyProductIOS(controller.productsDetailsIOS.value[2]);
+                          if (AppSingletons.selectedPlanForProInvoice.value ==
+                              1) {
+                            controller.buyProductIOS(
+                                controller.productsDetailsIOS.value[2]);
                           }
-                          else if(AppSingletons.selectedPlanForProInvoice.value == 2) {
-                            controller.buyProductIOS(controller.productsDetailsIOS.value[1]);
+                          else
+                          if (AppSingletons.selectedPlanForProInvoice.value ==
+                              2) {
+                            controller.buyProductIOS(
+                                controller.productsDetailsIOS.value[1]);
                           }
-                          else if(AppSingletons.selectedPlanForProInvoice.value == 3) {
-                            controller.buyProductIOS(controller.productsDetailsIOS.value[0]);
+                          else
+                          if (AppSingletons.selectedPlanForProInvoice.value ==
+                              3) {
+                            controller.buyProductIOS(
+                                controller.productsDetailsIOS.value[0]);
                           }
                           else {
-                            controller.buyProductIOS(controller.productsDetailsIOS.value[3]);
+                            controller.buyProductIOS(
+                                controller.productsDetailsIOS.value[3]);
                           }
 
                           // controller.buyProductIOS(controller.productsDetailsIOS.value[
@@ -598,8 +721,8 @@ class ProScreenView extends GetView<ProScreenController> {
 
                         }
 
-                        SharedPreferencesManager.setValue('isAppLaunchFirstTime', false);
-
+                        SharedPreferencesManager.setValue(
+                            'isAppLaunchFirstTime', false);
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -615,8 +738,36 @@ class ProScreenView extends GetView<ProScreenController> {
                               mainPurpleColor.withOpacity(0.4)
                             ])),
                         alignment: Alignment.center,
-                        child: const Text(
-                          'Buy Now',
+                        child:
+                        AppSingletons.selectedPlanForProInvoice.value == 1
+                            ? Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'TRY FREE FOR 3 DAYS',
+                              style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  color: sWhite,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                            Obx(() {
+                              return Text(
+                                'THEN ${controller.yearlyPurchaseValue
+                                    .value} PER YEAR',
+                                style: const TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: sWhite,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700),
+                              );
+                            }),
+                          ],
+                        )
+                            : const Text(
+                          'Continue',
                           style: TextStyle(
                               fontFamily: 'Montserrat',
                               color: sWhite,
@@ -638,8 +789,9 @@ class ProScreenView extends GetView<ProScreenController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 20),
-                              child:  Row(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20),
+                              child: Row(
                                 children: [
                                   Container(
                                     height: 8,
@@ -652,8 +804,9 @@ class ProScreenView extends GetView<ProScreenController> {
 
                                   const SizedBox(width: 10,),
 
-                                  const  Expanded(
-                                    child: Text('Subscription will be auto-renews and tou will be automatically charged. Cancel Anytime',
+                                  const Expanded(
+                                    child: Text(
+                                      'Subscription will be auto-renews and tou will be automatically charged. Cancel Anytime',
                                       style: TextStyle(
                                           fontFamily: 'Montserrat',
                                           color: blackColor,
@@ -669,7 +822,8 @@ class ProScreenView extends GetView<ProScreenController> {
                               height: 10,
                             ),
                             Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 20),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20),
 
                               child: Row(
                                 children: [
@@ -685,7 +839,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                   const SizedBox(width: 10,),
 
                                   const Expanded(
-                                    child: Text('Your subscription can be managed or cancelled under your google play store account profile PAYMENT AND SUBSCRIPTIONS',
+                                    child: Text(
+                                      'Your subscription can be managed or cancelled under your google play store account profile PAYMENT AND SUBSCRIPTIONS',
                                       style: TextStyle(
                                           fontFamily: 'Montserrat',
                                           color: blackColor,
@@ -712,8 +867,9 @@ class ProScreenView extends GetView<ProScreenController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 20),
-                              child:  Row(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20),
+                              child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
@@ -728,8 +884,9 @@ class ProScreenView extends GetView<ProScreenController> {
 
                                   const SizedBox(width: 10,),
 
-                                  const  Expanded(
-                                    child: Text('Payment will be charged to your iTunes account at confirmation of purchase. Your subscription will automatically renew unless auto-renew is turned off at least 24-hours prior to the end of the current subscription period. Automatic renewals will cost the same price you were originally charged for the subscription.',
+                                  const Expanded(
+                                    child: Text(
+                                      'Payment will be charged to your iTunes account at confirmation of purchase. Your subscription will automatically renew unless auto-renew is turned off at least 24-hours prior to the end of the current subscription period. Automatic renewals will cost the same price you were originally charged for the subscription.',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                           fontFamily: 'Montserrat',
@@ -746,7 +903,8 @@ class ProScreenView extends GetView<ProScreenController> {
                               height: 10,
                             ),
                             Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 20),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20),
 
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -764,7 +922,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                   const SizedBox(width: 10,),
 
                                   const Expanded(
-                                    child: Text('You can manage your subscriptions and turned off auto-renewal by going to your Account Settings on the App Store after purchase. Read our terms of services and Privacy Policy for more information.',
+                                    child: Text(
+                                      'You can manage your subscriptions and turned off auto-renewal by going to your Account Settings on the App Store after purchase. Read our terms of services and Privacy Policy for more information.',
                                       textAlign: TextAlign.justify,
                                       style: TextStyle(
                                           fontFamily: 'Montserrat',
@@ -791,7 +950,7 @@ class ProScreenView extends GetView<ProScreenController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
-                              onPressed: (){
+                              onPressed: () {
                                 Uri url = Uri.parse(
                                     'https://vitalappstudio.blogspot.com/2024/08/%20Invoice%20Maker%20Receipt%20Creator.html');
                                 launchUrl(url);
@@ -809,7 +968,7 @@ class ProScreenView extends GetView<ProScreenController> {
                             color: blackColor,
                           ),
                           TextButton(
-                              onPressed: (){
+                              onPressed: () {
                                 Uri url = Uri.parse(
                                     'https://vitalappstudio.blogspot.com/2024/04/terms%20of%20use.html');
                                 launchUrl(url);
@@ -842,7 +1001,10 @@ class ProScreenView extends GetView<ProScreenController> {
       backgroundColor: mainPurpleColor,
       body: Center(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.4,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width * 0.4,
           height: double.infinity,
           child: Column(
             children: [
@@ -908,7 +1070,7 @@ class ProScreenView extends GetView<ProScreenController> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 controller.getRestoreProduct();
                               },
                               child: Container(
@@ -916,7 +1078,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                   borderRadius: BorderRadius.circular(50),
                                   color: sWhite,
                                 ),
-                                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
                                 child: const Text(
                                   'RESTORE',
                                   style: TextStyle(
@@ -1017,7 +1180,7 @@ class ProScreenView extends GetView<ProScreenController> {
                           ),
                         ),
 
-                        const SizedBox(height:10,),
+                        const SizedBox(height: 10,),
 
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -1042,7 +1205,7 @@ class ProScreenView extends GetView<ProScreenController> {
 
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 20),
-                          child: const  Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -1063,337 +1226,456 @@ class ProScreenView extends GetView<ProScreenController> {
                           height: 20,
                         ),
 
-                        Obx(() => Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            children: [
-                              Row(
+                        Obx(() =>
+                            Container(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20),
+                              child: Column(
                                 children: [
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        AppSingletons.selectedPlanForProInvoice.value = 1;
-                                        debugPrint('Yearly Value: ${controller.yearlyPurchaseValue.value}');
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                              ? mainPurpleColor
-                                              : sWhite,
-                                          border: Border.all(
-                                            color:  mainPurpleColor,
-                                            width: 2,
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value = 1;
+                                            debugPrint(
+                                                'Yearly Value: ${controller
+                                                    .yearlyPurchaseValue
+                                                    .value}');
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius
+                                                  .circular(10),
+                                              color: AppSingletons
+                                                  .selectedPlanForProInvoice
+                                                  .value == 1
+                                                  ? mainPurpleColor
+                                                  : sWhite,
+                                              border: Border.all(
+                                                color: mainPurpleColor,
+                                                width: 2,
+                                              ),
+                                            ),
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 1
+                                                          ? sWhite
+                                                          : mainPurpleColor,
+                                                      borderRadius: BorderRadius
+                                                          .circular(5)
+                                                  ),
+
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 15,
+                                                      vertical: 3),
+                                                  child: Text(
+                                                    '3 Days Free Trail',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 1
+                                                          ? mainPurpleColor
+                                                          : sWhite,
+                                                      fontWeight: FontWeight
+                                                          .w800,),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  'Yearly',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 1
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w700,
+                                                      fontSize: 17),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  controller.yearlyPurchaseValue
+                                                      .isEmpty
+                                                      || controller
+                                                      .yearlyPurchaseValue
+                                                      .value == ''
+                                                      ? '00.00'
+                                                      : controller
+                                                      .yearlyPurchaseValue
+                                                      .value,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 1
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                                      ? sWhite
-                                                      : mainPurpleColor,
-                                                  borderRadius: BorderRadius.circular(5)
+                                        ),),
+                                      const SizedBox(width: 15,),
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value = 2;
+                                            debugPrint(
+                                                'Monthly Value: ${controller
+                                                    .monthlyPurchaseValue
+                                                    .value}');
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius
+                                                  .circular(10),
+                                              color: AppSingletons
+                                                  .selectedPlanForProInvoice
+                                                  .value == 2
+                                                  ? mainPurpleColor
+                                                  : sWhite,
+                                              border: Border.all(
+                                                color: mainPurpleColor,
+                                                width: 2,
                                               ),
+                                            ),
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 2
+                                                          ? sWhite
+                                                          : mainPurpleColor,
+                                                      borderRadius: BorderRadius
+                                                          .circular(5)
+                                                  ),
 
-                                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                              child: Text(
-                                                'SAVE 21%',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                                      ? mainPurpleColor
-                                                      : sWhite,
-                                                  fontWeight: FontWeight.w800,),
-                                              ),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 15,
+                                                      vertical: 3),
+                                                  child: Text(
+                                                    'GOLD',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 2
+                                                          ? mainPurpleColor
+                                                          : sWhite,
+                                                      fontWeight: FontWeight
+                                                          .w800,),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  'Monthly',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 2
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w700,
+                                                      fontSize: 17),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  controller
+                                                      .monthlyPurchaseValue
+                                                      .isEmpty
+                                                      || controller
+                                                      .monthlyPurchaseValue
+                                                      .value == ''
+                                                      ? '00.00'
+                                                      : controller
+                                                      .monthlyPurchaseValue
+                                                      .value,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 2
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
                                             ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              'Yearly',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 17),
-                                            ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              controller.yearlyPurchaseValue.isEmpty
-                                                  || controller.yearlyPurchaseValue.value == ''
-                                                  ? '00.00'
-                                                  : controller.yearlyPurchaseValue.value,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 1
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 17),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),),
-                                  const SizedBox(width: 15,),
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        AppSingletons.selectedPlanForProInvoice.value = 2;
-                                        debugPrint('Monthly Value: ${controller.monthlyPurchaseValue.value}');
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                              ? mainPurpleColor
-                                              : sWhite,
-                                          border: Border.all(
-                                            color:  mainPurpleColor,
-                                            width: 2,
                                           ),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                      ? sWhite
-                                                      : mainPurpleColor,
-                                                  borderRadius: BorderRadius.circular(5)
-                                              ),
+                                        ),),
 
-                                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                              child: Text(
-                                                'GOLD',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                      ? mainPurpleColor
-                                                      : sWhite,
-                                                  fontWeight: FontWeight.w800,),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 15,),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value = 3;
+                                            debugPrint(
+                                                'Weekly Value: ${controller
+                                                    .weeklyPurchaseValue
+                                                    .value}');
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius
+                                                  .circular(10),
+                                              color: AppSingletons
+                                                  .selectedPlanForProInvoice
+                                                  .value == 3
+                                                  ? mainPurpleColor
+                                                  : sWhite,
+                                              border: Border.all(
+                                                color: mainPurpleColor,
+                                                width: 2,
                                               ),
                                             ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              'Monthly',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 17),
-                                            ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              controller.monthlyPurchaseValue.isEmpty
-                                                  || controller.monthlyPurchaseValue.value == ''
-                                                  ? '00.00'
-                                                  : controller.monthlyPurchaseValue.value,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 2
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 17),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),),
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 3
+                                                          ? sWhite
+                                                          : mainPurpleColor,
+                                                      borderRadius: BorderRadius
+                                                          .circular(5)
+                                                  ),
 
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 15,
+                                                      vertical: 3),
+                                                  child: Text(
+                                                    'BASIC',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 3
+                                                          ? mainPurpleColor
+                                                          : sWhite,
+                                                      fontWeight: FontWeight
+                                                          .w800,),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  'Weekly',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 3
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w700,
+                                                      fontSize: 17),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  controller.weeklyPurchaseValue
+                                                      .isEmpty
+                                                      || controller
+                                                      .weeklyPurchaseValue
+                                                      .value == ''
+                                                      ? '00.00'
+                                                      : '${controller
+                                                      .weeklyPurchaseValue}',
+
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 3
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),),
+                                      const SizedBox(width: 15,),
+                                      Expanded(
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value = 4;
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 10),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius
+                                                  .circular(10),
+                                              color: AppSingletons
+                                                  .selectedPlanForProInvoice
+                                                  .value == 4
+                                                  ? mainPurpleColor
+                                                  : sWhite,
+                                              border: Border.all(
+                                                color: mainPurpleColor,
+                                                width: 2,
+                                              ),
+                                            ),
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 4
+                                                          ? sWhite
+                                                          : mainPurpleColor,
+                                                      borderRadius: BorderRadius
+                                                          .circular(5)
+                                                  ),
+
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 15,
+                                                      vertical: 3),
+                                                  child: Text(
+                                                    '50% OFF',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 4
+                                                          ? mainPurpleColor
+                                                          : sWhite,
+                                                      fontWeight: FontWeight
+                                                          .w800,),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  'Life Time',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 4
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w700,
+                                                      fontSize: 17),
+                                                ),
+                                                const SizedBox(height: 3,),
+                                                Text(
+                                                  controller.lifeTimeValue
+                                                      .isEmpty
+                                                      ||
+                                                      controller.lifeTimeValue
+                                                          .value == ''
+                                                      ? '00.00'
+                                                      : controller.lifeTimeValue
+                                                      .value,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: AppSingletons
+                                                          .selectedPlanForProInvoice
+                                                          .value == 4
+                                                          ? sWhite
+                                                          : blackColor,
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 17),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),),
+                                    ],
+                                  ),
                                 ],
                               ),
-                              const SizedBox(height: 15,),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        AppSingletons.selectedPlanForProInvoice.value = 3;
-                                        debugPrint('Weekly Value: ${controller.weeklyPurchaseValue.value}');
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                              ? mainPurpleColor
-                                              : sWhite,
-                                          border: Border.all(
-                                            color:  mainPurpleColor,
-                                            width: 2,
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                      ? sWhite
-                                                      : mainPurpleColor,
-                                                  borderRadius: BorderRadius.circular(5)
-                                              ),
-
-                                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                              child: Text(
-                                                'BASIC',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                      ? mainPurpleColor
-                                                      : sWhite,
-                                                  fontWeight: FontWeight.w800,),
-                                              ),
-                                            ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              'Weekly',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 17),
-                                            ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              controller.weeklyPurchaseValue.isEmpty
-                                                  || controller.weeklyPurchaseValue.value == ''
-                                                  ? '00.00'
-                                                  : '${controller.weeklyPurchaseValue}',
-
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 3
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 17),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),),
-                                  const SizedBox(width: 15,),
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        AppSingletons.selectedPlanForProInvoice.value = 4;
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                              ? mainPurpleColor
-                                              : sWhite,
-                                          border: Border.all(
-                                            color:  mainPurpleColor,
-                                            width: 2,
-                                          ),
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                      ? sWhite
-                                                      : mainPurpleColor,
-                                                  borderRadius: BorderRadius.circular(5)
-                                              ),
-
-                                              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 3),
-                                              child: Text(
-                                                'SAVE 45%',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                      ? mainPurpleColor
-                                                      : sWhite,
-                                                  fontWeight: FontWeight.w800,),
-                                              ),
-                                            ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              'Life Time',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 17),
-                                            ),
-                                            const SizedBox(height: 3,),
-                                            Text(
-                                              controller.lifeTimeValue.isEmpty
-                                                  || controller.lifeTimeValue.value == ''
-                                                  ? '00.00'
-                                                  : controller.lifeTimeValue.value,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  fontFamily: 'Montserrat',
-                                                  color: AppSingletons.selectedPlanForProInvoice.value == 4
-                                                      ? sWhite
-                                                      : blackColor,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 17),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )),
+                            )),
 
                         const SizedBox(
                           height: 20,
                         ),
                         GestureDetector(
                           onTap: () {
+                            controller.buyProductIOS(
+                                controller.productsDetailsIOS.value[
+                                AppSingletons.selectedPlanForProInvoice.value -
+                                    1]);
 
-                            controller.buyProductIOS(controller.productsDetailsIOS.value[
-                            AppSingletons.selectedPlanForProInvoice.value - 1]);
-
-                            SharedPreferencesManager.setValue('isAppLaunchFirstTime', false);
-
+                            SharedPreferencesManager.setValue(
+                                'isAppLaunchFirstTime', false);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -1431,9 +1713,11 @@ class ProScreenView extends GetView<ProScreenController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                                  child:  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
                                     children: [
                                       Container(
                                         height: 10,
@@ -1447,8 +1731,9 @@ class ProScreenView extends GetView<ProScreenController> {
 
                                       const SizedBox(width: 10,),
 
-                                      const  Expanded(
-                                        child: Text('Payment will be charged to your iTunes account at confirmation of purchase. Your subscription will automatically renew unless auto-renew is turned off at least 24-hours prior to the end of the current subscription period. Automatic renewals will cost the same price you were originally charged for the subscription.',
+                                      const Expanded(
+                                        child: Text(
+                                          'Payment will be charged to your iTunes account at confirmation of purchase. Your subscription will automatically renew unless auto-renew is turned off at least 24-hours prior to the end of the current subscription period. Automatic renewals will cost the same price you were originally charged for the subscription.',
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
                                               fontFamily: 'Montserrat',
@@ -1465,10 +1750,12 @@ class ProScreenView extends GetView<ProScreenController> {
                                   height: 10,
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 20),
 
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
                                     children: [
                                       Container(
                                         height: 10,
@@ -1483,7 +1770,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                       const SizedBox(width: 10,),
 
                                       const Expanded(
-                                        child: Text('You can manage your subscriptions and turned off auto-renewal by going to your Account Settings on the App Store after purchase. Read our terms of services and Privacy Policy for more information.',
+                                        child: Text(
+                                          'You can manage your subscriptions and turned off auto-renewal by going to your Account Settings on the App Store after purchase. Read our terms of services and Privacy Policy for more information.',
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
                                               fontFamily: 'Montserrat',
@@ -1510,7 +1798,7 @@ class ProScreenView extends GetView<ProScreenController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               TextButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     Uri url = Uri.parse(
                                         'https://vitalappstudio.blogspot.com/2024/08/%20Invoice%20Maker%20Receipt%20Creator.html');
                                     launchUrl(url);
@@ -1528,7 +1816,7 @@ class ProScreenView extends GetView<ProScreenController> {
                                 color: blackColor,
                               ),
                               TextButton(
-                                  onPressed: (){
+                                  onPressed: () {
                                     Uri url = Uri.parse(
                                         'https://vitalappstudio.blogspot.com/2024/04/terms%20of%20use.html');
                                     launchUrl(url);

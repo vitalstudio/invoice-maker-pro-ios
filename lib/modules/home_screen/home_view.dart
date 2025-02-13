@@ -415,7 +415,7 @@ class HomeView extends GetView<HomeController> {
 
                 Utils.clearInvoiceVariables();
               } else {
-                if(AppSingletons.noOfInvoicesMadeAlready.value >= 5){
+                if(AppSingletons.noOfInvoicesMadeAlready.value >= 3){
                   Get.toNamed(Routes.proScreenView);
                 } else {
                   AppSingletons.isInvoiceDocument.value = true;
@@ -807,7 +807,7 @@ class HomeView extends GetView<HomeController> {
 
                                     Utils.clearInvoiceVariables();
                                   } else {
-                                    if(AppSingletons.noOfInvoicesMadeAlready.value >= 5){
+                                    if(AppSingletons.noOfInvoicesMadeAlready.value >= 3){
                                       Get.toNamed(Routes.proScreenView);
                                     } else {
                                       AppSingletons.isInvoiceDocument.value = true;
@@ -997,103 +997,105 @@ class HomeView extends GetView<HomeController> {
             content: Obx(() {
               return Form(
                 key: controller.formKey,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      onTap: () {
-                          controller.invoicePaidStatus.value = AppConstants.paidInvoice;
-                          debugPrint(controller.invoicePaidStatus.value);
-                      },
-                      title: const Text(
-                        'Paid',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: blackColor),
-                      ),
-                      trailing: Visibility(
-                        visible: controller.invoicePaidStatus.value ==
-                            AppConstants.paidInvoice,
-                        child: const Icon(
-                          Icons.check,
-                          color: mainPurpleColor,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        onTap: () {
+                            controller.invoicePaidStatus.value = AppConstants.paidInvoice;
+                            debugPrint(controller.invoicePaidStatus.value);
+                        },
+                        title: const Text(
+                          'Paid',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: blackColor),
                         ),
-                      ),
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      onTap: () {
-                          controller.invoicePaidStatus.value = AppConstants.unpaidInvoice;
-                          debugPrint(controller.invoicePaidStatus.value);
-                      },
-                      title: const Text(
-                        'Unpaid',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: blackColor),
-                      ),
-                      trailing: Visibility(
-                        visible: controller.invoicePaidStatus.value ==
-                            AppConstants.unpaidInvoice,
-                        child: const Icon(
-                          Icons.check,
-                          color: mainPurpleColor,
-                        ),
-                      ),
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      onTap: () {
-                          controller.invoicePaidStatus.value = AppConstants.partiallyPaidInvoice;
-                          debugPrint(controller.invoicePaidStatus.value);
-                      },
-                      title: const Text(
-                        'Partially Paid',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: blackColor),
-                      ),
-                      subtitle: Visibility(
-                        visible: controller.invoicePaidStatus.value == AppConstants.partiallyPaidInvoice,
-                        child: Container(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: CommonTextField(
-                            textEditingController: controller.partiallyPaidController,
-                            textInputAction: TextInputAction.done,
-                            textInputType: TextInputType.number,
-                            hintText: 'Enter Amount',
-                            inputFormatter: [AmountInputFormatter()],
-                            validator: (_) {
-                              if (controller.partiallyPaidController.text.isEmpty) {
-                                return 'Please Enter Amount';
-                              } else if (int.parse(controller
-                                  .partiallyPaidController.text) >=
-                                  itemPrice) {
-                                return 'Larger amount then total';
-                              } else {
-                                return null;
-                              }
-                            },
+                        trailing: Visibility(
+                          visible: controller.invoicePaidStatus.value ==
+                              AppConstants.paidInvoice,
+                          child: const Icon(
+                            Icons.check,
+                            color: mainPurpleColor,
                           ),
                         ),
                       ),
-                      trailing: Visibility(
-                        visible: controller.invoicePaidStatus.value ==
-                            AppConstants.partiallyPaidInvoice,
-                        child: const Icon(
-                          Icons.check,
-                          color: mainPurpleColor,
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        onTap: () {
+                            controller.invoicePaidStatus.value = AppConstants.unpaidInvoice;
+                            debugPrint(controller.invoicePaidStatus.value);
+                        },
+                        title: const Text(
+                          'Unpaid',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: blackColor),
+                        ),
+                        trailing: Visibility(
+                          visible: controller.invoicePaidStatus.value ==
+                              AppConstants.unpaidInvoice,
+                          child: const Icon(
+                            Icons.check,
+                            color: mainPurpleColor,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        onTap: () {
+                            controller.invoicePaidStatus.value = AppConstants.partiallyPaidInvoice;
+                            debugPrint(controller.invoicePaidStatus.value);
+                        },
+                        title: const Text(
+                          'Partially Paid',
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: blackColor),
+                        ),
+                        subtitle: Visibility(
+                          visible: controller.invoicePaidStatus.value == AppConstants.partiallyPaidInvoice,
+                          child: Container(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: CommonTextField(
+                              textEditingController: controller.partiallyPaidController,
+                              textInputAction: TextInputAction.done,
+                              textInputType: TextInputType.number,
+                              hintText: 'Enter Amount',
+                              inputFormatter: [AmountInputFormatter()],
+                              validator: (_) {
+                                if (controller.partiallyPaidController.text.isEmpty) {
+                                  return 'Please Enter Amount';
+                                } else if (int.parse(controller
+                                    .partiallyPaidController.text) >=
+                                    itemPrice) {
+                                  return 'Larger amount then total';
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                        trailing: Visibility(
+                          visible: controller.invoicePaidStatus.value ==
+                              AppConstants.partiallyPaidInvoice,
+                          child: const Icon(
+                            Icons.check,
+                            color: mainPurpleColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
@@ -2689,7 +2691,7 @@ class HomeView extends GetView<HomeController> {
               ),),
               TextButton(
                 onPressed: () {
-                  controller.filterData();controller.isFilteringList.value = true;
+                  controller.filterData();
                   Get.back();
 
                 }, child: const Text('APPLY',

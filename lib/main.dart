@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
       initialBinding: AppBindings(),
       locale: const Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
-      title: 'Invoice Maker !Receipt Creator',
+      title: 'Invoice Maker',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: mainPurpleColor),
         useMaterial3: true,

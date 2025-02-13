@@ -596,7 +596,7 @@ class HomeController extends GetxController with AdsControllerMixin {
                 .toLowerCase()
                 .contains(selectedName.value.toLowerCase()));
       }).toList();
-      ;
+      isFilteringList.value = true;
     } else if (selectedName.value.isNotEmpty) {
       filteredDataList.value = fetchedDataList.value
           .where((data) => data.clientName!
@@ -623,6 +623,9 @@ class HomeController extends GetxController with AdsControllerMixin {
               .toLowerCase()
               .contains(selectedName.value.toLowerCase()))
           .toList();
+
+      isFilteringList.value = true;
+
     } else if (fromDate.value != null && toDate.value != null) {
       filteredDataList.value = fetchedDataList.value.where((data) {
         DateTime? dataStartDate = _parseDate(data.startDate);
@@ -684,12 +687,18 @@ class HomeController extends GetxController with AdsControllerMixin {
                 .isAfter(fromDate.value!.subtract(const Duration(days: 1))) &&
             dataStartDate.isBefore(toDate.value!.add(const Duration(days: 1))));
       }).toList();
+
+      isFilteringList.value = true;
+
     } else {
       filteredDataList.value = fetchedDataList.value;
       filteredUnpaidList.value = fetchedUnpaidList.value;
       filteredPPList.value = fetchedPPList.value;
       filteredOverdueList.value = fetchedOverdueList.value;
       filteredPaidList.value = fetchedPaidList.value;
+
+      isFilteringList.value = false;
+
     }
   }
 

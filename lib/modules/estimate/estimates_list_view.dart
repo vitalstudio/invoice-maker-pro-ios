@@ -288,7 +288,7 @@ class EstimateListView extends GetView<EstimateListController> {
 
                 Utils.clearEstimateVariables();
               } else {
-                if(AppSingletons.noOfEstimatesMadeAlready.value >= 5){
+                if(AppSingletons.noOfEstimatesMadeAlready.value >= 3){
                   Get.toNamed(Routes.proScreenView);
                 } else {
                   AppSingletons.isInvoiceDocument.value = false;
@@ -623,7 +623,7 @@ class EstimateListView extends GetView<EstimateListController> {
 
                            Utils.clearEstimateVariables();
                          } else {
-                           if(AppSingletons.noOfEstimatesMadeAlready.value >= 5){
+                           if(AppSingletons.noOfEstimatesMadeAlready.value >= 3){
                              Get.toNamed(Routes.proScreenView);
                            } else {
                              AppSingletons.isInvoiceDocument.value = false;

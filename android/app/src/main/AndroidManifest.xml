@@ -11,7 +11,7 @@
 
     <application
         android:requestLegacyExternalStorage="true"
-        android:label="Invoice Maker !Receipt Creator"
+        android:label="Invoice Maker"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
