@@ -724,37 +724,37 @@ class ProScreenView extends GetView<ProScreenController> {
                         SharedPreferencesManager.setValue(
                             'isAppLaunchFirstTime', false);
                       },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        height: 50,
-                        width: AppConstants.isMobileScreen.value
-                            ? double.infinity
-                            : 400,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            gradient: LinearGradient(colors: [
-                              mainPurpleColor,
-                              mainPurpleColor.withOpacity(0.7),
-                              mainPurpleColor.withOpacity(0.4)
-                            ])),
-                        alignment: Alignment.center,
-                        child:
-                        AppSingletons.selectedPlanForProInvoice.value == 1
-                            ? Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'TRY FREE FOR 3 DAYS',
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: sWhite,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            Obx(() {
-                              return Text(
+                      child: Obx(() {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          height: 50,
+                          width: AppConstants.isMobileScreen.value
+                              ? double.infinity
+                              : 400,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              gradient: LinearGradient(colors: [
+                                mainPurpleColor,
+                                mainPurpleColor.withOpacity(0.7),
+                                mainPurpleColor.withOpacity(0.4)
+                              ])),
+                          alignment: Alignment.center,
+                          child:
+                          AppSingletons.selectedPlanForProInvoice.value == 1
+                              ? Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'TRY FREE FOR 3 DAYS',
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: sWhite,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              Text(
                                 'THEN ${controller.yearlyPurchaseValue
                                     .value} PER YEAR',
                                 style: const TextStyle(
@@ -762,19 +762,19 @@ class ProScreenView extends GetView<ProScreenController> {
                                     color: sWhite,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w700),
-                              );
-                            }),
-                          ],
-                        )
-                            : const Text(
-                          'Continue',
-                          style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              color: sWhite,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
+                              ),
+                            ],
+                          )
+                              : const Text(
+                            'Continue',
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                color: sWhite,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        );
+                      }),
                     ),
 
                     const SizedBox(
