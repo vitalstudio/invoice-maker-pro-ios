@@ -291,7 +291,7 @@ class ProScreenView extends GetView<ProScreenController> {
                                                   .symmetric(
                                                   horizontal: 15, vertical: 3),
                                               child: Text(
-                                                '3 Days Free Trail',
+                                                '3 Days Free Trial',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   fontFamily: 'Montserrat',
@@ -1284,7 +1284,7 @@ class ProScreenView extends GetView<ProScreenController> {
                                                       .symmetric(horizontal: 15,
                                                       vertical: 3),
                                                   child: Text(
-                                                    '3 Days Free Trail',
+                                                    '3 Days Free Trial',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                       fontFamily: 'Montserrat',
