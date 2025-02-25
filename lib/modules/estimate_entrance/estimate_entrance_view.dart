@@ -1711,14 +1711,34 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                     flex: 2,
                     child: InkWell(
                       onTap: () async {
-                        if (AppSingletons.isEditEstimate.value) {
-                          await controller.editEstimateData();
-                        } else {
-                          await controller.saveDataInEstimate();
 
-                          // Timer(const Duration(milliseconds: 500),() async {
-                          //   await Utils.rateUs('Congratulations! You made an estimate!');
-                          // });
+                        if(!AppSingletons.isSubscriptionEnabled.value){
+                          if(
+                          AppSingletons.selectedTempIndexToCheck.value == 0
+                              || AppSingletons.selectedTempIndexToCheck.value == 1
+                          ) {
+                            if (AppSingletons.isEditEstimate.value) {
+                              await controller.editEstimateData();
+                            } else{
+                              if(AppSingletons.noOfEstimatesMadeAlready.value >= 1){
+                                Get.toNamed(Routes.proScreenView);
+                              } else{
+                                await controller.saveDataInEstimate();
+                              }
+                            }
+                          } else{
+                            Get.toNamed(Routes.proScreenView);
+                          }
+                        } else{
+                          if (AppSingletons.isEditEstimate.value) {
+                            await controller.editEstimateData();
+                          } else {
+                            await controller.saveDataInEstimate();
+
+                            // Timer(const Duration(milliseconds: 500),() async {
+                            //   await Utils.rateUs('Congratulations! You made an estimate!');
+                            // });
+                          }
                         }
                       },
                       child: Container(

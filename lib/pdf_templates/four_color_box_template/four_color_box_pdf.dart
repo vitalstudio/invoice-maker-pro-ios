@@ -369,7 +369,7 @@ class PdfFourColorBoxTemplate {
       String currencySign,
       ) {
     final headers = [
-      'DESCRIPTION',
+      'Name',
       'QTY',
       'PRICE',
       'DISCOUNT',

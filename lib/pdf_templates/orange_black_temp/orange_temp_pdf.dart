@@ -381,7 +381,7 @@ class PdfOrangeBlackTemplate {
       String currencySign,
       ) {
     final headers = [
-      'DESCRIPTION',
+      'Name',
       'QTY',
       'PRICE',
       'DISCOUNT',

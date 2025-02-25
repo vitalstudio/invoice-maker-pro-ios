@@ -293,64 +293,70 @@ class TemplatesView extends GetView<TemplatesController> {
                 //   }
                 // }
                 if(!AppSingletons.isSubscriptionEnabled.value){
-                  // if( Platform.isAndroid &&
-                  // controller.isUnlocked(controller.selectedTempIndexId.value)){
-                  //   if (AppSingletons.isEditingOnlyTemplate.value) {
-                  //     controller.changeTemplateCall();
-                  //   }
-                  //   else {
-                  //     if (AppSingletons.isInvoiceDocument.value) {
-                  //       AppSingletons.invoiceTemplateIdINV.value =
-                  //           controller.selectedTempIndexId.value.toString();
-                  //       Get.back();
-                  //       debugPrint(
-                  //           'selected tempId for INV: ${AppSingletons
-                  //               .invoiceTemplateIdINV.value}');
-                  //     } else {
-                  //       AppSingletons.estTemplateIdINV.value =
-                  //           controller.selectedTempIndexId.value.toString();
-                  //       Get.back();
-                  //       debugPrint('selected tempId for EST: ${AppSingletons.estTemplateIdINV.value}');
-                  //     }
-                  //   }
-                  // }
-                  // else {
-                    if(controller.selectedTempIndexId.value == 0 || controller.selectedTempIndexId.value == 1) {
-                      if (AppSingletons.isEditingOnlyTemplate.value) {
-                        controller.changeTemplateCall();
-                      }
-                      else {
-                        if (AppSingletons.isInvoiceDocument.value) {
-                          AppSingletons.invoiceTemplateIdINV.value =
-                              controller.selectedTempIndexId.value.toString();
-                          Get.back();
-                          debugPrint(
-                              'selected tempId for INV: ${AppSingletons
-                                  .invoiceTemplateIdINV.value}');
-                        } else {
-                          AppSingletons.estTemplateIdINV.value =
-                              controller.selectedTempIndexId.value.toString();
-                          Get.back();
-                          debugPrint(
-                              'selected tempId for EST: ${AppSingletons
-                                  .estTemplateIdINV.value}');
-                        }
-                      }
-                    }
-                    else {
-                      // if(Platform.isAndroid) {
-                      //   UnlockData.showUnlockTempDialogue(onWatchAdPressed: () {
-                      //     controller.selectProBillTemplate();
-                      //     Get.back();
-                      //   });
-                      // } else if(Platform.isIOS){
-                      //   Get.toNamed(Routes.proScreenView);
-                      // }
 
+                    // if(controller.selectedTempIndexId.value == 0 || controller.selectedTempIndexId.value == 1) {
+                    //   if (AppSingletons.isEditingOnlyTemplate.value) {
+                    //     controller.changeTemplateCall();
+                    //   }
+                    //   else {
+                    //     if (AppSingletons.isInvoiceDocument.value) {
+                    //       AppSingletons.invoiceTemplateIdINV.value =
+                    //           controller.selectedTempIndexId.value.toString();
+                    //       Get.back();
+                    //       debugPrint(
+                    //           'selected tempId for INV: ${AppSingletons
+                    //               .invoiceTemplateIdINV.value}');
+                    //     } else {
+                    //       AppSingletons.estTemplateIdINV.value =
+                    //           controller.selectedTempIndexId.value.toString();
+                    //       Get.back();
+                    //       debugPrint(
+                    //           'selected tempId for EST: ${AppSingletons
+                    //               .estTemplateIdINV.value}');
+                    //     }
+                    //   }
+                    // }
+                    // else {
+                    //   Get.toNamed(Routes.proScreenView);
+                    // }
+
+                  if (AppSingletons.isEditingOnlyTemplate.value) {
+                    if(
+                    controller.selectedTempIndexId.value == 0 ||
+                        controller.selectedTempIndexId.value == 1
+                    ) {
+                      controller.changeTemplateCall();
+                    }
+                    else{
                       Get.toNamed(Routes.proScreenView);
-
                     }
-                  // }
+                  }
+                  else {
+                    if (AppSingletons.isInvoiceDocument.value) {
+                      AppSingletons.invoiceTemplateIdINV.value =
+                          controller.selectedTempIndexId.value.toString();
+
+                      AppSingletons.selectedTempIndexToCheck.value =
+                          controller.selectedTempIndexId.value;
+
+                      Get.back();
+                      debugPrint(
+                          'selected tempId for INV: ${AppSingletons
+                              .invoiceTemplateIdINV.value}');
+                    } else {
+                      AppSingletons.estTemplateIdINV.value =
+                          controller.selectedTempIndexId.value.toString();
+
+                      AppSingletons.selectedTempIndexToCheck.value =
+                          controller.selectedTempIndexId.value;
+
+                      Get.back();
+                      debugPrint(
+                          'selected tempId for EST: ${AppSingletons
+                              .estTemplateIdINV.value}');
+                    }
+                  }
+
                 } else {
                   if (AppSingletons.isEditingOnlyTemplate.value) {
                     controller.changeTemplateCall();
@@ -423,33 +429,33 @@ class TemplatesView extends GetView<TemplatesController> {
                         width: double.infinity,
                       ),
                     ),
-                    Visibility(
-                      visible: !AppSingletons.isSubscriptionEnabled.value,
-                      child: Visibility(
-                        visible: index != 0 && index != 1 ,
-                        child: CustomPaint(
-                          size: const Size(40, 40), // Full-size overlay
-                          painter: TrianglePainter(
-                            color: proIconColor, // Color changes based on the condition
-                          ),
-                          child: Container(
-                            height: 50,
-                            width: 40,
-                              padding: const EdgeInsets.only(left: 15),
-                              child: Transform.rotate(
-                                angle: -0.854,
-                                child: const Text('PRO',
-                                  style: TextStyle(
-                                      color: sWhite,
-                                      fontFamily: 'Montserrat',
-                                      fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Visibility(
+                    //   visible: !AppSingletons.isSubscriptionEnabled.value,
+                    //   child: Visibility(
+                    //     visible: index != 0 && index != 1 ,
+                    //     child: CustomPaint(
+                    //       size: const Size(40, 40), // Full-size overlay
+                    //       painter: TrianglePainter(
+                    //         color: proIconColor, // Color changes based on the condition
+                    //       ),
+                    //       child: Container(
+                    //         height: 50,
+                    //         width: 40,
+                    //           padding: const EdgeInsets.only(left: 15),
+                    //           child: Transform.rotate(
+                    //             angle: -0.854,
+                    //             child: const Text('PRO',
+                    //               style: TextStyle(
+                    //                   color: sWhite,
+                    //                   fontFamily: 'Montserrat',
+                    //                   fontSize: 10,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Container(
                       decoration: BoxDecoration(
                           color: controller.selectedTempIndexId.value == index

@@ -47,9 +47,9 @@ class TemplatesController extends GetxController with AdsControllerMixin {
   void onInit() async {
 
 
-    if(Platform.isAndroid || Platform.isIOS){
-      updateUnlockedTemplatesFromDatabase();
-    }
+    // if(Platform.isAndroid || Platform.isIOS){
+    //   updateUnlockedTemplatesFromDatabase();
+    // }
 
     if(!AppSingletons.isSubscriptionEnabled.value){
       if(Platform.isAndroid && AppSingletons.androidBannerAdsEnabled.value){
@@ -122,15 +122,15 @@ class TemplatesController extends GetxController with AdsControllerMixin {
     bannerAd.load();
   }
 
-  void updateUnlockedTemplatesFromDatabase() {
-    // Convert List<String> to List<int>
-    List<int> unlockedIds = AppSingletons().unlockedTempIdsList.map((id) => int.parse(id)).toList();
-    unlockedTemplates.addAll(unlockedIds);
-  }
+  // void updateUnlockedTemplatesFromDatabase() {
+  //   // Convert List<String> to List<int>
+  //   List<int> unlockedIds = AppSingletons().unlockedTempIdsList.map((id) => int.parse(id)).toList();
+  //   unlockedTemplates.addAll(unlockedIds);
+  // }
 
-  bool isUnlocked(int templateId) {
-    return unlockedTemplates.contains(templateId);
-  }
+  // bool isUnlocked(int templateId) {
+  //   return unlockedTemplates.contains(templateId);
+  // }
 
   double mmToPixels(double mm, double dpi) {
     return mm * (dpi / 25.4);

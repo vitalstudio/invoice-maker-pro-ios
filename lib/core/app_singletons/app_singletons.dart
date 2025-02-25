@@ -38,6 +38,8 @@ class AppSingletons{
 
   static RxBool isMakingNewINVEST = false.obs;
 
+  static RxInt selectedTempIndexToCheck = 0.obs;
+
   static RxBool isInvoiceDocument = false.obs;
 
   static RxBool isEditingOnlyTemplate = false.obs;

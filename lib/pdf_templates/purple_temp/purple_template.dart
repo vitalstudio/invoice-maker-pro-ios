@@ -379,7 +379,7 @@ class PdfPurpleTemplate {
       List<String> itemsQuantityList,
       Font boldFont) {
     final headers = [
-      'DESCRIPTION',
+      'Name',
       'QTY',
       'PRICE',
       'DISCOUNT',

@@ -315,7 +315,7 @@ class PdfSimpleTemplate {
     Font boldFont,
   ) {
     final headers = [
-      'DESCRIPTION',
+      'Name',
       'QTY',
       'PRICE',
       'DISCOUNT',

@@ -365,7 +365,7 @@ class PdfDarkMultiTemplate {
       String currencySign,
       ) {
     final headers = [
-      'DESCRIPTION',
+      'Name',
       'QTY',
       'PRICE',
       'DISCOUNT',

@@ -64,7 +64,7 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
     //   _loadBannerAd();
     // }
 
-    updateUnlockedTemplatesFromDatabase();
+    // updateUnlockedTemplatesFromDatabase();
 
     if(!AppSingletons.isSubscriptionEnabled.value){
       if(Platform.isAndroid && AppSingletons.androidBannerAdsEnabled.value){
@@ -185,14 +185,14 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
     isLoading.value = false;
   }
 
-  void updateUnlockedTemplatesFromDatabase() {
-    List<int> unlockedIds = AppSingletons().unlockedTempIdsList.map((id) => int.parse(id)).toList();
-    unlockedTemplates.addAll(unlockedIds);
-  }
+  // void updateUnlockedTemplatesFromDatabase() {
+  //   List<int> unlockedIds = AppSingletons().unlockedTempIdsList.map((id) => int.parse(id)).toList();
+  //   unlockedTemplates.addAll(unlockedIds);
+  // }
 
-  bool isUnlocked(int templateId) {
-    return unlockedTemplates.contains(templateId);
-  }
+  // bool isUnlocked(int templateId) {
+  //   return unlockedTemplates.contains(templateId);
+  // }
 
   String generateUniqueId() {
     Random random = Random();

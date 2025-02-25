@@ -279,27 +279,36 @@ class EstimateListView extends GetView<EstimateListController> {
           child: FloatingActionButton(
             onPressed: () {
 
-              if(AppSingletons.isSubscriptionEnabled.value){
-                AppSingletons.isInvoiceDocument.value = false;
-                Get.toNamed(Routes.estimateInputView);
-                AppSingletons.isEditEstimate.value = false;
-                AppSingletons.isMakingNewINVEST.value = true;
-                AppSingletons.isEditingOnlyTemplate.value = false;
+              // if(AppSingletons.isSubscriptionEnabled.value){
+              //   AppSingletons.isInvoiceDocument.value = false;
+              //   Get.toNamed(Routes.estimateInputView);
+              //   AppSingletons.isEditEstimate.value = false;
+              //   AppSingletons.isMakingNewINVEST.value = true;
+              //   AppSingletons.isEditingOnlyTemplate.value = false;
+              //
+              //   Utils.clearEstimateVariables();
+              // } else {
+              //   if(AppSingletons.noOfEstimatesMadeAlready.value >= 3){
+              //     Get.toNamed(Routes.proScreenView);
+              //   }
+              //   else {
+              //     AppSingletons.isInvoiceDocument.value = false;
+              //     Get.toNamed(Routes.estimateInputView);
+              //     AppSingletons.isEditEstimate.value = false;
+              //     AppSingletons.isMakingNewINVEST.value = true;
+              //     AppSingletons.isEditingOnlyTemplate.value = false;
+              //
+              //     Utils.clearEstimateVariables();
+              //   }
+              // }
 
-                Utils.clearEstimateVariables();
-              } else {
-                if(AppSingletons.noOfEstimatesMadeAlready.value >= 3){
-                  Get.toNamed(Routes.proScreenView);
-                } else {
-                  AppSingletons.isInvoiceDocument.value = false;
-                  Get.toNamed(Routes.estimateInputView);
-                  AppSingletons.isEditEstimate.value = false;
-                  AppSingletons.isMakingNewINVEST.value = true;
-                  AppSingletons.isEditingOnlyTemplate.value = false;
+              AppSingletons.isInvoiceDocument.value = false;
+              Get.toNamed(Routes.estimateInputView);
+              AppSingletons.isEditEstimate.value = false;
+              AppSingletons.isMakingNewINVEST.value = true;
+              AppSingletons.isEditingOnlyTemplate.value = false;
 
-                  Utils.clearEstimateVariables();
-                }
-              }
+              Utils.clearEstimateVariables();
 
             },
             backgroundColor: mainPurpleColor,

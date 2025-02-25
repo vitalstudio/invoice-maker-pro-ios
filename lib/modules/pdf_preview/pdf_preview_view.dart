@@ -6,7 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import '../../core/utils/triangle_painter.dart';
+// import '../../core/utils/triangle_painter.dart';
 import '../../pdf_templates/simple_red_template/simple_red_temp_pdf.dart';
 import 'package:open_file_manager/open_file_manager.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
@@ -98,27 +98,34 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 child: IconButton(
                   onPressed: () {
                     if (!AppSingletons.isSubscriptionEnabled.value) {
-                      if(controller.previewTempNo.value == 0 || controller.previewTempNo.value == 1) {
+                      // if(controller.previewTempNo.value == 0 || controller.previewTempNo.value == 1) {
+                      //
+                      //
+                      // }
+                      // else{
+                      //   Get.toNamed(Routes.proScreenView);
+                      // }
 
-                          if (AppSingletons.isInvoiceDocument.value) {
-                            AppSingletons.invoiceTemplateIdINV.value =
-                                controller.previewTempNo.value.toString();
-                            Get.back();
-                            debugPrint(
-                                'selected tempId for INV: ${AppSingletons
-                                    .invoiceTemplateIdINV.value}');
-                          } else {
-                            AppSingletons.estTemplateIdINV.value =
-                                controller.previewTempNo.value.toString();
-                            Get.back();
-                            debugPrint(
-                                'selected tempId for EST: ${AppSingletons
-                                    .estTemplateIdINV.value}');
-                          }
+                      if (AppSingletons.isInvoiceDocument.value) {
+                        AppSingletons.invoiceTemplateIdINV.value =
+                            controller.previewTempNo.value.toString();
+                        AppSingletons.selectedTempIndexToCheck.value =
+                            controller.previewTempNo.value;
+                        Get.back();
+                        debugPrint(
+                            'selected tempId for INV: ${AppSingletons
+                                .invoiceTemplateIdINV.value}');
+                      } else {
+                        AppSingletons.estTemplateIdINV.value =
+                            controller.previewTempNo.value.toString();
+                        AppSingletons.selectedTempIndexToCheck.value =
+                            controller.previewTempNo.value;
+                        Get.back();
+                        debugPrint(
+                            'selected tempId for EST: ${AppSingletons
+                                .estTemplateIdINV.value}');
                       }
-                      else{
-                        Get.toNamed(Routes.proScreenView);
-                      }
+
                     } else{
                       if (AppSingletons.isInvoiceDocument.value) {
                         AppSingletons.invoiceTemplateIdINV.value =
@@ -719,36 +726,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 //     controller.invoiceDataModel!),
               ),
 
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(2),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(2),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -778,36 +785,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 // build: (format) => PdfMatBrownTemplate.createPreviewPdf(
                 //     controller.invoiceDataModel!),
               ),
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(3),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(3),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -837,36 +844,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 // build: (format) => PdfBlueTapTemplate.createPreviewPdf(
                 //     controller.invoiceDataModel!),
               ),
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(4),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(4),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -896,36 +903,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 // build: (format) => PdfBlackYellowTemplate.createPreviewPdf(
                 //     controller.invoiceDataModel!),
               ),
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(5),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(5),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -955,36 +962,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 // build: (format) => PdfPinkBlueTemplate.createPreviewPdf(
                 //     controller.invoiceDataModel!),
               ),
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(6),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(6),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -1014,36 +1021,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 // build: (format) => PdfOrangeBlackTemplate.createPreviewPdf(
                 //     controller.invoiceDataModel!),
               ),
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(7),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(7),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -1073,36 +1080,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 // build: (format) => PdfBlueBlackDottedTemplate.createPreviewPdf(
                 //     controller.invoiceDataModel!),
               ),
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(8),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(8),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -1132,36 +1139,36 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 // build: (format) => PdfGreyWallpaperTemplate.createPreviewPdf(
                 //     controller.invoiceDataModel!),
               ),
-              Visibility(
-                visible: !AppSingletons.isSubscriptionEnabled.value,
-                child: Visibility(
-                  visible: !controller.isUnlocked(9),
-                  child: Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: CustomPaint(
-                      size: const Size(40, 40), // Full-size overlay
-                      painter: TrianglePainter(
-                        color: proIconColor, // Color changes based on the condition
-                      ),
-                      child: Container(
-                        height: 50,
-                        width: 40,
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Transform.rotate(
-                          angle: -0.854,
-                          child: const Text('PRO',
-                            style: TextStyle(
-                              color: sWhite,
-                              fontFamily: 'Montserrat',
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: !AppSingletons.isSubscriptionEnabled.value,
+              //   child: Visibility(
+              //     visible: !controller.isUnlocked(9),
+              //     child: Container(
+              //       margin: const EdgeInsets.all(8.0),
+              //       child: CustomPaint(
+              //         size: const Size(40, 40), // Full-size overlay
+              //         painter: TrianglePainter(
+              //           color: proIconColor, // Color changes based on the condition
+              //         ),
+              //         child: Container(
+              //           height: 50,
+              //           width: 40,
+              //           padding: const EdgeInsets.only(left: 15),
+              //           child: Transform.rotate(
+              //             angle: -0.854,
+              //             child: const Text('PRO',
+              //               style: TextStyle(
+              //                 color: sWhite,
+              //                 fontFamily: 'Montserrat',
+              //                 fontSize: 10,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

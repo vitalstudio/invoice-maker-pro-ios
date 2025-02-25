@@ -406,27 +406,35 @@ class HomeView extends GetView<HomeController> {
           visible: !AppSingletons.isKeyboardVisible.value,
           child: FloatingActionButton(
             onPressed: () {
-              if(AppSingletons.isSubscriptionEnabled.value){
-                AppSingletons.isInvoiceDocument.value = true;
-                AppSingletons.isMakingNewINVEST.value = true;
-                Get.toNamed(Routes.invoiceInputView);
-                AppSingletons.isEditInvoice.value = false;
-                AppSingletons.isEditingOnlyTemplate.value = false;
+              // if(AppSingletons.isSubscriptionEnabled.value){
+              //   AppSingletons.isInvoiceDocument.value = true;
+              //   AppSingletons.isMakingNewINVEST.value = true;
+              //   Get.toNamed(Routes.invoiceInputView);
+              //   AppSingletons.isEditInvoice.value = false;
+              //   AppSingletons.isEditingOnlyTemplate.value = false;
+              //
+              //   Utils.clearInvoiceVariables();
+              // }
+              // else {
+              //   if(AppSingletons.noOfInvoicesMadeAlready.value >= 3){
+              //     Get.toNamed(Routes.proScreenView);
+              //   } else {
+              //     AppSingletons.isInvoiceDocument.value = true;
+              //     AppSingletons.isMakingNewINVEST.value = true;
+              //     Get.toNamed(Routes.invoiceInputView);
+              //     AppSingletons.isEditInvoice.value = false;
+              //     AppSingletons.isEditingOnlyTemplate.value = false;
+              //
+              //     Utils.clearInvoiceVariables();
+              //   }
+              // }
+              AppSingletons.isInvoiceDocument.value = true;
+              AppSingletons.isMakingNewINVEST.value = true;
+              Get.toNamed(Routes.invoiceInputView);
+              AppSingletons.isEditInvoice.value = false;
+              AppSingletons.isEditingOnlyTemplate.value = false;
 
-                Utils.clearInvoiceVariables();
-              } else {
-                if(AppSingletons.noOfInvoicesMadeAlready.value >= 3){
-                  Get.toNamed(Routes.proScreenView);
-                } else {
-                  AppSingletons.isInvoiceDocument.value = true;
-                  AppSingletons.isMakingNewINVEST.value = true;
-                  Get.toNamed(Routes.invoiceInputView);
-                  AppSingletons.isEditInvoice.value = false;
-                  AppSingletons.isEditingOnlyTemplate.value = false;
-
-                  Utils.clearInvoiceVariables();
-                }
-              }
+              Utils.clearInvoiceVariables();
             },
             backgroundColor: mainPurpleColor,
             shape: const CircleBorder(),
