@@ -180,8 +180,9 @@ class BottomNavView extends GetView<BottomNavController> {
                             onPressed: () {
                               CustomDialogues.showDialogueToDelete(
                                   false,
-                                  'Delete Clients',
-                                  'Are you sure you want to delete selected Clients?',
+                                  'delete_client'.tr,
+                                  'are_you_sure_you_want_to_delete'.tr,
+                                  'selected_clients'.tr,
                                   () => {
                                         controller.bottomDbHelper!
                                             .deleteCheckedClients(
@@ -311,8 +312,9 @@ class BottomNavView extends GetView<BottomNavController> {
                             onPressed: () {
                               CustomDialogues.showDialogueToDelete(
                                   false,
-                                  'Delete Items',
-                                  'Are you sure you want to delete selected Items?',
+                                  'delete_item'.tr,
+                                  'are_you_sure_you_want_to_delete'.tr,
+                                   'selected_items'.tr,
                                   () => {
                                         controller.bottomDbHelper!
                                             .deleteCheckedItems(
@@ -476,7 +478,7 @@ class BottomNavView extends GetView<BottomNavController> {
                           ? orangeMedium_1
                           : sWhite,
                     ),
-                    label: "Invoice",
+                    label: "invoice".tr,
                   ),
                   BottomNavigationBarItem(
                     icon: ImageIcon(
@@ -486,19 +488,19 @@ class BottomNavView extends GetView<BottomNavController> {
                           ? orangeMedium_1
                           : sWhite,
                     ),
-                    label: "Estimate",
+                    label: "estimate".tr,
                   ),
-                  const BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    label: "Client",
+                   BottomNavigationBarItem(
+                    icon: const Icon(Icons.person),
+                    label: "client".tr,
                   ),
-                  const BottomNavigationBarItem(
-                    icon: Icon(Icons.shopping_bag),
-                    label: "Item",
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.shopping_bag),
+                    label: "item".tr,
                   ),
-                  const BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: "Settings",
+                  BottomNavigationBarItem(
+                    icon: const Icon(Icons.settings),
+                    label: "settings".tr,
                   ),
                 ],
               ),
@@ -1011,15 +1013,15 @@ class BottomNavView extends GetView<BottomNavController> {
                   borderRadius: BorderRadius.circular(7)),
               padding: const EdgeInsets.symmetric(vertical: 10),
               alignment: Alignment.center,
-              child: const Text(
-                'Quit App',
-                style: TextStyle(
+              child: Text(
+                'quit_app'.tr,
+                style: const TextStyle(
                     color: sWhite, fontSize: 16, fontFamily: 'Montserrat'),
               ),
             ),
-            content: const Text(
-              'Are you sure you want to Quit?',
-              style: TextStyle(
+            content: Text(
+              'quit_confirmation'.tr,
+              style: const TextStyle(
                   color: blackColor, fontSize: 16, fontFamily: 'Montserrat'),
             ),
             actions: [
@@ -1040,9 +1042,9 @@ class BottomNavView extends GetView<BottomNavController> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(5),
                                 bottomLeft: Radius.circular(5))),
-                        child: const Text(
-                          'NO',
-                          style: TextStyle(
+                        child: Text(
+                          'no'.tr,
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
                             fontWeight: FontWeight.w500,
@@ -1066,9 +1068,9 @@ class BottomNavView extends GetView<BottomNavController> {
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(5),
                                 bottomRight: Radius.circular(5))),
-                        child: const Text(
-                          'YES',
-                          style: TextStyle(
+                        child: Text(
+                          'yes'.tr,
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
                             fontWeight: FontWeight.w500,

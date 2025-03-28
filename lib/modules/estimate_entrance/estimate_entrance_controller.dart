@@ -649,28 +649,28 @@ class EstimateEntranceController extends GetxController{
       AppSingletons.estLanguageName?.value = languageName ?? 'English';
       AppSingletons.estCurrencyNameINV?.value = currencySymbol ?? 'Rs';
       // AppSingletons.estTemplateIdINV.value = defaultTemplateId ?? '0';
-      var selectedLocale = const Locale('en', 'US');
-      if (AppSingletons.estLanguageName?.value == 'Deutsch') {
-        selectedLocale = const Locale('de', 'DE');
-      }
-      else if (AppSingletons.estLanguageName?.value == 'Española') {
-        selectedLocale = const Locale('es', 'ES');
-      }
-      else if (AppSingletons.estLanguageName?.value == 'Français') {
-        selectedLocale = const Locale('fr', 'FR');
-      }
-      else if (AppSingletons.estLanguageName?.value == 'हिंदी') {
-        selectedLocale = const Locale('hi', 'IN');
-      }
-      else if (AppSingletons.estLanguageName?.value == 'Indonesia') {
-        selectedLocale = const Locale('id', 'ID');
-      }
-      else {
-        selectedLocale = const Locale('en', 'US');
-      }
-      AppSingletons.estSelectedLocale_2?.value = selectedLocale;
-      Get.updateLocale(selectedLocale);
-      debugPrint('Stored Locale: $selectedLocale');
+      // var selectedLocale = const Locale('en', 'US');
+      // if (AppSingletons.estLanguageName?.value == 'Deutsch') {
+      //   selectedLocale = const Locale('de', 'DE');
+      // }
+      // else if (AppSingletons.estLanguageName?.value == 'Española') {
+      //   selectedLocale = const Locale('es', 'ES');
+      // }
+      // else if (AppSingletons.estLanguageName?.value == 'Français') {
+      //   selectedLocale = const Locale('fr', 'FR');
+      // }
+      // else if (AppSingletons.estLanguageName?.value == 'हिंदी') {
+      //   selectedLocale = const Locale('hi', 'IN');
+      // }
+      // else if (AppSingletons.estLanguageName?.value == 'Indonesia') {
+      //   selectedLocale = const Locale('id', 'ID');
+      // }
+      // else {
+      //   selectedLocale = const Locale('en', 'US');
+      // }
+      // AppSingletons.estSelectedLocale_2?.value = selectedLocale;
+      // Get.updateLocale(selectedLocale);
+      // debugPrint('Stored Locale: $selectedLocale');
     } catch(e){
       debugPrint('Error for name in EST: $e');
     }

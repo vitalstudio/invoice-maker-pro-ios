@@ -6,8 +6,10 @@ class CustomDialogues{
   static showDialogueToDelete(
       bool isDoubleTimeBackTrue,
       String title,
-      String content,
-     Function() deleteData,Function() loadData) async {
+      String content_1,
+      String content_2,
+     Function() deleteData,Function() loadData
+      ) async {
     return Get.dialog(
       AlertDialog(
         backgroundColor: sWhite,
@@ -31,7 +33,7 @@ class CustomDialogues{
             ),
           ),
         ),
-        content:  Text(content,
+        content:  Text('$content_1 $content_2',
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontFamily: 'Montserrat',
@@ -61,8 +63,8 @@ class CustomDialogues{
                             bottomLeft: Radius.circular(5)
                         )
                     ),
-                    child: const Text('Cancel',
-                      style: TextStyle(
+                    child:  Text('cancel'.tr,
+                      style: const TextStyle(
                         fontFamily: 'Montserrat',
                         color: sWhite,
                         fontWeight: FontWeight.w500,
@@ -93,8 +95,8 @@ class CustomDialogues{
                         bottomRight: Radius.circular(5)
                       )
                     ),
-                    child: const Text('Delete',
-                      style: TextStyle(
+                    child: Text('delete'.tr,
+                      style: const TextStyle(
                         fontFamily: 'Montserrat',
                         color: sWhite,
                         fontWeight: FontWeight.w500,

@@ -42,8 +42,8 @@ class AddItemView extends GetView<AddItemController> {
         ),
         title:  Text(
           AppSingletons().isEditingItemInfo
-              ? 'Item Info'
-              : 'New Item',
+              ? 'item_info'.tr
+              : 'new_item'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
@@ -58,8 +58,9 @@ class AddItemView extends GetView<AddItemController> {
                 onPressed: () {
                   CustomDialogues.showDialogueToDelete(
                       true,
-                      'Delete Item',
-                      'Are you sure you want to delete ${controller.itemNameController.text}?',
+                      'delete_item'.tr,
+                      'are_you_sure_you_want_to_delete'.tr,
+                          '${controller.itemNameController.text}?',
                           () => controller.itemScreenListController.deleteItem(controller.indexId.value),
                           ()=> controller.itemScreenListController.loadData()
                   );
@@ -82,7 +83,8 @@ class AddItemView extends GetView<AddItemController> {
               onPressed: () async {
 
                 if(controller.isTextEmpty.value){
-                  Utils().snackBarMsg('Item Name', 'Must be entered');
+                  Utils().snackBarMsg(
+                      'item_name'.tr, 'must_be_entered'.tr);
                 } else{
 
                   if(AppSingletons.isEditingItemDataFromInvoice.value){
@@ -179,15 +181,15 @@ class AddItemView extends GetView<AddItemController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 20,),
-                      const Row(
+                      Row(
                         children: [
-                          Text('Item Name', style: TextStyle(
+                          Text('item_name'.tr, style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
                               color: grey_1),),
-                          SizedBox(width: 5,),
-                          Text(
+                          const SizedBox(width: 5,),
+                          const Text(
                             '*',
                             style: TextStyle( fontFamily: 'Montserrat',color: starColor),),
                         ],
@@ -197,21 +199,21 @@ class AddItemView extends GetView<AddItemController> {
 
                       CommonTextField(
                         textEditingController: controller.itemNameController,
-                        hintText: 'Enter Item name',
+                        hintText: 'enter_item_name'.tr,
                         maxLines: 1,
                         textInputType: TextInputType.text,
                         textInputAction: TextInputAction.next,
                         maxLength: 40,
                       ),
                       const SizedBox(height: 10,),
-                      const Text('Item Price', style: TextStyle(
+                       Text('item_price'.tr, style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600, color: grey_1,fontSize: 14),),
                       const SizedBox(height: 5,),
 
                       CommonTextField(
                         textEditingController: controller.itemPriceController,
-                        hintText: 'Enter Item price',
+                        hintText: 'enter_item_price'.tr,
                         maxLines: 1,
                         inputFormatter: [AmountInputFormatter()],
                         textInputType: TextInputType.number,
@@ -219,14 +221,14 @@ class AddItemView extends GetView<AddItemController> {
                       ),
 
                       const SizedBox(height: 10,),
-                      const Text('Unit to measure', style: TextStyle(
+                       Text('unit_to_measure'.tr, style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600,fontSize: 14, color: grey_1),),
                       const SizedBox(height: 5,),
 
                       CommonTextField(
                         textEditingController: controller.itemUnitToMeasureController,
-                        hintText: 'None',
+                        hintText: 'none'.tr,
                         maxLines: 1,
                         textInputType: TextInputType.text,
                         textInputAction: TextInputAction.next,
@@ -241,7 +243,7 @@ class AddItemView extends GetView<AddItemController> {
                             children: [
                       const SizedBox(height: 5,),
 
-                      const Text('Item Quantity', style: TextStyle(
+                       Text('item_quantity'.tr, style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
@@ -256,7 +258,7 @@ class AddItemView extends GetView<AddItemController> {
                         textInputAction: TextInputAction.next,
                       ),
                       const SizedBox(height: 10,),
-                      const Text('Discount', style: TextStyle(
+                              Text('discount'.tr, style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
@@ -274,7 +276,7 @@ class AddItemView extends GetView<AddItemController> {
                         ],
                       ),
                       const SizedBox(height: 10,),
-                      const Text('Tax Rate', style: TextStyle(
+                       Text('tax_rate'.tr, style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
@@ -292,9 +294,9 @@ class AddItemView extends GetView<AddItemController> {
                         ],
                       ),
                       const SizedBox(height: 10,),
-                      const Text(
-                        '* This discount and tax is valid on this item only',
-                        style: TextStyle(
+                       Text(
+                        '* ${'this_discount_and_tax_is_valid_on_this_item_only'.tr}',
+                        style: const TextStyle(
                           fontFamily: 'Montserrat',
                           color: greyColor,
                           fontSize: 13,
@@ -312,8 +314,8 @@ class AddItemView extends GetView<AddItemController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text('Total',
-                              style: TextStyle(
+                             Text('total'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: sWhite,
                                 fontWeight: FontWeight.w600,
@@ -389,7 +391,7 @@ class AddItemView extends GetView<AddItemController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text('Item Description', style: TextStyle(
+                      Text('item_description'.tr, style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600,fontSize: 14, color: grey_1),),
                       const SizedBox(height: 5,),
@@ -405,7 +407,7 @@ class AddItemView extends GetView<AddItemController> {
                           textInputType: TextInputType.text,
                           maxLength: 500,
                           maxLines: 8,
-                          hintText: 'Enter description here',
+                          hintText: 'enter_description_here'.tr,
                         ),
                       ),
                     ],
@@ -478,6 +480,7 @@ class AddItemView extends GetView<AddItemController> {
                       true,
                       'Delete Item',
                       'Are you sure you want to delete ${controller.itemNameController.text}?',
+                          '',
                           () => controller.itemScreenListController.deleteItem(controller.indexId.value),
                           ()=> controller.itemScreenListController.loadData()
                   );

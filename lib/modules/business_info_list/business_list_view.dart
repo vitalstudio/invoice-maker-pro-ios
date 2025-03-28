@@ -35,9 +35,9 @@ class BusinessListView extends GetView<BusinessListController> {
           icon: const Icon(Icons.arrow_back, color: sWhite, size: 20,),
         ),
 
-        title: const Text(
-          'All Businesses List',
-          style: TextStyle(
+        title: Text(
+          'all_businesses_list'.tr,
+          style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
               fontSize: 18,
@@ -58,9 +58,9 @@ class BusinessListView extends GetView<BusinessListController> {
                         animating: true,
                       ))
                       : controller.businessList.isEmpty
-                      ? const Center(
-                    child: Text('Tap + to add businesses',
-                      style: TextStyle(
+                      ?  Center(
+                    child: Text('tap_to_add_businesses'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat', fontSize: 14,
                           color: grey_1,
                           fontWeight: FontWeight.w600
@@ -174,26 +174,26 @@ class BusinessListView extends GetView<BusinessListController> {
                                       onTap: () {
                                         CustomDialogues.showDialogueToDelete(
                                             false,
-                                            'Delete Business',
-                                            'Are you sure you want to delete ${note
-                                                .businessName} from your business list?',
+                                            'delete_business'.tr,
+                                            'are_you_sure_you_want_to_delete'.tr,
+                                                '?',
                                                 () => controller.deleteBusiness(
                                                 note.id!),
                                                 () => controller.loadData());
                                       },
-                                      child: const Row(
+                                      child: Row(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceBetween,
                                         children: [
-                                          Text('Delete',
-                                            style: TextStyle(
+                                          Text('delete'.tr,
+                                            style: const TextStyle(
                                                 fontFamily: 'Montserrat',
                                                 color: grey_1,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 15
                                             ),
                                           ),
-                                          Icon(Icons.delete, color: grey_1,
+                                          const Icon(Icons.delete, color: grey_1,
                                             size: 16,)
                                         ],
                                       ),),
@@ -221,12 +221,12 @@ class BusinessListView extends GetView<BusinessListController> {
                                         AppSingletons().isEditingBusinessInfo =
                                         true;
                                       },
-                                      child: const Row(
+                                      child: Row(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceBetween,
                                         children: [
-                                          Text('Edit',
-                                            style: TextStyle(
+                                          Text('edit'.tr,
+                                            style: const TextStyle(
                                                 fontFamily: 'Montserrat',
                                                 color: grey_1,
                                                 fontWeight: FontWeight.w600,
@@ -234,7 +234,7 @@ class BusinessListView extends GetView<BusinessListController> {
                                             ),
                                           ),
 
-                                          Icon(Icons.edit, color: grey_1,
+                                          const Icon(Icons.edit, color: grey_1,
                                             size: 16,)
                                         ],
                                       ),),
@@ -473,6 +473,7 @@ class BusinessListView extends GetView<BusinessListController> {
                                                     'Delete Business',
                                                     'Are you sure you want to delete ${note
                                                         .businessName} from your business list?',
+                                                        '',
                                                         () => controller
                                                         .deleteBusiness(
                                                         note.id!),

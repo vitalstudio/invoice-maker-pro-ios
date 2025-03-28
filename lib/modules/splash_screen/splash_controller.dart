@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
 import '../../core/services/in_app_services_ios.dart';
 import '../../core/preferenceManager/sharedPreferenceManager.dart';
@@ -32,16 +33,22 @@ class SplashController extends GetxController  with AdsControllerMixin {
 
       int checkNumberOfInvoicesMadeAlready = SharedPreferencesManager.getValue('noOfInvoicesMadeAlready') ?? 0;
       int checkNumberOfEstimatesMadeAlready = SharedPreferencesManager.getValue('noOfEstimatesMadeAlready') ?? 0;
+      String storedAppLanguage = SharedPreferencesManager.getValue(AppConstants.keyStoredAppLanguage) ?? AppConstants.english;
+
       AppSingletons.noOfInvoicesMadeAlready.value = checkNumberOfInvoicesMadeAlready;
       AppSingletons.noOfEstimatesMadeAlready.value = checkNumberOfEstimatesMadeAlready;
+      AppSingletons.storedAppLanguage.value = storedAppLanguage;
       debugPrint('noOfInvoicesMadeAlready: ${AppSingletons.noOfInvoicesMadeAlready.value}');
       debugPrint('noOfEstimatesMadeAlready: ${AppSingletons.noOfEstimatesMadeAlready.value}');
+      debugPrint('storedAppLanguage: ${AppSingletons.storedAppLanguage.value}');
 
       // if(!AppSingletons.isSubscriptionEnabled.value) {
       //   if (Platform.isAndroid && AppSingletons.openAppAdsAndroidEnabled.value) {
       //     adsControllerService.loadOpenAppAd();
       //   }
       // }
+
+      LanguageSelection.updateLocale(selectedLanguage: AppSingletons.storedAppLanguage.value);
 
     } catch(e){
       debugPrint('Error in subs: $e');

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import '../../modules/bottom_nav_bar/bottom_nav_bar_controller.dart';
 import '../../core/app_singletons/app_singletons.dart';
 import '../../core/constants/color/color.dart';
@@ -49,8 +50,8 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
         ),
         title: Text(
           AppSingletons.isEditEstimate.value == false
-              ? 'Enter Estimate'
-              : 'Edit Estimate',
+              ? 'enter_estimate'.tr
+              : 'edit_estimate'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
@@ -102,7 +103,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                 ),
 
                                 Text(
-                                  'Created on ${DateFormat('dd-MM-yyyy')
+                                  '${'created_on'.tr} ${DateFormat('dd-MM-yyyy')
                                       .format(
                                       AppSingletons.estCreationDate.value)
                                       .toString()}',
@@ -113,7 +114,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                   ),
                                 ),
                                 Text(
-                                  'Due on ${DateFormat('dd-MM-yyyy')
+                                  '${'due_on'.tr} ${DateFormat('dd-MM-yyyy')
                                       .format(
                                       AppSingletons.estDueDate.value)
                                       .toString()}',
@@ -140,7 +141,16 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
 
                 GestureDetector(
                   onTap: () {
-                    selectEstimateLanguage();
+                    // selectEstimateLanguage();
+                    LanguageSelection.selectALanguage(
+                        context: context,
+                        titleHeading: 'estimate_language'.tr,
+                        onChange: (){
+                          AppSingletons.estLanguageName?.value = AppSingletons.selectedNewLanguage.value;
+                          AppSingletons.estDefaultLanguageName?.value = AppSingletons.selectedNewLanguage.value;
+                          Get.back();
+                        }
+                    );
                   },
                   child: CustomContainer(
                     childContainer: Row(
@@ -165,9 +175,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                               ),
                             ),
                             const SizedBox(width: 17,),
-                            const Text(
-                              'Invoice Language',
-                              style: TextStyle(
+                             Text(
+                              'estimate_language'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
@@ -237,9 +247,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                               ),
                             ),
                             const SizedBox(width: 17),
-                            const Text(
-                              'Templates',
-                              style: TextStyle(
+                             Text(
+                              'template'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
@@ -301,9 +311,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 10,),
-                                const Text(
-                                  'From',
-                                  style: TextStyle(
+                                 Text(
+                                  'from'.tr,
+                                  style: const TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
                                       color: grey_1,
@@ -399,9 +409,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 10,),
-                                const Text(
-                                  'Bill To',
-                                  style: TextStyle(
+                                Text(
+                                  'bill_to'.tr,
+                                  style: const TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
                                       color: grey_1,
@@ -530,9 +540,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                     ),
                                   ),
                                   const SizedBox(width: 17,),
-                                  const Text(
-                                    'Add Items',
-                                    style: TextStyle(
+                                   Text(
+                                    'add_items'.tr,
+                                    style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600,
                                         color: grey_1,
@@ -649,7 +659,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                       Visibility(
                                         visible: itemDiscount != null,
                                         child: Text(
-                                          'Discount (- $itemDiscount%)',
+                                          '${'discount'.tr} (- $itemDiscount%)',
                                           style: const TextStyle(
                                               fontSize: 14,
                                               fontFamily: 'Montserrat',
@@ -661,7 +671,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
 
                                       Visibility(
                                         visible: itemTaxRate != null,
-                                        child: Text('Tax (+ $itemTaxRate%)',
+                                        child: Text('${'tax'.tr} (+ $itemTaxRate%)',
                                           style: const TextStyle(
                                               fontSize: 14,
                                               fontFamily: 'Montserrat',
@@ -856,9 +866,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              const Text(
-                                'Add Items',
-                                style: TextStyle(
+                               Text(
+                                'add_items'.tr,
+                                style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                 ),
                               ),
@@ -881,9 +891,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'SubTotal',
-                              style: TextStyle(
+                            Text(
+                              'subtotal'.tr,
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
                                   fontFamily: 'Montserrat',
@@ -931,9 +941,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Discount',
-                              style: TextStyle(
+                             Text(
+                              'discount'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
@@ -1000,9 +1010,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Tax',
-                              style: TextStyle(
+                             Text(
+                              'tax'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
@@ -1061,14 +1071,14 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                           Icons.local_shipping_outlined,
                           color: grey_1,
                         ),
-                        title: const Column(
+                        title: Column(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Shipping',
-                              style: TextStyle(
+                              'shipping'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
@@ -1116,9 +1126,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Total',
-                              style: TextStyle(
+                             Text(
+                              'total'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   color: sWhite,
                                   fontWeight: FontWeight.w600,
@@ -1197,9 +1207,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                               ),
                             ),
                             const SizedBox(width: 17,),
-                            const Text(
-                              'Currency',
-                              style: TextStyle(
+                             Text(
+                              'currency'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
@@ -1269,9 +1279,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                               ),
                             ),
                             const SizedBox(width: 17,),
-                            const Text(
-                              'Signature',
-                              style: TextStyle(
+                             Text(
+                              'signature'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: grey_1,
@@ -1354,9 +1364,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                       .start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Text(
-                                      'Terms & Condition',
-                                      style: TextStyle(
+                                     Text(
+                                      'term_and_condition'.tr,
+                                      style: const TextStyle(
                                           fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
                                           color: grey_1,
@@ -1439,9 +1449,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                       .start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Text(
-                                      'Payment Method',
-                                      style: TextStyle(
+                                    Text(
+                                      'payment_method'.tr,
+                                      style: const TextStyle(
                                           fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w600,
                                           color: grey_1,
@@ -1697,9 +1707,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(color: blackColor, width: 1)),
-                          child: const Text(
-                            'Preview',
-                            style: TextStyle(
+                          child: Text(
+                            'preview'.tr,
+                            style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: grey_400,
                                 fontSize: 13,
@@ -1750,9 +1760,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         decoration: BoxDecoration(
                             color: mainPurpleColor,
                             borderRadius: BorderRadius.circular(10)),
-                        child: const Text(
-                          'Save',
-                          style: TextStyle(
+                        child: Text(
+                          'save'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               color: sWhite,
                               fontWeight: FontWeight.bold),
@@ -3527,25 +3537,25 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
           borderRadius: BorderRadius.circular(15)
       ),
       backgroundColor: sWhite,
-      title: const Text(
-        'ALERT',
+      title: Text(
+        'alert'.tr,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: mainPurpleColor,
           fontWeight: FontWeight.w700,
           fontFamily: 'Montserrat',
           fontSize: 16,
         ),
       ),
-      content: const Column(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Are you sure you want to leave? All of your recent activity will be discarded',
+            'are_you_sure_you_want_to_leave_all_of_your_recent_activity_will_be_discarded'.tr,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w500, fontSize: 14),
           ),
@@ -3569,10 +3579,10 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                           bottomLeft: Radius.circular(08),
                         )
                     ),
-                    child: const Text(
-                      'CANCEL',
+                    child: Text(
+                      'cancel'.tr,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
@@ -3605,10 +3615,10 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         )
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: const Text(
+                    child: Text(
                       textAlign: TextAlign.center,
-                      'LEAVE',
-                      style: TextStyle(
+                      'leave'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
@@ -3644,9 +3654,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                   color: sWhite,
                 ),
               ),
-              title: const Text(
-                'Estimate Info',
-                style: TextStyle(
+              title: Text(
+                'estimate_info'.tr,
+                style: const TextStyle(
                     fontFamily: 'SFProDisplay',
                     color: sWhite,
                     fontSize: 18,
@@ -3658,7 +3668,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                     onPressed: () async {
                       if (controller.estimateNumberController.text.isEmpty) {
                         Utils().snackBarMsg(
-                            'Estimate Number', 'Cannot be empty');
+                            'estimate_number'.tr,
+                            'must_be_entered'.tr
+                        );
                       } else {
                         await controller.onSave();
                       }
@@ -3683,19 +3695,19 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 20,
                         ),
-                        const Row(
+                         Row(
                           children: [
                             Text(
-                              'Estimate Number',
-                              style: TextStyle(
+                              'estimate_number'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: orangeDark_3),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Text(
+                            const Text(
                               '*',
                               style: TextStyle(
                                   fontFamily: 'Montserrat', color: starColor),
@@ -3708,26 +3720,26 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         CommonTextField(
                           textEditingController: controller
                               .estimateNumberController,
-                          hintText: 'Enter Number',
+                          hintText: 'enter_number'.tr,
                           maxLines: 1,
                           maxLength: 10,
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        const Row(
+                         Row(
                           children: [
                             Text(
-                              'Creation Date',
-                              style: TextStyle(
+                              'creation_date'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: orangeDark_3),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Text(
+                            const Text(
                               '*',
                               style: TextStyle(
                                   fontFamily: 'Montserrat', color: starColor),
@@ -3776,9 +3788,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Due Terms',
-                          style: TextStyle(
+                         Text(
+                          'due_terms'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: orangeDark_3),
@@ -3819,7 +3831,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                       return DropdownMenuItem<int>(
                                         value: value,
                                         child: Text(
-                                          '$value Days',
+                                          '$value ${'days'.tr}',
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w500),
                                         ),
@@ -3852,9 +3864,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Due Date',
-                          style: TextStyle(
+                         Text(
+                          'due_date'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: orangeDark_3),
@@ -3917,9 +3929,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Estimate Title Name',
-                          style: TextStyle(
+                         Text(
+                          'estimate_title_name'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: orangeDark_3),
@@ -3952,9 +3964,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                   color: sWhite,
                 ),
               ),
-              title: const Text(
-                'Estimate Info',
-                style: TextStyle(
+              title: Text(
+                'estimate_info'.tr,
+                style: const TextStyle(
                     fontFamily: 'SFProDisplay',
                     color: sWhite,
                     fontSize: 18,
@@ -3966,7 +3978,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                     onPressed: () async {
                       if (controller.estimateNumberController.text.isEmpty) {
                         Utils().snackBarMsg(
-                            'Estimate Number', 'Cannot be empty');
+                            'estimate_number'.tr,
+                            'must_be_entered'.tr
+                        );
                       } else {
                         await controller.onSave();
                       }
@@ -4005,19 +4019,19 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 20,
                         ),
-                        const Row(
+                         Row(
                           children: [
                             Text(
-                              'Estimate Number',
-                              style: TextStyle(
+                              'estimate_number'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: orangeDark_3),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Text(
+                            const Text(
                               '*',
                               style: TextStyle(
                                   fontFamily: 'Montserrat', color: starColor),
@@ -4029,26 +4043,26 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         ),
                         CommonTextField(
                           textEditingController: controller.estimateNumberController,
-                          hintText: 'Enter Number',
+                          hintText: 'enter_number'.tr,
                           maxLines: 1,
                           maxLength: 10,
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        const Row(
+                         Row(
                           children: [
                             Text(
-                              'Creation Date',
-                              style: TextStyle(
+                              'creation_date'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   color: orangeDark_3),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Text(
+                            const Text(
                               '*',
                               style: TextStyle(
                                   fontFamily: 'Montserrat', color: starColor),
@@ -4097,9 +4111,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Due Terms',
-                          style: TextStyle(
+                         Text(
+                          'due_terms'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: orangeDark_3),
@@ -4140,7 +4154,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                                       return DropdownMenuItem<int>(
                                         value: value,
                                         child: Text(
-                                          '$value Days',
+                                          '$value ${'days'.tr}',
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w500),
                                         ),
@@ -4173,9 +4187,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Due Date',
-                          style: TextStyle(
+                        Text(
+                          'due_date'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: orangeDark_3),
@@ -4238,9 +4252,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Estimate Title Name',
-                          style: TextStyle(
+                         Text(
+                          'estimate_title_name'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: orangeDark_3),
@@ -4354,10 +4368,10 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                 const SizedBox(
                   width: 20,
                 ),
-                const Text(
-                  'ESTIMATE LANGUAGES',
+                Text(
+                  'estimate_languages'.tr,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: orangeLight_1,
                     fontWeight: FontWeight.w800,
                     fontFamily: 'Montserrat',
@@ -4427,10 +4441,10 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
   Future addDiscountInTotal() async {
     return Get.dialog(AlertDialog(
       backgroundColor: sWhite,
-      title: const Text(
-        'DISCOUNT',
+      title:  Text(
+        'discount'.tr,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: mainPurpleColor,
           fontWeight: FontWeight.w700,
           fontFamily: 'Montserrat',
@@ -4462,7 +4476,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         alignment: Alignment.center,
-                        child: Text('Percentage',
+                        child: Text('percentage'.tr,
                           style: TextStyle(
                               color: controller.discountHeading.value == 'Discount %'
                                   ? sWhite : blackColor,
@@ -4493,7 +4507,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         ),
 
                         alignment: Alignment.center,
-                        child: Text('Flat Amount',
+                        child: Text('flat_amount'.tr,
                           style: TextStyle(
                               color: controller.discountHeading.value == 'Discount %'
                                   ? blackColor : sWhite,
@@ -4529,7 +4543,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                 textInputType: TextInputType.number,
                 maxLines: 1,
                 focusNode: controller.discFlatAmountFocusNode,
-                hintText: 'Enter amount',
+                hintText: 'enter_amount'.tr,
                 textEditingController: controller.discFlatAmountController,
               );
             }),
@@ -4541,9 +4555,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
             onPressed: () {
               Get.back();
             },
-            child: const Text(
-              'Cancel',
-              style: TextStyle(
+            child:  Text(
+              'cancel'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -4560,7 +4574,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
 
                   Get.back();
                 } else {
-                  Utils().snackBarMsg('Empty', 'Discount amount');
+                  Utils().snackBarMsg('empty'.tr, '${'discount'.tr} ${'amount'.tr}');
                 }
               } else {
                 if (controller.discFlatAmountController.text.isNotEmpty) {
@@ -4570,13 +4584,13 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
 
                   Get.back();
                 } else {
-                  Utils().snackBarMsg('Empty', 'Discount amount');
+                  Utils().snackBarMsg('empty'.tr, '${'discount'.tr} ${'amount'.tr}');
                 }
               }
             },
-            child: const Text(
-              'Add',
-              style: TextStyle(
+            child:  Text(
+              'add'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -4589,10 +4603,10 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
   Future addTaxInTotal() async {
     return Get.dialog(AlertDialog(
       backgroundColor: sWhite,
-      title: const Text(
-        'TAX',
+      title: Text(
+        'tax'.tr,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: mainPurpleColor,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600,
@@ -4624,7 +4638,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         width: double.infinity,
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         alignment: Alignment.center,
-                        child: Text('Percentage',
+                        child: Text('percentage'.tr,
                           style: TextStyle(
                               color: controller.taxRateHeading.value == 'Tax %'
                                   ? sWhite : blackColor,
@@ -4655,7 +4669,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                         ),
 
                         alignment: Alignment.center,
-                        child: Text('Flat Amount',
+                        child: Text('flat_amount'.tr,
                           style: TextStyle(
                               color: controller.taxRateHeading.value == 'Tax %'
                                   ? blackColor : sWhite,
@@ -4691,7 +4705,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                 textInputType: TextInputType.number,
                 focusNode: controller.taxFlatAmountFocusNode,
                 maxLines: 1,
-                hintText: 'Enter amount',
+                hintText: 'enter_amount'.tr,
                 textEditingController: controller.taxFlatAmountController,
               );
             }),
@@ -4703,9 +4717,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
             onPressed: () {
               Get.back();
             },
-            child: const Text(
-              'Cancel',
-              style: TextStyle(
+            child: Text(
+              'cancel'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -4719,7 +4733,7 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                   await controller.addTaxInAmount();
                   Get.back();
                 } else {
-                  Utils().snackBarMsg('Empty', 'Tax amount');
+                  Utils().snackBarMsg('empty'.tr, '${'tax'.tr} ${'amount'.tr}');
                 }
               } else {
                 if (controller.taxFlatAmountController.text.isNotEmpty) {
@@ -4728,13 +4742,13 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                   await controller.addTaxInAmount();
                   Get.back();
                 } else {
-                  Utils().snackBarMsg('Empty', 'Tax amount');
+                  Utils().snackBarMsg('empty'.tr, '${'tax'.tr} ${'amount'.tr}');
                 }
               }
             },
-            child: const Text(
-              'Add',
-              style: TextStyle(
+            child: Text(
+              'add'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -4747,10 +4761,10 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
   Future addShippingCostinTotal() async {
     return Get.dialog(AlertDialog(
       backgroundColor: sWhite,
-      title: const Text(
-        'SHIPPING',
+      title: Text(
+        'shipping'.tr,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: mainPurpleColor,
           fontWeight: FontWeight.w700,
           fontFamily: 'Montserrat',
@@ -4762,9 +4776,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Shipping Amount',
-            style: TextStyle(
+          Text(
+            'shipping_amount'.tr,
+            style: const TextStyle(
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.w700, fontSize: 13),
           ),
@@ -4787,9 +4801,9 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
             onPressed: () {
               Get.back();
             },
-            child: const Text(
-              'Cancel',
-              style: TextStyle(
+            child: Text(
+              'cancel'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -4805,12 +4819,12 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
 
                 Get.back();
               } else {
-                Utils().snackBarMsg('Empty', 'Shipping amount');
+                Utils().snackBarMsg('empty'.tr, '${'shipping'.tr} ${'amount'.tr}');
               }
             },
-            child: const Text(
-              'Add',
-              style: TextStyle(
+            child:  Text(
+              'add'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

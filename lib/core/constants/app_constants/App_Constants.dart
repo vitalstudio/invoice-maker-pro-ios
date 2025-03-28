@@ -51,10 +51,21 @@ class AppConstants {
   static String lastYear = 'lastyear';
   static String custom = 'custom';
 
+  static String english = 'English';
+  static String german = 'German';
+  static String indonesian = 'Indonesian';
+  static String french = 'French';
+  static String spanish = 'Spanish';
+  static String arabic = 'Arabic';
+  static String chinese = 'Chinese';
+  static String russian = 'Russian';
+  static String portuguese = 'Portuguese';
+  static String japanese = 'Japanese';
 
+  static String keyStoredAppLanguage = 'keyStoredAppLanguage';
 
   //InApp USer Status User Key.
 
-static const String userStatusKey = "userStatusKey";
+  static const String userStatusKey = "userStatusKey";
 
 }

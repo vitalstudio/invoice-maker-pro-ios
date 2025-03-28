@@ -16,6 +16,8 @@ import '../../core/constants/app_constants/App_Constants.dart';
 import 'charts_controller.dart';
 
 class ChartsView extends GetView<ChartsController> {
+  const ChartsView({super.key});
+
   @override
   Widget build(BuildContext context) {
 
@@ -31,8 +33,8 @@ class ChartsView extends GetView<ChartsController> {
       backgroundColor: orangeLight_1,
       appBar: AppBar(
         backgroundColor: mainPurpleColor,
-        title: const Text('Report',
-          style: TextStyle(
+        title: Text('reports'.tr,
+          style: const TextStyle(
               fontFamily: 'SFProDisplay',
               fontWeight: FontWeight.w700,
               fontSize: 16,
@@ -113,26 +115,24 @@ class ChartsView extends GetView<ChartsController> {
                         },
                         itemBuilder: (context) =>
                         [
-                          const PopupMenuItem(
-                              value: 'last7days', child: Text('Last 7 Days')),
-                          const PopupMenuItem(
-                              value: 'last30days', child: Text('Last 30 Days')),
-                          const PopupMenuItem(
-                              value: 'thismonth', child: Text('This Month')),
-                          const PopupMenuItem(
-                              value: 'thisquarter',
-                              child: Text('This Quarter')),
-                          const PopupMenuItem(value: 'thisyear',
-                              child: Text('This Year')),
-                          const PopupMenuItem(
-                              value: 'lastmonth', child: Text('Last Month')),
-                          const PopupMenuItem(
-                              value: 'lastquarter',
-                              child: Text('Last Quarter')),
-                          const PopupMenuItem(value: 'lastyear',
-                              child: Text('Last Year')),
-                          const PopupMenuItem(value: 'custom',
-                              child: Text('Custom')),
+                           PopupMenuItem(
+                              value: 'last7days', child: Text('last_7_days'.tr)),
+                           PopupMenuItem(
+                              value: 'last30days', child: Text('last_30_days'.tr)),
+                           PopupMenuItem(
+                              value: 'thismonth', child: Text('this_month'.tr)),
+                           PopupMenuItem(
+                              value: 'thisquarter', child: Text('this_quarter'.tr)),
+                           PopupMenuItem(
+                              value: 'thisyear', child: Text('this_year'.tr)),
+                           PopupMenuItem(
+                              value: 'lastmonth', child: Text('last_month'.tr)),
+                           PopupMenuItem(
+                              value: 'lastquarter', child: Text('last_quarter'.tr)),
+                           PopupMenuItem(
+                              value: 'lastyear', child: Text('last_year'.tr)),
+                           PopupMenuItem(
+                              value: 'custom', child: Text('custom'.tr)),
                         ],
                         child: Container(
                             width: double.infinity,
@@ -176,8 +176,8 @@ class ChartsView extends GetView<ChartsController> {
                     Expanded(
                       child: Column(
                         children: [
-                          const Text('Total Sales',
-                            style: TextStyle(
+                           Text('total_sales'.tr,
+                            style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 14,
                                 color: greyColor
@@ -206,8 +206,8 @@ class ChartsView extends GetView<ChartsController> {
                     Expanded(
                       child: Column(
                         children: [
-                          const Text('Total Paid',
-                            style: TextStyle(
+                          Text('total_paid'.tr,
+                            style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -252,8 +252,8 @@ class ChartsView extends GetView<ChartsController> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const Text('Sales Trending',
-                                    style: TextStyle(
+                                   Text('sales_trending'.tr,
+                                    style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
@@ -283,18 +283,18 @@ class ChartsView extends GetView<ChartsController> {
                                         controller.selectedFilterValue.value;
                                     Get.toNamed(Routes.shareChartDetailView);
                                   },
-                                  icon: const Row(
+                                  icon: Row(
                                     children: [
-                                      Text('More',
-                                        style: TextStyle(
+                                      Text('more'.tr,
+                                        style: const TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: greyColor
                                         ),
                                       ),
-                                      SizedBox(width: 5,),
-                                      Icon(Icons.arrow_forward_ios_rounded,
+                                      const SizedBox(width: 5,),
+                                      const Icon(Icons.arrow_forward_ios_rounded,
                                         size: 15, color: greyColor,)
                                     ],
                                   )
@@ -337,8 +337,8 @@ class ChartsView extends GetView<ChartsController> {
                       children: [
                         Container(
                           margin: const EdgeInsets.only(left: 10),
-                          child: const Text('Sales by Client (Top 5)',
-                            style: TextStyle(
+                          child: Text('${'sales_by_client'.tr} (Top 5)',
+                            style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -354,18 +354,18 @@ class ChartsView extends GetView<ChartsController> {
                                     AppConstants.salesByClient;
                                 Get.toNamed(Routes.shareChartDetailView);
                               },
-                              icon: const Row(
+                              icon: Row(
                                 children: [
-                                  Text('More',
-                                    style: TextStyle(
+                                  Text('more'.tr,
+                                    style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
                                         color: greyColor
                                     ),
                                   ),
-                                  SizedBox(width: 5,),
-                                  Icon(
+                                  const SizedBox(width: 5,),
+                                  const Icon(
                                     Icons.arrow_forward_ios_rounded, size: 15,
                                     color: greyColor,)
                                 ],
@@ -407,9 +407,9 @@ class ChartsView extends GetView<ChartsController> {
                         )),
                     Obx(() {
                       if (controller.topClients.isEmpty) {
-                        return const Center(
+                        return Center(
                             child: Text(
-                                'No clients found for the selected period.'));
+                                'no_clients_found'.tr));
                       }
                       return ListView.builder(
                         itemCount: controller.topClients.length,
@@ -453,7 +453,7 @@ class ChartsView extends GetView<ChartsController> {
                                           fontWeight: FontWeight.w600),
                                     ),
                                     Text(
-                                      'Invoices: ${client.count.toString()}',
+                                      '${'invoices'.tr}: ${client.count.toString()}',
                                       style: const TextStyle(
                                           fontFamily: 'Montserrat',
                                           fontSize: 12,
@@ -502,8 +502,8 @@ class ChartsView extends GetView<ChartsController> {
                       children: [
                         Container(
                           margin: const EdgeInsets.only(left: 10),
-                          child: const Text('Sales by Items (Top 5)',
-                            style: TextStyle(
+                          child: Text('${'sales_by_items'.tr} (Top 5)',
+                            style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -519,18 +519,18 @@ class ChartsView extends GetView<ChartsController> {
                                     AppConstants.salesByItem;
                                 Get.toNamed(Routes.shareChartDetailView);
                               },
-                              icon: const Row(
+                              icon: Row(
                                 children: [
-                                  Text('More',
-                                    style: TextStyle(
+                                  Text('more'.tr,
+                                    style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontSize: 12,
                                         fontWeight: FontWeight.w600,
                                         color: greyColor
                                     ),
                                   ),
-                                  SizedBox(width: 5,),
-                                  Icon(
+                                  const SizedBox(width: 5,),
+                                  const Icon(
                                     Icons.arrow_forward_ios_rounded, size: 15,
                                     color: greyColor,)
                                 ],
@@ -572,9 +572,9 @@ class ChartsView extends GetView<ChartsController> {
                     const SizedBox(height: 15,),
                     Obx(() {
                       if (controller.topItems.isEmpty) {
-                        return const Center(
+                        return Center(
                             child: Text(
-                                'No Items found for the selected period.'));
+                                'no_items_found'.tr));
                       }
                       return ListView.builder(
                         itemCount: controller.topItems.length,
@@ -618,7 +618,7 @@ class ChartsView extends GetView<ChartsController> {
                                           fontWeight: FontWeight.w600),
                                     ),
                                     Text(
-                                      'QTY: ${items.quantity.toString()}',
+                                      '${'qty'.tr}: ${items.quantity.toString()}',
                                       style: const TextStyle(
                                           fontFamily: 'Montserrat',
                                           fontSize: 12,

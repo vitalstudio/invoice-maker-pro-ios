@@ -28,8 +28,8 @@ class TermAndConditionView extends GetView<TermAndConditionController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainPurpleColor,
-        title: const Text('Term and conditions',
-          style: TextStyle(
+        title:  Text('term_and_conditions'.tr,
+          style: const TextStyle(
               fontFamily: 'Montserrat',
               color: sWhite,
               fontWeight: FontWeight.w600,
@@ -56,9 +56,9 @@ class TermAndConditionView extends GetView<TermAndConditionController> {
                         animating: true,
                       ))
                       : controller.termList.isEmpty
-                      ? const Center(
-                    child: Text('Tap + to add term and condition',
-                      style: TextStyle(
+                      ?  Center(
+                    child: Text('tap_plus_to_add_term_and_condition'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -369,8 +369,8 @@ class TermAndConditionView extends GetView<TermAndConditionController> {
     return Get.dialog(
         AlertDialog(
           backgroundColor: offWhite,
-          title: const Text('New Term and Condition',
-            style: TextStyle(
+          title:  Text('new_term_and_condition'.tr,
+            style: const TextStyle(
                 fontFamily: 'Montserrat',
                 color: grey_1,
                 fontSize: 16,
@@ -391,7 +391,7 @@ class TermAndConditionView extends GetView<TermAndConditionController> {
             child: CommonTextField(
               textEditingController: controller.termAndCondController,
               maxLength: 500,
-              hintText: 'Enter term and conditions',
+              hintText: 'enter_term_and_conditions'.tr,
               maxLines: 15,
               textInputType: TextInputType.text,
               textInputAction: TextInputAction.done,
@@ -403,8 +403,8 @@ class TermAndConditionView extends GetView<TermAndConditionController> {
               controller.termAndCondController.text = '';
               Get.back();
             },
-              child: const Text('Cancel',
-                style: TextStyle(
+              child:  Text('cancel'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     color: grey_1,
                     fontSize: 15,
@@ -418,11 +418,11 @@ class TermAndConditionView extends GetView<TermAndConditionController> {
                 controller.termAndCondController.text = '';
               } else {
                 Utils().snackBarMsg(
-                    'Error!!!', 'Please enter terms and conditions');
+                    '${'error'.tr}!!!', 'please_enter_terms_conditions'.tr);
               }
             },
-              child: const Text('Save',
-                style: TextStyle(
+              child: Text('save'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     color: grey_1,
                     fontSize: 15,

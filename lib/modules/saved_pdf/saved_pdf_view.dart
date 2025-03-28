@@ -8,6 +8,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import 'saved_pdf_controller.dart';
 import 'package:open_file_manager/open_file_manager.dart';
 import 'package:printing/printing.dart';
@@ -46,7 +47,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
               if (!AppSingletons.isEditInvoice.value) {
                 Timer(const Duration(milliseconds: 500), () async {
                   await Utils.rateUs(
-                      'Congratulations! You made an invoice!');
+                      'invoice_success'.tr);
                 });
               }
               Get.offAllNamed(Routes.bottomNavBar);
@@ -63,7 +64,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
           icon: const Icon(Icons.arrow_back,color: sWhite,),
         ),
         title: Text(
-         AppSingletons.isInvoiceDocument.value ? 'INVOICE' : 'ESTIMATE',
+         AppSingletons.isInvoiceDocument.value ? 'invoice'.tr : 'estimate'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
@@ -130,7 +131,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                   margin: const EdgeInsets.only(top: 15, bottom: 100),
                   child:
                       FutureBuilder<Uint8List> (
-                        future: controller.loadTemplateData(),
+                        future: controller.pdfFuture,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
                             return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
@@ -138,7 +139,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                             return const Center(child: Text('LOADING...'));
                           } else if (snapshot.hasData) {
                             return SfPdfViewerTheme(
-                              data: SfPdfViewerThemeData(
+                              data: const SfPdfViewerThemeData(
                                 backgroundColor: orangeLight_1,
                                 progressBarColor: mainPurpleColor,
                               ),
@@ -154,7 +155,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                               ),
                             );
                           } else {
-                            return const Center(child: Text('No PDF data available'));
+                            return Center(child: Text('no_pdf_data'.tr));
                           }
                         },
                   ),
@@ -186,7 +187,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10),
                           child: Text(
-                            controller.currentStatusOfData.value,
+                            controller.currentStatusOfData.value.tr,
                             style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w600,
@@ -211,7 +212,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10),
                           child: Text(
-                            controller.currentStatusOfData.value,
+                            controller.currentStatusOfData.value.tr,
                             style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w600,
@@ -265,9 +266,9 @@ class SavedPdfView extends GetView<SavedPdfController>{
                                   size: 30,
                                   color: grey_1,
                                 )),
-                            const Text(
-                              'Share',
-                              style: TextStyle(
+                             Text(
+                              'share'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: grey_1,
                                 fontSize: 16,
@@ -338,9 +339,9 @@ class SavedPdfView extends GetView<SavedPdfController>{
                                   size: 30,
                                   color: grey_1,
                                 )),
-                            const Text(
-                              'Download',
-                              style: TextStyle(
+                             Text(
+                              'download'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: grey_1,
                                 fontSize: 16,
@@ -369,9 +370,9 @@ class SavedPdfView extends GetView<SavedPdfController>{
                                   size: 30,
                                   color: grey_1,
                                 )),
-                            const Text(
-                              'Print',
-                              style: TextStyle(
+                             Text(
+                              'print'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: grey_1,
                                 fontSize: 16,

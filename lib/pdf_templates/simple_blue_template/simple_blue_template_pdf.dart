@@ -156,7 +156,7 @@ class PdfSimpleBlueTemplate {
                     crossAxisAlignment: pw.CrossAxisAlignment.start,
                     mainAxisSize: pw.MainAxisSize.min,
                     children: [
-                      pw.Text('From',
+                      pw.Text('FROM',
                           style: pw.TextStyle(
                             color: PdfColors.black,
                             font: boldFont,
@@ -281,7 +281,9 @@ class PdfSimpleBlueTemplate {
                             mainAxisSize: pw.MainAxisSize.min,
                             mainAxisAlignment: pw.MainAxisAlignment.start,
                             children: [
-                              pw.Text('INVOICE #',
+                              pw.Text(
+                                  AppSingletons.isInvoiceDocument.value
+                                  ? 'INVOICE #' : 'ESTIMATE #',
                                   style: pw.TextStyle(
                                     color: PdfColors.black,
                                     font: boldFont,

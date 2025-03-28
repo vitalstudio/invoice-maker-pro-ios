@@ -42,9 +42,9 @@ class ItemScreenView extends GetView<ItemScreenController> {
             size: 20,
           ),
         ),
-        title: const Text(
-          'Items Info',
-          style: TextStyle(
+        title: Text(
+          'item_info'.tr,
+          style: const TextStyle(
               fontFamily: 'Montserrat',
               color: sWhite,
               fontWeight: FontWeight.w600,
@@ -93,7 +93,7 @@ class ItemScreenView extends GetView<ItemScreenController> {
                         autofocus: true,
                         decoration: InputDecoration(
                             contentPadding: const EdgeInsets.all(10),
-                            hintText: 'Search Item',
+                            hintText: 'search_item'.tr,
                             prefixIcon: const Icon(Icons.search),
                             border: OutlineInputBorder(
                                 borderSide: BorderSide.none,
@@ -123,10 +123,10 @@ class ItemScreenView extends GetView<ItemScreenController> {
                         width: 120,
                         color: mainPurpleColor.withOpacity(0.7),
                       ),
-                      const Center(
+                       Center(
                         child: Text(
-                          'Tap + to add Items',
-                          style: TextStyle(
+                          'tap_to_add_items'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               color: grey_1,
                               fontSize: 16,
@@ -296,29 +296,26 @@ class ItemScreenView extends GetView<ItemScreenController> {
                                               CustomDialogues
                                                   .showDialogueToDelete(
                                                   false,
-                                                  'Delete Item',
-                                                  'Are you sure you want to delete ${note
-                                                      .itemName}?',
-                                                      () =>
-                                                      controller
-                                                          .deleteItem(note.id!),
-                                                      () =>
-                                                      controller.loadData());
+                                                  'delete_item'.tr,
+                                                  'are_you_sure_you_want_to_delete'.tr,
+                                                      '${note.itemName}?',
+                                                      () => controller.deleteItem(note.id!),
+                                                      () => controller.loadData());
                                             },
-                                            child: const Row(
+                                            child:  Row(
                                               mainAxisAlignment:
                                               MainAxisAlignment
                                                   .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'Delete',
-                                                  style: TextStyle(
+                                                  'delete'.tr,
+                                                  style: const TextStyle(
                                                       color: grey_1,
                                                       fontWeight:
                                                       FontWeight.w500,
                                                       fontSize: 16),
                                                 ),
-                                                Icon(
+                                                const Icon(
                                                   Icons.delete,
                                                   color: grey_1,
                                                   size: 16,
@@ -356,21 +353,21 @@ class ItemScreenView extends GetView<ItemScreenController> {
                                                     // 'itemFinalAmount': note.itemFinalAmount.toString(),
                                                   });
                                             },
-                                            child: const Row(
+                                            child: Row(
                                               mainAxisAlignment:
                                               MainAxisAlignment
                                                   .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'Edit',
-                                                  style: TextStyle(
+                                                  'edit'.tr,
+                                                  style: const TextStyle(
                                                       fontFamily: 'Montserrat',
                                                       color: grey_1,
                                                       fontWeight:
                                                       FontWeight.w500,
                                                       fontSize: 16),
                                                 ),
-                                                Icon(
+                                                const Icon(
                                                   Icons.edit,
                                                   color: grey_1,
                                                   size: 16,
@@ -538,6 +535,7 @@ class ItemScreenView extends GetView<ItemScreenController> {
                             false,
                             'Delete Items',
                             'Are you sure you want to delete selected Items?',
+                                '',
                                 () => {
                               controller.itemDbHelper!.deleteCheckedItems(
                                   Get.find<ItemScreenController>()
@@ -899,6 +897,7 @@ class ItemScreenView extends GetView<ItemScreenController> {
                                                           'Delete Item',
                                                           'Are you sure you want to delete ${note
                                                               .itemName}?',
+                                                              '',
                                                               () =>
                                                               controller
                                                                   .deleteItem(note.id!),

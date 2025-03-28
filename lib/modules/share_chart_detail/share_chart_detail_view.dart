@@ -35,7 +35,13 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
       appBar: AppBar(
         backgroundColor: mainPurpleColor,
         title: Text(
-          AppSingletons.shareChartDetailTitle.value,
+          AppSingletons.shareChartDetailTitle.value == AppConstants.salesTrending
+          ? 'sales_trending'.tr
+          : AppSingletons.shareChartDetailTitle.value == AppConstants.salesByClient
+          ? 'sales_by_client'.tr
+          : AppSingletons.shareChartDetailTitle.value == AppConstants.salesByItem
+          ? 'sales_by_items'.tr
+          : '',
           style: const TextStyle(
             fontFamily: 'SFProDisplay',
             color: sWhite,
@@ -241,18 +247,18 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                           });
                           debugPrint('PRINT PDF FILE CLICKED');
                         },
-                        child: const SizedBox(
+                        child:  SizedBox(
                           width: double.infinity,
                           child: Column(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.print,
                                 color: orangeDark_3,
                               ),
-                              SizedBox(height: 5,),
+                              const SizedBox(height: 5,),
                               Text(
-                                'Print',
-                                style: TextStyle(
+                                'print'.tr,
+                                style: const TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 15,
                                     fontWeight: FontWeight.normal),
@@ -408,18 +414,18 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                             );
                           }
                         },
-                        child: const SizedBox(
+                        child:  SizedBox(
                           width: double.infinity,
                           child: Column(
                             children: [
-                              Icon(
+                              const  Icon(
                                 Icons.picture_as_pdf_outlined,
                                 color: orangeDark_3,
                               ),
-                              SizedBox(height: 5,),
+                              const SizedBox(height: 5,),
                               Text(
-                                'Export',
-                                style: TextStyle(
+                                'export'.tr,
+                                style: const TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 15,
                                     fontWeight: FontWeight.normal),
@@ -450,18 +456,18 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                           );
                           }
                         },
-                        child: const SizedBox(
+                        child:  SizedBox(
                           width: double.infinity,
                           child: Column(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.share,
                                 color: orangeDark_3,
                               ),
-                              SizedBox(height: 5,),
+                              const SizedBox(height: 5,),
                               Text(
-                                'Share',
-                                style: TextStyle(
+                                'share'.tr,
+                                style: const TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 15,
                                     fontWeight: FontWeight.normal),
@@ -963,9 +969,9 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Line Chart',
-                      style: TextStyle(
+                     Text(
+                      'line_chart'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
@@ -1029,40 +1035,40 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                           alignment: Alignment.center,
                           padding:
                           const EdgeInsets.symmetric(vertical: 8),
-                          child: const Text(
-                            'Date',
+                          child:  Text(
+                            'date'.tr,
                             style:
-                            TextStyle(fontWeight: FontWeight.bold),
+                            const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
                           padding:
                           const EdgeInsets.symmetric(vertical: 8),
-                          child: const Text(
-                            'Invoices',
+                          child: Text(
+                            'invoices'.tr,
                             style:
-                            TextStyle(fontWeight: FontWeight.bold),
+                            const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
                           padding:
                           const EdgeInsets.symmetric(vertical: 8),
-                          child: const Text(
-                            'Sales',
+                          child: Text(
+                            'sales'.tr,
                             style:
-                            TextStyle(fontWeight: FontWeight.bold),
+                            const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
                           padding:
                           const EdgeInsets.symmetric(vertical: 8),
-                          child: const Text(
-                            'Paid',
+                          child: Text(
+                            'paid'.tr,
                             style:
-                            TextStyle(fontWeight: FontWeight.bold),
+                            const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
@@ -1197,8 +1203,8 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                 Expanded(
                   child: Column(
                     children: [
-                      const Text('Total Invoices',
-                        style: TextStyle(
+                       Text('${'total'.tr} ${'invoices'.tr}',
+                        style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 14,
                             color: greyColor
@@ -1225,8 +1231,8 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                 Expanded(
                   child: Column(
                     children: [
-                      const Text('Total Sales',
-                        style: TextStyle(
+                       Text('total_sales'.tr,
+                        style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -1397,8 +1403,8 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                 Expanded(
                   child: Column(
                     children: [
-                      const Text('Total Sales',
-                        style: TextStyle(
+                       Text('total_sales'.tr,
+                        style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 14,
                             fontWeight: FontWeight.w600,

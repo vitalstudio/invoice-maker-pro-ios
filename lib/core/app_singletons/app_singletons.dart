@@ -222,4 +222,7 @@ class AppSingletons{
   static RxInt? invDefaultTermAndCId = 0.obs;
   static RxInt? invDefaultPaymentMethodId = 0.obs;
 
+  static RxString selectedNewLanguage = AppConstants.english.obs;
+  static RxString storedAppLanguage = AppConstants.english.obs;
+
 }

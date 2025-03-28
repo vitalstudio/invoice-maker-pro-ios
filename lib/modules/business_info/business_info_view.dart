@@ -37,8 +37,8 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
         ),
         title: Text(
           AppSingletons().isEditingBusinessInfo
-              ? 'Business Info'
-              : 'New Business',
+              ? 'business_info'.tr
+              : 'new_business'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
@@ -54,10 +54,12 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
                 onPressed: () {
                   CustomDialogues.showDialogueToDelete(
                       true,
-                      'Delete Business',
-                      'Are you sure you want to delete ${controller
-                          .businessNameController
-                          .text} from your business list?',
+                      'delete_business'.tr,
+                      'are_you_sure_you_want_to_delete'.tr,
+                          // 'are_you_sure_you_want_to_delete ${controller
+                      //                           .businessNameController
+                      //                           .text} from your business list?'
+                          '?',
                           () =>
                           controller.businessListController.deleteBusiness(
                               controller.indexId.value),
@@ -70,7 +72,7 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
               onPressed: () {
                 if (controller.isTextEmpty.value) {
                   Utils().snackBarMsg(
-                      'Business Name', 'Cannot be empty');
+                      'business_name'.tr, 'must_be_entered'.tr);
                 } else {
                   controller.showAd();
                   if (AppSingletons().isEditingBusinessInfo) {
@@ -127,21 +129,21 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
 
                 const SizedBox(height: 20,),
 
-                const Row(
+                Row(
                   children: [
-                    Text('Business Name',
-                      style:TextStyle(
+                    Text('business_name'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600, color: grey_1,fontSize: 14),),
-                    SizedBox(width: 5,),
-                    Text(
+                    const SizedBox(width: 5,),
+                    const Text(
                       '*', style: TextStyle(fontFamily: 'Montserrat',color: starColor),),
                   ],
                 ),
                 const SizedBox(height: 5,),
 
                 CommonTextField(
-                  hintText: 'Enter business name',
+                  hintText: 'enter_business_name'.tr,
                   maxLines: 1,
                   textInputType: TextInputType.name,
                   textEditingController: controller.businessNameController,
@@ -149,14 +151,14 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
                 ),
                 const SizedBox(height: 10,),
 
-                const Text('Email Address',
-                  style: TextStyle(
+                Text('email_address'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.w600, color: grey_1,fontSize: 14),
                 ),
                 const SizedBox(height: 5,),
                 CommonTextField(
-                  hintText: 'Enter email address',
+                  hintText: 'enter_email_address'.tr,
                   maxLines: 1,
                   textInputType: TextInputType.emailAddress,
                   textEditingController: controller.emailAddressController,
@@ -164,12 +166,12 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
 
                 const SizedBox(height: 10,),
 
-                const Text('Phone', style: TextStyle(
+                 Text('phone'.tr, style: const TextStyle(
                     fontFamily: 'Montserrat',fontSize: 14,
                     fontWeight: FontWeight.w600, color: grey_1),),
                 const SizedBox(height: 5,),
                 CommonTextField(
-                  hintText: 'Enter phone number',
+                  hintText: 'enter_phone_number'.tr,
                   maxLines: 1,
                   textInputType: TextInputType.phone,
                   textEditingController: controller.phoneController,
@@ -177,24 +179,24 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
 
                 const SizedBox(height: 10,),
 
-                const Text('Billing Address', style: TextStyle(
+                 Text('billing_address'.tr, style: const TextStyle(
                     fontFamily: 'Montserrat',fontSize: 14,
                     fontWeight: FontWeight.w600, color: grey_1),),
                 const SizedBox(height: 5,),
                 CommonTextField(
-                  hintText: 'Enter billing address',
+                  hintText: 'enter_billing_address'.tr,
                   maxLines: 1,
                   textInputType: TextInputType.text,
                   textEditingController: controller.billAddressONEController,
                 ),
                 const SizedBox(height: 10,),
 
-                const Text('Business Website', style: TextStyle(
+                Text('business_website'.tr, style: const TextStyle(
                     fontFamily: 'Montserrat',fontSize: 14,
                     fontWeight: FontWeight.w600, color: grey_1),),
                 const SizedBox(height: 5,),
                 CommonTextField(
-                  hintText: 'Enter business website',
+                  hintText: 'enter_business_website'.tr,
                   maxLines: 1,
                   textInputType: TextInputType.text,
                   textEditingController: controller.businessWebsiteController,
@@ -266,6 +268,7 @@ class BusinessInfoView extends GetView<BusinessInfoController> {
                       'Are you sure you want to delete ${controller
                           .businessNameController
                           .text} from your business list?',
+                          '',
                           () =>
                           controller.businessListController.deleteBusiness(
                               controller.indexId.value),

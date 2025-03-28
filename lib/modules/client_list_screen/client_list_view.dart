@@ -40,9 +40,9 @@ class ClientListView extends GetView<ClientListController> {
             size: 20,
           ),
         ),
-        title: const Text(
-          'Client Info',
-          style: TextStyle(
+        title: Text(
+          'client_info'.tr,
+          style: const TextStyle(
               fontFamily: 'Montserrat',
               color: sWhite,
               fontWeight: FontWeight.w600,
@@ -65,7 +65,7 @@ class ClientListView extends GetView<ClientListController> {
                       autofocus: true,
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(10),
-                          hintText: 'Search client',
+                          hintText: 'search_client'.tr,
                           prefixIcon: const Icon(Icons.search),
                           border: OutlineInputBorder(
                               borderSide: BorderSide.none,
@@ -97,10 +97,10 @@ class ClientListView extends GetView<ClientListController> {
                           color: mainPurpleColor.withOpacity(0.7),
                         ),
                       ),
-                      const Center(
+                       Center(
                         child: Text(
-                          'Tap + to add client',
-                          style: TextStyle(
+                          'tap_to_add_client'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               color: grey_1,
                               fontSize: 16,
@@ -257,32 +257,25 @@ class ClientListView extends GetView<ClientListController> {
                                               .showDialogueToDelete(
                                               false,
                                               'Delete Client',
-                                              'Are you sure you want to delete ${note
-                                                  .clientName}?',
-                                                  () =>
-                                                  controller
-                                                      .deleteClient(
-                                                      note.id!),
-                                                  () =>
-                                                  controller
-                                                      .loadData());
+                                              'are_you_sure_you_want_to_delete'.tr,
+                                                  '${note.clientName}?',
+                                                  () => controller.deleteClient(note.id!),
+                                                  () => controller.loadData());
                                         },
-                                        child: const Row(
+                                        child: Row(
                                           mainAxisAlignment:
                                           MainAxisAlignment
                                               .spaceBetween,
                                           children: [
                                             Text(
-                                              'Delete',
-                                              style: TextStyle(
-                                                  fontFamily:
-                                                  'Montserrat',
+                                              'delete'.tr,
+                                              style: const TextStyle(
+                                                  fontFamily: 'Montserrat',
                                                   color: grey_1,
-                                                  fontWeight:
-                                                  FontWeight.w500,
+                                                  fontWeight: FontWeight.w500,
                                                   fontSize: 16),
                                             ),
-                                            Icon(
+                                            const Icon(
                                               Icons.delete,
                                               color: grey_1,
                                               size: 16,
@@ -321,22 +314,20 @@ class ClientListView extends GetView<ClientListController> {
                                                     .toString(),
                                               });
                                         },
-                                        child: const Row(
+                                        child: Row(
                                           mainAxisAlignment:
                                           MainAxisAlignment
                                               .spaceBetween,
                                           children: [
                                             Text(
-                                              'Edit',
-                                              style: TextStyle(
-                                                  fontFamily:
-                                                  'Montserrat',
+                                              'edit'.tr,
+                                              style: const TextStyle(
+                                                  fontFamily: 'Montserrat',
                                                   color: grey_1,
-                                                  fontWeight:
-                                                  FontWeight.w500,
+                                                  fontWeight: FontWeight.w500,
                                                   fontSize: 16),
                                             ),
-                                            Icon(
+                                            const Icon(
                                               Icons.edit,
                                               color: grey_1,
                                               size: 16,
@@ -467,6 +458,7 @@ class ClientListView extends GetView<ClientListController> {
                           false,
                           'Delete Clients',
                           'Are you sure you want to delete selected Clients?',
+                              '',
                               () => {
                             controller.clientDbHelper!.deleteCheckedClients(
                                 Get.find<ClientListController>()
@@ -827,6 +819,7 @@ class ClientListView extends GetView<ClientListController> {
                                                         'Delete Client',
                                                         'Are you sure you want to delete ${note
                                                             .clientName}?',
+                                                            '',
                                                             () =>
                                                             controller
                                                                 .deleteClient(

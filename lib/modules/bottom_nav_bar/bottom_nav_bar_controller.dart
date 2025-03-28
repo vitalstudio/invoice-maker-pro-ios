@@ -11,7 +11,7 @@ class BottomNavController extends GetxController with AdsControllerMixin {
 
  DBHelper? bottomDbHelper;
 
- RxString appBarTitleText = 'INVOICE'.obs;
+ RxString appBarTitleText = 'invoice'.tr.obs;
 
  Rx<bool> isBannerAdReady = false.obs;
  late BannerAd bannerAd;
@@ -20,15 +20,15 @@ class BottomNavController extends GetxController with AdsControllerMixin {
     currentIndex.value = index;
 
     if(index == 0){
-      appBarTitleText.value = 'INVOICE';
+      appBarTitleText.value = 'invoice'.tr;
     } else if(index == 1){
-      appBarTitleText.value = 'ESTIMATE';
+      appBarTitleText.value = 'estimate'.tr;
     } else if(index == 2){
-      appBarTitleText.value = 'CLIENT';
+      appBarTitleText.value = 'client'.tr;
     } else if(index == 3){
-      appBarTitleText.value = 'ITEM';
+      appBarTitleText.value = 'item'.tr;
     } else if(index == 4){
-      appBarTitleText.value = 'SETTINGS';
+      appBarTitleText.value = 'settings'.tr;
     }
   }
 
@@ -50,15 +50,11 @@ class BottomNavController extends GetxController with AdsControllerMixin {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
  void _loadBannerAd() {
    bannerAd = BannerAd(
      adUnitId: AdHelper.bannerAdUnitId,
-     request: AdRequest(),
+     request: const AdRequest(),
      size: AdSize.banner,
      listener: BannerAdListener(
        onAdLoaded: (_) {

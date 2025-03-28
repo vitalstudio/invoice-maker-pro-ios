@@ -29,9 +29,9 @@ class NewSignatureView extends GetView<NewSignatureController> {
             size: 20,
           ),
         ),
-        title: const Text(
-          'Add new signature',
-          style: TextStyle(
+        title: Text(
+          'add_new_signature'.tr,
+          style: const TextStyle(
               fontFamily: 'Montserrat',
               color: sWhite,
               fontWeight: FontWeight.w600,
@@ -73,22 +73,30 @@ class NewSignatureView extends GetView<NewSignatureController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                      onPressed: () async {
-                        controller.signaturePadStateKey.currentState!.clear();
-                      },
-                      child: const Text('Clear signature')),
+
+                  const SizedBox(width: 15,),
+
+                  Expanded(
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          controller.signaturePadStateKey.currentState!.clear();
+                        },
+                        child: Text('clear_signature'.tr,textAlign: TextAlign.center,)),
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
-                  ElevatedButton(
-                      onPressed: () async {
-                        if(Platform.isIOS || Platform.isAndroid){
-                          controller.showAd();
-                        }
-                        controller.saveSignature();
-                      },
-                      child: const Text('Save signature')),
+                  Expanded(
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          if(Platform.isIOS || Platform.isAndroid){
+                            controller.showAd();
+                          }
+                          controller.saveSignature();
+                        },
+                        child: Text('save_signature'.tr,textAlign: TextAlign.center,)),
+                  ),
+                  const SizedBox(width: 15,),
                 ],
               ),
               const SizedBox(

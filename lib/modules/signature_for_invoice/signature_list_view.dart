@@ -33,7 +33,7 @@ class SignatureListView extends GetView<SignatureListController> {
           },
           icon: const Icon(Icons.arrow_back, color: sWhite, size: 20,),
         ),
-        title: const Text('Signature Info', style: TextStyle(
+        title:  Text('signature_info'.tr, style: const TextStyle(
             fontFamily: 'Montserrat',
             color: sWhite,
             fontWeight: FontWeight.w600,
@@ -52,9 +52,9 @@ class SignatureListView extends GetView<SignatureListController> {
                       animating: true,
                     ))
                     : controller.signatureList.isEmpty
-                    ? const Center(
-                  child: Text('Tap + to add signature',
-                    style: TextStyle(
+                    ?  Center(
+                  child: Text('tap_to_add_signature'.tr,
+                    style: const TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

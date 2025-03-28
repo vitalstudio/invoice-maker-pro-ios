@@ -41,8 +41,8 @@ class DrawerMenuOpen extends StatelessWidget {
                     Get.toNamed(Routes.proScreenView);
                   },
                   leading: Image.asset('assets/icons/vip_icon.png',height: 35,width: 35,),
-                  title: const Text('Join PRO',
-                  style: TextStyle(
+                  title:  Text('join_pro'.tr,
+                  style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w700,
                     color: sWhite
@@ -70,9 +70,9 @@ class DrawerMenuOpen extends StatelessWidget {
                 leading: const Icon(
                   Icons.add_chart,color: mainPurpleColor,size: 20,
                 ),
-                title: const Text(
-                  'Reports',
-                  style: TextStyle(
+                title: Text(
+                  'reports'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -83,14 +83,14 @@ class DrawerMenuOpen extends StatelessWidget {
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 0),
                 onTap: (){
-                  Utils.rateUs('Hope you enjoy our app');
+                  Utils.rateUs('enjoy_app'.tr);
                 },
                 leading: const Icon(
                   Icons.verified,color: mainPurpleColor,size: 20,
                 ),
-                title: const Text(
-                  'Rate Us',
-                  style: TextStyle(
+                title: Text(
+                  'rate_us'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -104,13 +104,13 @@ class DrawerMenuOpen extends StatelessWidget {
                   final box = context.findRenderObject() as RenderBox?;
                   if(Platform.isAndroid){
                     await Share.share(
-                        'Save time, Save money. Create professional invoices in seconds "Invoice Maker !Receipt Creator" app \n\nDownload Now:\nhttps://play.google.com/store/apps/details?id=com.InvoiceMaker.ReceiptCreator.Billing.app');
+                        'android_prompt'.tr);
                   }
                   if(Platform.isIOS){
                     try {
                       await Share.share(
                         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
-                          'Save time, Save money. Create professional invoices in seconds "Invoice Maker !Receipt Creator" app \n\nDownload Now');
+                          'ios_prompt'.tr);
                     }
                     catch (e) {
                       print("Error: $e");
@@ -120,9 +120,9 @@ class DrawerMenuOpen extends StatelessWidget {
                 leading: const Icon(
                   Icons.share,color: mainPurpleColor,size: 20,
                 ),
-                title: const Text(
-                  'Share',
-                  style: TextStyle(
+                title:  Text(
+                  'share'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -140,9 +140,9 @@ class DrawerMenuOpen extends StatelessWidget {
                 leading: const Icon(
                   Icons.privacy_tip_outlined,color: mainPurpleColor,size: 20,
                 ),
-                title: const Text(
-                  'Privacy policy',
-                  style: TextStyle(
+                title:  Text(
+                  'privacy_policy'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -160,9 +160,9 @@ class DrawerMenuOpen extends StatelessWidget {
                 leading: const Icon(
                   Icons.list_alt_rounded,color: mainPurpleColor,size: 20,
                 ),
-                title: const Text(
-                  'Term Of Use',
-                  style: TextStyle(
+                title: Text(
+                  'terms_title'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -183,7 +183,7 @@ class DrawerMenuOpen extends StatelessWidget {
                     final Uri emailLaunchUri = Uri(
                       scheme: 'mailto',
                       path: 'vitalappstudios@gmail.com',
-                      query: 'subject=Feedback about Invoice Maker !Receipt Creator',
+                      query: 'subject=${'feedback_title'.tr}',
                     );
                     var url = emailLaunchUri.toString();
                     if (await canLaunchUrl(emailLaunchUri)) {
@@ -196,9 +196,9 @@ class DrawerMenuOpen extends StatelessWidget {
                 leading: const Icon(
                   Icons.email,color: mainPurpleColor,size: 20,
                 ),
-                title: const Text(
-                  'Feedback',
-                  style: TextStyle(
+                title: Text(
+                  'feedback'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       fontWeight: FontWeight.w600,

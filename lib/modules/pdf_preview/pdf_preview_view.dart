@@ -57,10 +57,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
         ),
         title: Text(
           AppSingletons.isPreviewingPdfBeforeSave.value
-              ? 'Preview'
+              ? 'preview'.tr
               : AppSingletons.isInvoiceDocument.value
-                  ? 'INVOICE'
-                  : 'ESTIMATE',
+                  ? 'invoice'.tr
+                  : 'estimate'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
@@ -166,7 +166,7 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                       'Rs';
               if (!AppSingletons.isEditInvoice.value) {
                 Timer(const Duration(milliseconds: 500), () async {
-                  await Utils.rateUs('Congratulations! You made an invoice!');
+                  await Utils.rateUs('invoice_success'.tr);
                 });
               }
             } else {
@@ -296,9 +296,9 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                                           size: 30,
                                           color: grey_1,
                                         )),
-                                    const Text(
-                                      'Share',
-                                      style: TextStyle(
+                                    Text(
+                                      'share'.tr,
+                                      style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         color: grey_1,
                                         fontSize: 16,
@@ -389,9 +389,9 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                                           size: 30,
                                           color: grey_1,
                                         )),
-                                    const Text(
-                                      'Download',
-                                      style: TextStyle(
+                                     Text(
+                                      'download'.tr,
+                                      style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         color: grey_1,
                                         fontSize: 16,
@@ -421,9 +421,9 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                                           size: 30,
                                           color: grey_1,
                                         )),
-                                    const Text(
-                                      'Print',
-                                      style: TextStyle(
+                                    Text(
+                                      'print'.tr,
+                                      style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         color: grey_1,
                                         fontSize: 16,

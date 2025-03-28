@@ -14,7 +14,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 class AddClientView extends GetView<AddClientController> {
   const AddClientView({super.key});
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -38,8 +37,8 @@ class AddClientView extends GetView<AddClientController> {
         ),
         title: Text(
           AppSingletons().isEditingClientInfo
-              ? 'Client Info'
-              : 'New Client',
+              ? "user_name".trParams({'username': 'Hamza'}) // REMEMBER HERE COME client_info
+              : 'new_client'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
@@ -55,8 +54,9 @@ class AddClientView extends GetView<AddClientController> {
 
                   CustomDialogues.showDialogueToDelete(
                       true,
-                      'Delete Client',
-                      'Are you sure you want to delete ${controller.clientNameController.text}?',
+                      'delete_client'.tr,
+                      'are_you_sure_you_want_to_delete'.tr,
+                          '${controller.clientNameController.text}?',
                           () => controller.clientListController.deleteClient(controller.indexId.value),
                           ()=> controller.clientListController.loadData()
                   );
@@ -70,7 +70,10 @@ class AddClientView extends GetView<AddClientController> {
           IconButton(
             onPressed: () async{
               if(controller.isTextEmpty.value){
-                Utils().snackBarMsg('Client Name', 'Must be entered');
+                Utils().snackBarMsg(
+                    'client_name'.tr,
+                    'must_be_entered'.tr
+                );
               } else{
                 controller.showAd();
                 if(AppSingletons().isEditingClientInfo){
@@ -114,13 +117,13 @@ class AddClientView extends GetView<AddClientController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 20,),
-                    const Row(
+                     Row(
                       children: [
-                        Text('Client Name', style: TextStyle(
+                        Text('client_name'.tr, style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600, color: grey_1),),
-                        SizedBox(width: 5,),
-                        Text(
+                         const SizedBox(width: 5,),
+                           const Text(
                           '*', style: TextStyle( fontFamily: 'Montserrat',color: starColor),),
                       ],
                     ),
@@ -129,7 +132,7 @@ class AddClientView extends GetView<AddClientController> {
 
                     CommonTextField(
                       textEditingController: controller.clientNameController,
-                      hintText: 'Enter client name',
+                      hintText: 'enter_client_name'.tr,
                       maxLines: 1,
                       textInputType: TextInputType.text,
                       textInputAction: TextInputAction.next,
@@ -137,35 +140,35 @@ class AddClientView extends GetView<AddClientController> {
                     ),
 
                     const SizedBox(height: 10,),
-                    const Text('Email Address', style: TextStyle(
+                     Text('email_address'.tr, style: const TextStyle(
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600, color: grey_1),),
                     const SizedBox(height: 5,),
 
                     CommonTextField(
                       textEditingController: controller.clientEmailController,
-                      hintText: 'Enter client email address',
+                      hintText: 'enter_client_email_address'.tr,
                       textInputType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       maxLines: 1,
                     ),
 
                     const SizedBox(height: 10,),
-                    const Text('Phone', style: TextStyle(
+                     Text('phone'.tr, style: const TextStyle(
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600, color: grey_1),),
                     const SizedBox(height: 5,),
 
                     CommonTextField(
                       textEditingController: controller.clientPhoneController,
-                      hintText: 'Enter client phone number',
+                      hintText: 'enter_client_phone_number'.tr,
                       textInputType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
                       maxLines: 1,
                     ),
 
                     const SizedBox(height: 10,),
-                    const Text('Billing Address', style: TextStyle(
+                    Text('billing_address'.tr, style: const TextStyle(
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600, color: grey_1),),
                     const SizedBox(width: 5,),
@@ -173,13 +176,13 @@ class AddClientView extends GetView<AddClientController> {
                     CommonTextField(
                       maxLines: 5,
                       textEditingController: controller.billingAddressController,
-                      hintText: 'Enter address line',
+                      hintText: 'enter_address_line'.tr,
                       textInputType: TextInputType.multiline,
                       textInputAction: TextInputAction.next,
                     ),
 
                     const SizedBox(height: 10,),
-                    const Text('Shipping Address', style: TextStyle(
+                    Text('shipping_address'.tr, style: const TextStyle(
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.w600, color: grey_1),),
                     const SizedBox(width: 5,),
@@ -187,7 +190,7 @@ class AddClientView extends GetView<AddClientController> {
                     CommonTextField(
                       maxLines: 5,
                       textEditingController: controller.shippingAddressController,
-                      hintText: 'Enter address line',
+                      hintText: 'enter_address_line'.tr,
                       textInputType: TextInputType.multiline,
                       textInputAction: TextInputAction.next,
                     ),
@@ -203,7 +206,7 @@ class AddClientView extends GetView<AddClientController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Client Detail(Not show on invoice)', style: TextStyle(
+                      Text('client_detail_not_show_on_invoice'.tr, style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w600, color: grey_1),),
                       const SizedBox(height: 5,),
@@ -215,7 +218,7 @@ class AddClientView extends GetView<AddClientController> {
                         child: CommonTextField(
                           maxLines: 5,
                           textEditingController: controller.clientDetailController,
-                          hintText: 'Enter client Detail',
+                          hintText: 'enter_client_detail'.tr,
                           textInputType: TextInputType.multiline,
                           textInputAction: TextInputAction.done,
                         ),
@@ -292,6 +295,7 @@ class AddClientView extends GetView<AddClientController> {
                       true,
                       'Delete Client',
                       'Are you sure you want to delete ${controller.clientNameController.text}?',
+                          '',
                           () => controller.clientListController.deleteClient(controller.indexId.value),
                           ()=> controller.clientListController.loadData()
                   );

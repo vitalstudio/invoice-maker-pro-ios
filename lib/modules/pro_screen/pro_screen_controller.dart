@@ -26,6 +26,7 @@ class ProScreenController extends GetxController implements PurchaseCallback{
   Rx<List<Package>> productsDetailsIOS = Rx<List<Package>>([]);
 
   RxBool isUserPro = false.obs;
+  RxString discountYearlyPricePerWeek = ''.obs;
 
   RxString lifeTimeValue = ''.obs;
   RxString yearlyPurchaseValue = ''.obs;
@@ -44,10 +45,26 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     List<ProductDetails> items = await InAppServices().getStoreProducts();
     productsDetailsAndroid.assignAll(items);
 
-    yearlyPurchaseValue.value = productsDetailsAndroid[3].rawPrice.toString();
-    monthlyPurchaseValue.value = productsDetailsAndroid[1].rawPrice.toString();
-    weeklyPurchaseValue.value = productsDetailsAndroid[2].rawPrice.toString();
-    lifeTimeValue.value = productsDetailsAndroid[0].rawPrice.toString();
+    yearlyPurchaseValue.value = setCurrencyCodeAndPriceString(
+        productsDetailsAndroid[3].rawPrice,
+        productsDetailsAndroid[3].currencyCode);
+    monthlyPurchaseValue.value = setCurrencyCodeAndPriceString(
+        productsDetailsAndroid[1].rawPrice,
+        productsDetailsAndroid[1].currencyCode);
+    weeklyPurchaseValue.value = setCurrencyCodeAndPriceString(
+        productsDetailsAndroid[2].rawPrice,
+        productsDetailsAndroid[2].currencyCode);
+    lifeTimeValue.value = setCurrencyCodeAndPriceString(
+        productsDetailsAndroid[0].rawPrice,
+        productsDetailsAndroid[0].currencyCode);
+
+    double yearlyPrice = productsDetailsAndroid[3].rawPrice;
+    double yearlyPricePerWeek = yearlyPrice / 52;
+    String currencyCode = productsDetailsAndroid[3].currencyCode;
+
+    discountYearlyPricePerWeek.value = '$currencyCode ${yearlyPricePerWeek.toStringAsFixed(2)}';
+
+    debugPrint('CV: ${discountYearlyPricePerWeek.value}');
 
     debugPrint("InApp Products:: $productsDetailsAndroid");
   }
@@ -55,7 +72,6 @@ class ProScreenController extends GetxController implements PurchaseCallback{
   void nowGetProductsIOS() async {
     List<Package> items = await InAppServicesForIOS().getProducts();
     productsDetailsIOS.value.assignAll(items);
-
 
     yearlyPurchaseValue.value = setCurrencyCodeAndPriceString(
         productsDetailsIOS.value[2].storeProduct.price,
@@ -69,6 +85,14 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     lifeTimeValue.value = setCurrencyCodeAndPriceString(
         productsDetailsIOS.value[3].storeProduct.price,
         productsDetailsIOS.value[3].storeProduct.currencyCode);
+
+    double yearlyPrice = productsDetailsIOS.value[2].storeProduct.price;
+    double yearlyPricePerWeek = yearlyPrice / 52;
+    String currencyCode = productsDetailsIOS.value[2].storeProduct.currencyCode;
+
+    discountYearlyPricePerWeek.value = '$currencyCode ${yearlyPricePerWeek.toStringAsFixed(2)}';
+
+    debugPrint('CV: ${discountYearlyPricePerWeek.value}');
 
   }
 
@@ -162,6 +186,54 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     isUserPro.value = false;
     AppSingletons.isSubscriptionEnabled.value = false;
     SharedPreferencesManager.setValue(AppConstants.userStatusKey, false);
+  }
+
+  RxString amountTextValue() {
+    if(AppSingletons.selectedPlanForProInvoice.value == 1){
+      return yearlyPurchaseValue.value.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 2){
+      return monthlyPurchaseValue.value.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 3){
+      return weeklyPurchaseValue.value.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 4){
+      return lifeTimeValue.value.obs;
+    }
+    return ''.obs;
+  }
+
+  RxString amountTextHeading(){
+    if(AppSingletons.selectedPlanForProInvoice.value == 1){
+      return 'yearly'.tr.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 2){
+      return 'monthly'.tr.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 3){
+      return 'weekly'.tr.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 4){
+      return 'life_time'.tr.obs;
+    }
+    return ''.obs;
+  }
+
+  RxString slashName(){
+    if(AppSingletons.selectedPlanForProInvoice.value == 1){
+      return '/year'.tr.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 2){
+      return '/month'.tr.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 3){
+      return '/week'.tr.obs;
+    }
+    else if(AppSingletons.selectedPlanForProInvoice.value == 4){
+      return '/lifetime'.tr.obs;
+    }
+    return ''.obs;
   }
 
 }

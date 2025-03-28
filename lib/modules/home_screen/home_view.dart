@@ -45,7 +45,7 @@ class HomeView extends GetView<HomeController> {
                       autofocus: true,
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(10),
-                          hintText: 'Search invoice',
+                          hintText: 'search_invoice'.tr,
                           prefixIcon: const Icon(Icons.search),
                           border: OutlineInputBorder(
                               borderSide: BorderSide.none,
@@ -94,9 +94,9 @@ class HomeView extends GetView<HomeController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Total Unpaid',
-                          style: TextStyle(
+                         Text(
+                          'total_unpaid'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
@@ -146,9 +146,9 @@ class HomeView extends GetView<HomeController> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          'Total Overdue',
-                          style: TextStyle(
+                         Text(
+                          'total_overdue'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
@@ -190,6 +190,12 @@ class HomeView extends GetView<HomeController> {
                     child: Obx(() {
                       return Row(
                         children: [
+
+                          Visibility(
+                              visible: AppSingletons.storedAppLanguage.value == AppConstants.arabic,
+                              child: const SizedBox(width: 50,)
+                          ),
+
                           GestureDetector(
                             onTap: () {
                               controller.listShowingType.value =
@@ -206,7 +212,7 @@ class HomeView extends GetView<HomeController> {
                                       : offWhite_2,
                                   borderRadius: BorderRadius.circular(100)),
                               child: Text(
-                                'All',
+                                'all'.tr,
                                 style: TextStyle(
                                     color: controller.listShowingType.value ==
                                         AppConstants.all
@@ -234,7 +240,7 @@ class HomeView extends GetView<HomeController> {
                                       : offWhite_2,
                                   borderRadius: BorderRadius.circular(100)),
                               child: Text(
-                                'Unpaid',
+                                'unpaid'.tr,
                                 style: TextStyle(
                                     color: controller.listShowingType.value ==
                                         AppConstants.unpaidInvoice
@@ -262,7 +268,7 @@ class HomeView extends GetView<HomeController> {
                                       : offWhite_2,
                                   borderRadius: BorderRadius.circular(100)),
                               child: Text(
-                                'Partially Paid',
+                                'partially_paid'.tr,
                                 style: TextStyle(
                                     color: controller.listShowingType.value ==
                                         AppConstants.partiallyPaidInvoice
@@ -290,7 +296,7 @@ class HomeView extends GetView<HomeController> {
                                       : offWhite_2,
                                   borderRadius: BorderRadius.circular(100)),
                               child: Text(
-                                'Overdue',
+                                'overdue'.tr,
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     color: controller.listShowingType.value ==
@@ -318,7 +324,7 @@ class HomeView extends GetView<HomeController> {
                                       : offWhite_2,
                                   borderRadius: BorderRadius.circular(100)),
                               child: Text(
-                                'Paid',
+                                'paid'.tr,
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     color: controller.listShowingType.value ==
@@ -533,7 +539,7 @@ class HomeView extends GetView<HomeController> {
                                           decoration: InputDecoration(
                                               contentPadding: const EdgeInsets
                                                   .all(10),
-                                              hintText: 'Search invoice',
+                                              hintText: 'search_invoice'.tr,
                                               prefixIcon: const Icon(
                                                   Icons.search),
                                               border: OutlineInputBorder(
@@ -995,8 +1001,8 @@ class HomeView extends GetView<HomeController> {
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: const Text('Mark as',
-                  style: TextStyle(
+              child: Text('mark_as'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
@@ -1015,9 +1021,9 @@ class HomeView extends GetView<HomeController> {
                             controller.invoicePaidStatus.value = AppConstants.paidInvoice;
                             debugPrint(controller.invoicePaidStatus.value);
                         },
-                        title: const Text(
-                          'Paid',
-                          style: TextStyle(
+                        title: Text(
+                          'paid'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -1038,9 +1044,9 @@ class HomeView extends GetView<HomeController> {
                             controller.invoicePaidStatus.value = AppConstants.unpaidInvoice;
                             debugPrint(controller.invoicePaidStatus.value);
                         },
-                        title: const Text(
-                          'Unpaid',
-                          style: TextStyle(
+                        title:  Text(
+                          'unpaid'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -1061,9 +1067,9 @@ class HomeView extends GetView<HomeController> {
                             controller.invoicePaidStatus.value = AppConstants.partiallyPaidInvoice;
                             debugPrint(controller.invoicePaidStatus.value);
                         },
-                        title: const Text(
-                          'Partially Paid',
-                          style: TextStyle(
+                        title:  Text(
+                          'partially_paid'.tr,
+                          style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -1077,15 +1083,15 @@ class HomeView extends GetView<HomeController> {
                               textEditingController: controller.partiallyPaidController,
                               textInputAction: TextInputAction.done,
                               textInputType: TextInputType.number,
-                              hintText: 'Enter Amount',
+                              hintText: 'enter_amount'.tr,
                               inputFormatter: [AmountInputFormatter()],
                               validator: (_) {
                                 if (controller.partiallyPaidController.text.isEmpty) {
-                                  return 'Please Enter Amount';
+                                  return 'please_enter_amount'.tr;
                                 } else if (int.parse(controller
                                     .partiallyPaidController.text) >=
                                     itemPrice) {
-                                  return 'Larger amount then total';
+                                  return 'larger_amount_than_total'.tr;
                                 } else {
                                   return null;
                                 }
@@ -1129,8 +1135,8 @@ class HomeView extends GetView<HomeController> {
                                 bottomLeft: Radius.circular(5)
                             )
                         ),
-                        child: const Text('CANCEL',
-                          style: TextStyle(
+                        child: Text('cancel'.tr,
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
                             fontWeight: FontWeight.w500,
@@ -1187,8 +1193,8 @@ class HomeView extends GetView<HomeController> {
                                 bottomRight: Radius.circular(5)
                             )
                         ),
-                        child: const Text('CHANGE',
-                          style: TextStyle(
+                        child: Text('change'.tr,
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
                             fontWeight: FontWeight.w500,
@@ -1238,8 +1244,9 @@ class HomeView extends GetView<HomeController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Invoice',
-                    'Are you sure you want to delete this invoice?',
+                    'delete_invoice'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                        '?',
                         () => controller.deleteInvoice(note.id!),
                         () => controller.loadInvoiceData());
               },
@@ -1452,9 +1459,9 @@ class HomeView extends GetView<HomeController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'Tap + to create invoice',
-              style: TextStyle(
+             Text(
+              'tap_plus_to_create_invoice'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -1495,8 +1502,9 @@ class HomeView extends GetView<HomeController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Invoice',
-                    'Are you sure you want to delete this invoice?',
+                    'delete_invoice'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                    '?',
                         () => controller.deleteInvoice(note.id!),
                         () => controller.loadInvoiceData());
               },
@@ -1693,9 +1701,9 @@ class HomeView extends GetView<HomeController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Invoice',
-              style: TextStyle(
+             Text(
+              'no_invoice'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -1737,8 +1745,9 @@ class HomeView extends GetView<HomeController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Invoice',
-                    'Are you sure you want to delete this invoice?',
+                    'delete_invoice'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                    '?',
                         () => controller.deleteInvoice(note.id!),
                         () => controller.loadInvoiceData());
               },
@@ -1955,9 +1964,9 @@ class HomeView extends GetView<HomeController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Invoice',
-              style: TextStyle(
+             Text(
+              'no_invoice'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -1998,8 +2007,9 @@ class HomeView extends GetView<HomeController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Invoice',
-                    'Are you sure you want to delete this invoice?',
+                    'delete_invoice'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                    '?',
                         () => controller.deleteInvoice(note.id!),
                         () => controller.loadInvoiceData());
               },
@@ -2215,9 +2225,9 @@ class HomeView extends GetView<HomeController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Invoice',
-              style: TextStyle(
+             Text(
+              'no_invoice'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -2257,8 +2267,9 @@ class HomeView extends GetView<HomeController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Invoice',
-                    'Are you sure you want to delete this invoice?',
+                    'delete_invoice'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                    '?',
                         () => controller.deleteInvoice(note.id!),
                         () => controller.loadInvoiceData());
               },
@@ -2455,9 +2466,9 @@ class HomeView extends GetView<HomeController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Invoice',
-              style: TextStyle(
+            Text(
+              'no_invoice'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -2479,8 +2490,8 @@ class HomeView extends GetView<HomeController> {
           return AlertDialog(
             contentPadding: EdgeInsets.zero,
             backgroundColor: sWhite,
-            title: const Text('Filter By',
-              style: TextStyle(
+            title: Text('filter_by'.tr,
+              style: const TextStyle(
                 fontFamily: 'Montserrat',
                 fontSize: 17,
                 fontWeight: FontWeight.w700,
@@ -2489,13 +2500,13 @@ class HomeView extends GetView<HomeController> {
             ),
             content: Container(
               margin: const EdgeInsets.symmetric(horizontal: 24),
-              height: 200,
+              height: 250,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 15,),
-                  const Text('Client Name',
-                    style: TextStyle(
+                   Text('client_name'.tr,
+                    style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       color: grey_4,
@@ -2543,7 +2554,7 @@ class HomeView extends GetView<HomeController> {
                               return Text(
                                 controller.selectedName.value.isNotEmpty
                                 ? controller.selectedName.value
-                                : 'All Clients',
+                                : 'all_clients'.tr,
                                 style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 14,
@@ -2561,8 +2572,8 @@ class HomeView extends GetView<HomeController> {
 
                   const SizedBox(height: 15,),
 
-                  const Text('Creation Date',
-                    style: TextStyle(
+                   Text('creation_date'.tr,
+                    style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       color: grey_4,
@@ -2578,8 +2589,8 @@ class HomeView extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const Text('Date From',
-                              style: TextStyle(
+                             Text('date_from'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 12,
                                 color: blackColor,
@@ -2594,7 +2605,7 @@ class HomeView extends GetView<HomeController> {
                               },
                               child: Container(
                                 width: double.infinity,
-                                height: 45,
+                                height: 50,
                                 decoration: BoxDecoration(
                                     color: textFieldColor,
                                     borderRadius: BorderRadius.circular(5)
@@ -2633,8 +2644,8 @@ class HomeView extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const Text('Date To',
-                              style: TextStyle(
+                             Text('date_to'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 12,
                                 color: blackColor,
@@ -2690,8 +2701,8 @@ class HomeView extends GetView<HomeController> {
               TextButton(
                 onPressed: () {
                   Get.back();
-                }, child: const Text('CANCEL',
-                style: TextStyle(
+                }, child: Text('cancel'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 14,
                     color: grey_4
@@ -2702,8 +2713,8 @@ class HomeView extends GetView<HomeController> {
                   controller.filterData();
                   Get.back();
 
-                }, child: const Text('APPLY',
-                style: TextStyle(
+                }, child: Text('apply'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 14,
                     color: mainPurpleColor
@@ -2721,8 +2732,8 @@ class HomeView extends GetView<HomeController> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2101),
-        cancelText: 'CANCEL',
-        confirmText: 'OK',
+        cancelText: 'cancel'.tr,
+        confirmText: 'ok'.tr,
         builder: (context, child) {
           return Theme(
               data: Theme.of(context).copyWith(
@@ -2755,8 +2766,8 @@ class HomeView extends GetView<HomeController> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2101),
-        cancelText: 'CANCEL',
-        confirmText: 'OK',
+        cancelText: 'cancel'.tr,
+        confirmText: 'ok'.tr,
         builder: (context, child) {
           return Theme(
               data: Theme.of(context).copyWith(

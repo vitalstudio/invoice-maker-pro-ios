@@ -68,3 +68,13 @@ const Color orangeDark_2 = Color(0xff590800);
 const Color orangeDark_3 = Color(0xff260100);
 
 const Color blackColor = Color(0xff000000);
+
+const Color gradientOne = Color(0xff791dc8);
+const Color gradientTwo = Color(0xff771ec8);
+const Color gradientThree = Color(0xff6f26cf);
+const Color gradientFour = Color(0xff6431d4);
+const Color gradientFive = Color(0xff5540dd);
+const Color gradientSix = Color(0xff4550e6);
+const Color gradientSeven = Color(0xff395def);
+const Color gradientEight = Color(0xff3361f2);
+const Color gradientNine = Color(0xff2e69f1);

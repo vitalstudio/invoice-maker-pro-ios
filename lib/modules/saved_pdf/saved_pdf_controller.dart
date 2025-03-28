@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:invoice/core/constants/app_constants/App_Constants.dart';
+import 'package:invoice/core/utils/dialogue_to_select_language.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../core/app_singletons/app_singletons.dart';
@@ -41,6 +43,8 @@ class SavedPdfController extends GetxController{
 
   Rx<bool> isBannerAdReady = false.obs;
   late BannerAd bannerAd;
+
+  Future<Uint8List>? pdfFuture;
 
   RxList<DataModel> invoiceList = <DataModel>[].obs;
 
@@ -112,6 +116,8 @@ class SavedPdfController extends GetxController{
     try {
       isLoading.value = true;
 
+      debugPrint('DOC Type: ${AppSingletons.isInvoiceDocument.value}');
+
       if(AppSingletons.isMakingNewINVEST.value){
         if(AppSingletons.isInvoiceDocument.value){
           final list = await pdfDbHelper!.getInvoiceList();
@@ -158,24 +164,29 @@ class SavedPdfController extends GetxController{
       }
 
       netTotal = totalPrice.toString();
-      var selectedLocale = const Locale('en', 'US');
-      if (dataModelPdf!.languageName == 'Deutsch') {
-        selectedLocale = const Locale('de', 'DE');
-      } else if (dataModelPdf!.languageName == 'Española') {
-        selectedLocale = const Locale('es', 'ES');
-      } else if (dataModelPdf!.languageName == 'Français') {
-        selectedLocale = const Locale('fr', 'FR');
-      } else if (dataModelPdf!.languageName == 'हिंदी') {
-        selectedLocale = const Locale('hi', 'IN');
-      } else if (dataModelPdf!.languageName == 'Indonesia') {
-        selectedLocale = const Locale('id', 'ID');
-      } else {
-        selectedLocale = const Locale('en', 'US');
-      }
+      // var selectedLocale = const Locale('en', 'US');
+      // if (dataModelPdf!.languageName == 'Deutsch') {
+      //   selectedLocale = const Locale('de', 'DE');
+      // } else if (dataModelPdf!.languageName == 'Española') {
+      //   selectedLocale = const Locale('es', 'ES');
+      // } else if (dataModelPdf!.languageName == 'Français') {
+      //   selectedLocale = const Locale('fr', 'FR');
+      // } else if (dataModelPdf!.languageName == 'हिंदी') {
+      //   selectedLocale = const Locale('hi', 'IN');
+      // } else if (dataModelPdf!.languageName == 'Indonesia') {
+      //   selectedLocale = const Locale('id', 'ID');
+      // } else {
+      //   selectedLocale = const Locale('en', 'US');
+      // }
+      //
+      // Get.updateLocale(selectedLocale);
+      //
+      // debugPrint('Stored Locale: $selectedLocale');
 
-      Get.updateLocale(selectedLocale);
+      // await LanguageSelection.updateLocale(
+      //     selectedLanguage: dataModelPdf!.languageName ?? AppConstants.japanese);
 
-      debugPrint('Stored Locale: $selectedLocale');
+      pdfFuture = loadTemplateData();
 
       isLoading.value = false;
     } catch (e) {
@@ -193,30 +204,72 @@ class SavedPdfController extends GetxController{
 
     debugPrint('TEMP ID: $tempId');
 
+    // switch (tempId) {
+    //   case 0:
+    //     return PdfSimpleRedTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 1:
+    //     return PdfSimpleBlueTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 2:
+    //     return PdfPurpleTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 3:
+    //     return PdfMatBrownTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 4:
+    //     return PdfBlueTapTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 5:
+    //     return PdfBlackYellowTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 6:
+    //     return PdfPinkBlueTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 7:
+    //     return PdfOrangeBlackTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 8:
+    //     return PdfBlueBlackDottedTemplate.createPreviewPdf(dataModelPdf!);
+    //   case 9:
+    //     return PdfGreyWallpaperTemplate.createPreviewPdf(dataModelPdf!);
+    //   default:
+    //     return PdfSimpleRedTemplate.createPreviewPdf(dataModelPdf!);
+    // }
+
+    Uint8List pdfData;
+
     switch (tempId) {
       case 0:
-        return PdfSimpleRedTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfSimpleRedTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 1:
-        return PdfSimpleBlueTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfSimpleBlueTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 2:
-        return PdfPurpleTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfPurpleTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 3:
-        return PdfMatBrownTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfMatBrownTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 4:
-        return PdfBlueTapTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfBlueTapTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 5:
-        return PdfBlackYellowTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfBlackYellowTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 6:
-        return PdfPinkBlueTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfPinkBlueTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 7:
-        return PdfOrangeBlackTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfOrangeBlackTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 8:
-        return PdfBlueBlackDottedTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfBlueBlackDottedTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       case 9:
-        return PdfGreyWallpaperTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfGreyWallpaperTemplate.createPreviewPdf(dataModelPdf!);
+        break;
       default:
-        return PdfSimpleRedTemplate.createPreviewPdf(dataModelPdf!);
+        pdfData = await PdfSimpleRedTemplate.createPreviewPdf(dataModelPdf!);
     }
+
+    // await LanguageSelection.updateLocale(
+    //     selectedLanguage: AppSingletons.storedAppLanguage.value);
+
+    return pdfData;
   }
 
   Future<void> sharePdfFromDesktop(Uint8List pdfData, String filename) async {

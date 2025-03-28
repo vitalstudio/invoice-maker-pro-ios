@@ -665,28 +665,28 @@ class InvoiceEntranceController extends GetxController with AdsControllerMixin {
 
       debugPrint('Default Values 2: ${AppSingletons.invoiceTemplateIdINV.value}');
 
-      var selectedLocale = const Locale('en', 'US');
-      if (AppSingletons.languageName?.value == 'Deutsch') {
-        selectedLocale = const Locale('de', 'DE');
-      }
-      else if (AppSingletons.languageName?.value == 'Española') {
-        selectedLocale = const Locale('es', 'ES');
-      }
-      else if (AppSingletons.languageName?.value == 'Français') {
-        selectedLocale = const Locale('fr', 'FR');
-      }
-      else if (AppSingletons.languageName?.value == 'हिंदी') {
-        selectedLocale = const Locale('hi', 'IN');
-      }
-      else if (AppSingletons.languageName?.value == 'Indonesia') {
-        selectedLocale = const Locale('id', 'ID');
-      }
-      else {
-        selectedLocale = const Locale('en', 'US');
-      }
-      AppSingletons.selectedLocale_2?.value = selectedLocale;
-      Get.updateLocale(selectedLocale);
-      debugPrint('Stored Locale: $selectedLocale');
+      // var selectedLocale = const Locale('en', 'US');
+      // if (AppSingletons.languageName?.value == 'Deutsch') {
+      //   selectedLocale = const Locale('de', 'DE');
+      // }
+      // else if (AppSingletons.languageName?.value == 'Española') {
+      //   selectedLocale = const Locale('es', 'ES');
+      // }
+      // else if (AppSingletons.languageName?.value == 'Français') {
+      //   selectedLocale = const Locale('fr', 'FR');
+      // }
+      // else if (AppSingletons.languageName?.value == 'हिंदी') {
+      //   selectedLocale = const Locale('hi', 'IN');
+      // }
+      // else if (AppSingletons.languageName?.value == 'Indonesia') {
+      //   selectedLocale = const Locale('id', 'ID');
+      // }
+      // else {
+      //   selectedLocale = const Locale('en', 'US');
+      // }
+      // AppSingletons.selectedLocale_2?.value = selectedLocale;
+      // Get.updateLocale(selectedLocale);
+      // debugPrint('Stored Locale: $selectedLocale');
     } catch(e){
       debugPrint('Error for name in INV: $e');
     }

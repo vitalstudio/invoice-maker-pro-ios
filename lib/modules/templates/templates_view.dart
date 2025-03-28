@@ -251,9 +251,9 @@ class TemplatesView extends GetView<TemplatesController> {
       backgroundColor: orangeLight_1,
       appBar: AppBar(
         backgroundColor: mainPurpleColor,
-        title: const Text(
-          'Select a Template',
-          style: TextStyle(
+        title:  Text(
+          'select_a_template'.tr,
+          style: const TextStyle(
               fontFamily: 'Montserrat',
               color: sWhite,
               fontWeight: FontWeight.w600,

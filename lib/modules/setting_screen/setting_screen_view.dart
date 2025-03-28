@@ -1,7 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:invoice/core/app_singletons/app_singletons.dart';
+import '../../core/preferenceManager/sharedPreferenceManager.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
@@ -44,16 +46,16 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 10,),
-                  const Text('INVOICE PRO',
-                  style: TextStyle(
+                   Text('invoice_pro'.tr,
+                  style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: proIconColor
                   ),
                  ),
-                  const Text('Full access to all features',
-                    style: TextStyle(
+                   Text('full_access_to_all_features'.tr,
+                    style: const TextStyle(
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.normal,
                         fontSize: 15,
@@ -63,16 +65,16 @@ class SettingScreenView extends GetView<SettingScreenController> {
                   const SizedBox(height: 15,),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5),
-                    child: const Row(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(child: Column(
 
                           children: [
-                            Icon(Icons.account_balance_wallet,color: proIconColor,),
-                            Text('Professional Templates',
+                            const Icon(Icons.account_balance_wallet,color: proIconColor,),
+                            Text('professional_templates'.tr,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   fontSize: 11,
@@ -83,10 +85,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                         )),
                         Expanded(child: Column(
                           children: [
-                            Icon(Icons.accessibility,color: proIconColor,),
-                            Text('Unlimited Invoices and Estimates',
+                            const Icon(Icons.accessibility,color: proIconColor,),
+                            Text('unlimited_invoices_and_estimates'.tr,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   fontSize: 11,
@@ -97,10 +99,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
                         )),
                         Expanded(child: Column(
                           children: [
-                            Icon(Icons.cloud_upload_rounded,color: proIconColor,),
-                            Text('Unlimited Export',
+                           const Icon(Icons.cloud_upload_rounded,color: proIconColor,),
+                            Text('unlimited_export'.tr,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   fontSize: 11,
@@ -112,10 +114,10 @@ class SettingScreenView extends GetView<SettingScreenController> {
 
                         Expanded(child: Column(
                           children: [
-                            Icon(Icons.add_chart_sharp,color: proIconColor,),
-                            Text('Business Reports',
+                            const Icon(Icons.add_chart_sharp,color: proIconColor,),
+                            Text('business_reports'.tr,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   fontSize: 11,
@@ -148,8 +150,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
                           ]
                         )
                       ),
-                      child: const Text('Join Now',
-                        style: TextStyle(
+                      child:  Text('join_now'.tr,
+                        style: const TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
@@ -169,24 +171,24 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 Get.toNamed(Routes.termsAndConditionView);
               },
               iconData:  Icons.event_note_sharp,
-              title: 'Terms & Condition',
-              subTitle: 'Add new term and condition',
+              title: 'term_and_condition'.tr,
+              subTitle: 'add_new_term_and_condition'.tr,
             ),
             CustomSettingContainer(
               onTap: (){
                 Get.toNamed(Routes.signatureView);
               },
               iconData:  Icons.edit,
-              title: 'Signature',
-              subTitle: 'Add new signature',
+              title: 'signature'.tr,
+              subTitle: 'add_new_signature'.tr,
             ),
             CustomSettingContainer(
               onTap: (){
                 Get.toNamed(Routes.paymentView);
               },
               iconData:  Icons.credit_card_rounded,
-              title: 'Payment method',
-              subTitle: 'Add new payment method',
+              title: 'payment_method'.tr,
+              subTitle: 'add_new_payment_method'.tr,
             ),
 
             CustomSettingContainer(
@@ -194,16 +196,47 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 Get.toNamed(Routes.businessListView);
               },
               iconData: Icons.add_business,
-              title: 'Business Info',
-              subTitle: 'Add new businesses',
+              title: 'business_info'.tr,
+              subTitle: 'add_new_businesses'.tr,
+            ),
+
+            CustomSettingContainer(
+              onTap: () async{
+
+                AppSingletons.selectedNewLanguage.value = AppSingletons.storedAppLanguage.value;
+
+                await LanguageSelection.selectALanguage(
+                    context: context,
+                    titleHeading: 'SELECT APP LANGUAGE',
+                    onChange: () async{
+                      await LanguageSelection.updateLocale(
+                        selectedLanguage: AppSingletons.selectedNewLanguage.value
+                      );
+                      Get.back();
+
+                      await SharedPreferencesManager.setValue(
+                          AppConstants.keyStoredAppLanguage,
+                          AppSingletons.selectedNewLanguage.value
+                      );
+
+                      AppSingletons.storedAppLanguage.value = AppSingletons.selectedNewLanguage.value;
+
+                      debugPrint('StoredAppLanguage: ${AppSingletons.selectedNewLanguage.value}');
+
+                    }
+                );
+              },
+              iconData: Icons.translate,
+              title: 'app_language'.tr,
+              subTitle: 'tap_to_switch_language'.tr,
             ),
 
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               alignment: Alignment.centerLeft,
-              child: const Text(
-                'Support',
-                style: TextStyle(
+              child:  Text(
+                'support'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     color: grey_1,
                     fontWeight: FontWeight.w600,
@@ -214,11 +247,11 @@ class SettingScreenView extends GetView<SettingScreenController> {
 
             CustomSettingContainer(
               onTap: (){
-                Utils.rateUs('Hope you enjoy our app');
+                Utils.rateUs('enjoy_app'.tr);
               },
               iconData: Icons.verified,
-              title: 'Rate Us',
-              subTitle: 'Your best reward to us',
+              title: 'rate_us'.tr,
+              subTitle: 'your_best_reward_to_us'.tr,
             ),
 
             CustomSettingContainer(
@@ -226,13 +259,13 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 final size = MediaQuery.of(context).size;
                 if(Platform.isAndroid){
                   await Share.share(
-                      'Save time, Save money. Create professional invoices in seconds "Invoice Maker !Receipt Creator" app \n\nDownload Now:\nhttps://play.google.com/store/apps/details?id=com.InvoiceMaker.ReceiptCreator.Billing.app');
+                      'android_prompt'.tr);
                 }
                 if(Platform.isIOS){
                   try {
                     await Share.share(
                         sharePositionOrigin: Rect.fromLTWH(0, 0, size.width, size.height / 2),
-                        'Save time, Save money. Create professional invoices in seconds "Invoice Maker !Receipt Creator" app \n\nDownload Now');
+                        'ios_prompt'.tr);
                   }
                   catch (e) {
                     print("Error: $e");
@@ -240,8 +273,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 }
               },
               iconData: Icons.share,
-              title: 'Share',
-              subTitle: 'Share app with friends',
+              title: 'share'.tr,
+              subTitle: 'share_app_with_friends'.tr,
             ),
 
             CustomSettingContainer(
@@ -251,8 +284,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 launchUrl(url);
               },
               iconData: Icons.privacy_tip_outlined,
-              title: 'Privacy policy',
-              subTitle: 'Read privacy policy',
+              title: 'privacy_policy'.tr,
+              subTitle: 'read_privacy_policy'.tr,
             ),
 
             CustomSettingContainer(
@@ -262,8 +295,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
                 launchUrl(url);
               },
               iconData: Icons.list_alt_rounded,
-              title: 'Term of use',
-              subTitle: 'Read the Terms of Use carefully',
+              title: 'terms_title'.tr,
+              subTitle: 'read_terms'.tr,
             ),
 
             CustomSettingContainer(
@@ -272,13 +305,13 @@ class SettingScreenView extends GetView<SettingScreenController> {
                     scheme: 'mailto',
                     path: 'vitalappstudios@gmail.com',
                     queryParameters: <String, String>{
-                      'subject': 'Feedback about Invoice Maker !Receipt Creator',
+                      'subject': 'feedback_title'.tr,
                     });
                 launchUrl(emailLaunchUri);
               },
               iconData: Icons.email,
-              title: 'Feedback',
-              subTitle: 'Share your honest feedback with us',
+              title: 'feedback'.tr,
+              subTitle: 'share_your_honest_feedback_with_us'.tr,
             ),
           ],
         ),

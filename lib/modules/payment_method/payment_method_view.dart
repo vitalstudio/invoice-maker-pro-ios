@@ -29,8 +29,9 @@ class PaymentMethodView extends GetView<PaymentMethodController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainPurpleColor,
-        title: const Text('Payment Method',
-          style: TextStyle(
+        title: Text(
+          'payment_method'.tr,
+          style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,
               fontWeight: FontWeight.w600,
@@ -56,9 +57,9 @@ class PaymentMethodView extends GetView<PaymentMethodController> {
                     animating: true,
                   )) :
               controller.paymentList.isEmpty
-                  ? const Center(
-                child: Text('Tap + to add payment method',
-                  style: TextStyle(
+                  ? Center(
+                child: Text('tap_plus_to_add_payment_method'.tr,
+                  style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: grey_1
@@ -367,8 +368,8 @@ class PaymentMethodView extends GetView<PaymentMethodController> {
     return Get.dialog(
         AlertDialog(
           backgroundColor: offWhite,
-          title: const Text('New payment method',
-            style: TextStyle(
+          title:  Text('new_payment_method'.tr,
+            style: const TextStyle(
                 fontFamily: 'Montserrat',
                 color: grey_1,
                 fontSize: 16,
@@ -389,7 +390,7 @@ class PaymentMethodView extends GetView<PaymentMethodController> {
             child: CommonTextField(
               textEditingController: controller.paymentController,
               maxLength: 500,
-              hintText: 'Enter payment method',
+              hintText: 'enter_payment_method'.tr,
               maxLines: 15,
               textInputType: TextInputType.text,
               textInputAction: TextInputAction.done,
@@ -400,9 +401,8 @@ class PaymentMethodView extends GetView<PaymentMethodController> {
             TextButton(onPressed: () {
               Get.back();
             },
-              child: const Text('Cancel',
-                style: TextStyle(
-
+              child: Text('cancel'.tr,
+                style: const TextStyle(
                     color: grey_1,
                     fontSize: 15,
                     fontWeight: FontWeight.w600
@@ -414,11 +414,11 @@ class PaymentMethodView extends GetView<PaymentMethodController> {
                 controller.saveData();
               } else {
                 Utils().snackBarMsg(
-                    'Error!!!', 'Please payment method to save');
+                    '${'error'.tr}!!!', 'please_enter_payment_method'.tr);
               }
             },
-              child: const Text('Save',
-                style: TextStyle(
+              child: Text('save'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     color: grey_1,
                     fontSize: 15,

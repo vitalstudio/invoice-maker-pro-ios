@@ -43,7 +43,7 @@ class EstimateListView extends GetView<EstimateListController> {
                     autofocus: true,
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(10),
-                        hintText: 'Search estimate',
+                        hintText: 'search_estimate'.tr,
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
@@ -72,6 +72,10 @@ class EstimateListView extends GetView<EstimateListController> {
                 child: Obx(() {
                   return Row(
                     children: [
+                      Visibility(
+                          visible: AppSingletons.storedAppLanguage.value == AppConstants.arabic,
+                          child: const SizedBox(width: 50,)
+                      ),
                       GestureDetector(
                         onTap: () {
                           controller.listShowingType.value = AppConstants.all;
@@ -87,7 +91,7 @@ class EstimateListView extends GetView<EstimateListController> {
                                   : offWhite_2,
                               borderRadius: BorderRadius.circular(100)),
                           child: Text(
-                            'All',
+                            'all'.tr,
                             style: TextStyle(
                                 color: controller.listShowingType.value ==
                                     AppConstants.all
@@ -113,7 +117,7 @@ class EstimateListView extends GetView<EstimateListController> {
                                   : offWhite_2,
                               borderRadius: BorderRadius.circular(100)),
                           child: Text(
-                            'Pending',
+                            'pending'.tr,
                             style: TextStyle(
                                 color: controller.listShowingType.value == AppConstants.pending
                                     ? sWhite
@@ -138,7 +142,7 @@ class EstimateListView extends GetView<EstimateListController> {
                                   : offWhite_2,
                               borderRadius: BorderRadius.circular(100)),
                           child: Text(
-                            'Approved',
+                            'approved'.tr,
                             style: TextStyle(
                                 color: controller.listShowingType.value ==
                                     AppConstants.approved
@@ -165,7 +169,7 @@ class EstimateListView extends GetView<EstimateListController> {
                                   : offWhite_2,
                               borderRadius: BorderRadius.circular(100)),
                           child: Text(
-                            'Overdue',
+                            'overdue'.tr,
                             style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: controller.listShowingType.value ==
@@ -193,7 +197,7 @@ class EstimateListView extends GetView<EstimateListController> {
                                   : offWhite_2,
                               borderRadius: BorderRadius.circular(100)),
                           child: Text(
-                            'Cancel',
+                            'cancel'.tr,
                             style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: controller.listShowingType.value ==
@@ -718,8 +722,8 @@ class EstimateListView extends GetView<EstimateListController> {
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: const Text('Mark as',
-                  style: TextStyle(
+              child: Text('mark_as'.tr,
+                  style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
@@ -735,9 +739,9 @@ class EstimateListView extends GetView<EstimateListController> {
                         controller.estimateStatus.value = AppConstants.pending;
                         debugPrint(controller.estimateStatus.value);
                     },
-                    title: const Text(
-                      'Pending',
-                      style: TextStyle(
+                    title: Text(
+                      'pending'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -757,9 +761,9 @@ class EstimateListView extends GetView<EstimateListController> {
                         controller.estimateStatus.value = AppConstants.approved;
                         debugPrint(controller.estimateStatus.value);
                     },
-                    title: const Text(
-                      'Approved',
-                      style: TextStyle(
+                    title:  Text(
+                      'approved'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -779,9 +783,9 @@ class EstimateListView extends GetView<EstimateListController> {
                         controller.estimateStatus.value = AppConstants.cancel;
                         debugPrint(controller.estimateStatus.value);
                     },
-                    title: const Text(
-                      'Cancel',
-                      style: TextStyle(
+                    title: Text(
+                      'cancel'.tr,
+                      style: const TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -820,8 +824,8 @@ class EstimateListView extends GetView<EstimateListController> {
                                 bottomLeft: Radius.circular(5)
                             )
                         ),
-                        child: const Text('CANCEL',
-                          style: TextStyle(
+                        child: Text('cancel'.tr,
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
                             fontWeight: FontWeight.w500,
@@ -853,8 +857,8 @@ class EstimateListView extends GetView<EstimateListController> {
                                 bottomRight: Radius.circular(5)
                             )
                         ),
-                        child: const Text('CHANGE',
-                          style: TextStyle(
+                        child: Text('change'.tr,
+                          style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
                             fontWeight: FontWeight.w500,
@@ -903,8 +907,9 @@ class EstimateListView extends GetView<EstimateListController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Estimate',
-                    'Are you sure you want to delete this estimate?',
+                    'delete_estimate'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                        '?',
                         () => controller.deleteEstimate(note.id!),
                         () => controller.loadEstimateData());
               },
@@ -1072,9 +1077,9 @@ class EstimateListView extends GetView<EstimateListController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'Tap + to create estimate',
-              style: TextStyle(
+             Text(
+              'tap_plus_to_create_estimate'.tr,
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -1113,8 +1118,9 @@ class EstimateListView extends GetView<EstimateListController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Estimate',
-                    'Are you sure you want to delete this estimate?',
+                    'delete_estimate'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                        '?',
                         () => controller.deleteEstimate(note.id!),
                         () => controller.loadEstimateData());
               },
@@ -1324,8 +1330,9 @@ class EstimateListView extends GetView<EstimateListController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Estimate',
-                    'Are you sure you want to delete this estimate?',
+                    'delete_estimate'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                        '?',
                         () => controller.deleteEstimate(note.id!),
                         () => controller.loadEstimateData());
               },
@@ -1535,8 +1542,9 @@ class EstimateListView extends GetView<EstimateListController> {
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Estimate',
-                    'Are you sure you want to delete this estimate?',
+                    'delete_estimate'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                        '?',
                         () => controller.deleteEstimate(note.id!),
                         () => controller.loadEstimateData());
               },
@@ -1731,23 +1739,25 @@ class EstimateListView extends GetView<EstimateListController> {
 
                 AppSingletons.isMakingNewINVEST.value = false;
 
-                Get.toNamed(Routes.savedPdfView);
-
                 AppSingletons.isPreviewingPdfBeforeSave.value = false;
 
                 AppSingletons.isInvoiceDocument.value = false;
+
+                Get.toNamed(Routes.savedPdfView);
 
                 AppSingletons.estimateIdWhichWillEdit.value = note.id ?? 0;
 
                 AppSingletons.isEditInvoice.value = false;
 
                 AppSingletons.isEditEstimate.value = true;
+
               },
               onLongPress: () {
                 CustomDialogues.showDialogueToDelete(
                     false,
-                    'Delete Estimate',
-                    'Are you sure you want to delete this estimate?',
+                    'delete_estimate'.tr,
+                    'are_you_sure_you_want_to_delete'.tr,
+                        '?',
                         () => controller.deleteEstimate(note.id!),
                         () => controller.loadEstimateData());
               },
@@ -1939,8 +1949,8 @@ class EstimateListView extends GetView<EstimateListController> {
           return AlertDialog(
             contentPadding: EdgeInsets.zero,
             backgroundColor: sWhite,
-            title: const Text('Filter By',
-              style: TextStyle(
+            title: Text('filter_by'.tr,
+              style: const TextStyle(
                 fontFamily: 'Montserrat',
                 fontSize: 17,
                 fontWeight: FontWeight.w700,
@@ -1949,13 +1959,13 @@ class EstimateListView extends GetView<EstimateListController> {
             ),
             content: Container(
               margin: const EdgeInsets.symmetric(horizontal: 24),
-              height: 200,
+              height: 250,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 15,),
-                  const Text('Client Name',
-                    style: TextStyle(
+                   Text('client_name'.tr,
+                    style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       color: grey_4,
@@ -2003,7 +2013,7 @@ class EstimateListView extends GetView<EstimateListController> {
                               return Text(
                                 controller.selectedName.value.isNotEmpty
                                     ? controller.selectedName.value
-                                    : 'All Clients',
+                                    : 'all_clients'.tr,
                                 style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 14,
@@ -2021,8 +2031,8 @@ class EstimateListView extends GetView<EstimateListController> {
 
                   const SizedBox(height: 15,),
 
-                  const Text('Creation Date',
-                    style: TextStyle(
+                   Text('creation_date'.tr,
+                    style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       color: grey_4,
@@ -2038,8 +2048,8 @@ class EstimateListView extends GetView<EstimateListController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const Text('Date From',
-                              style: TextStyle(
+                             Text('date_from'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 12,
                                 color: blackColor,
@@ -2093,8 +2103,8 @@ class EstimateListView extends GetView<EstimateListController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const Text('Date To',
-                              style: TextStyle(
+                             Text('date_to'.tr,
+                              style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 12,
                                 color: blackColor,
@@ -2150,8 +2160,8 @@ class EstimateListView extends GetView<EstimateListController> {
               TextButton(
                 onPressed: () {
                   Get.back();
-                }, child: const Text('CANCEL',
-                style: TextStyle(
+                }, child: Text('cancel'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 14,
                     color: grey_4
@@ -2163,8 +2173,8 @@ class EstimateListView extends GetView<EstimateListController> {
                   controller.isFilteringList.value = true;
                   Get.back();
 
-                }, child: const Text('APPLY',
-                style: TextStyle(
+                }, child: Text('apply'.tr,
+                style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 14,
                     color: mainPurpleColor
@@ -2182,8 +2192,8 @@ class EstimateListView extends GetView<EstimateListController> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2101),
-        cancelText: 'CANCEL',
-        confirmText: 'OK',
+        cancelText: 'cancel'.tr,
+        confirmText: 'ok'.tr,
         builder: (context, child) {
           return Theme(
               data: Theme.of(context).copyWith(
@@ -2216,8 +2226,8 @@ class EstimateListView extends GetView<EstimateListController> {
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2101),
-        cancelText: 'CANCEL',
-        confirmText: 'OK',
+        cancelText: 'cancel'.tr,
+        confirmText: 'ok'.tr,
         builder: (context, child) {
           return Theme(
               data: Theme.of(context).copyWith(
