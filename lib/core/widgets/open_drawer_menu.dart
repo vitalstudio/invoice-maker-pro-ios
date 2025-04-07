@@ -1,9 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/constants/color/color.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
+import '../../core/preferenceManager/sharedPreferenceManager.dart';
+import '../../core/app_singletons/app_singletons.dart';
+import '../../modules/home_screen/home_controller.dart';
+import '../../core/constants/app_constants/App_Constants.dart';
 import '../routes/routes.dart';
 import '../utils/utils.dart';
 import 'package:get/get.dart';
@@ -72,6 +76,49 @@ class DrawerMenuOpen extends StatelessWidget {
                 ),
                 title: Text(
                   'reports'.tr,
+                  style: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: grey_1
+                  ),
+                ),
+              ),
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 0),
+                onTap: () async{
+
+                  AppSingletons.selectedNewLanguage.value = AppSingletons.storedAppLanguage.value;
+
+                  await LanguageSelection.selectALanguage(
+                      context: context,
+                      titleHeading: 'SELECT APP LANGUAGE',
+                      onChange: () async{
+                        await LanguageSelection.updateLocale(
+                            selectedLanguage: AppSingletons.selectedNewLanguage.value
+                        );
+                        Get.back();
+
+                        await SharedPreferencesManager.setValue(
+                            AppConstants.keyStoredAppLanguage,
+                            AppSingletons.selectedNewLanguage.value
+                        );
+
+                        AppSingletons.storedAppLanguage.value = AppSingletons.selectedNewLanguage.value;
+
+                        debugPrint('StoredAppLanguage: ${AppSingletons.selectedNewLanguage.value}');
+
+                      }
+                  );
+
+                  Get.find<HomeController>().loadInvoiceData();
+
+                },
+                leading: const Icon(
+                  Icons.translate,color: mainPurpleColor,size: 20,
+                ),
+                title: Text(
+                  'app_language'.tr,
                   style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,

@@ -1723,22 +1723,25 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                       onTap: () async {
 
                         if(!AppSingletons.isSubscriptionEnabled.value){
-                          if(
-                          AppSingletons.selectedTempIndexToCheck.value == 0
-                              || AppSingletons.selectedTempIndexToCheck.value == 1
-                          ) {
-                            if (AppSingletons.isEditEstimate.value) {
-                              await controller.editEstimateData();
-                            } else{
-                              if(AppSingletons.noOfEstimatesMadeAlready.value >= 1){
-                                Get.toNamed(Routes.proScreenView);
-                              } else{
-                                await controller.saveDataInEstimate();
-                              }
-                            }
+
+                          if (AppSingletons.isEditEstimate.value) {
+                            await controller.editEstimateData();
                           } else{
-                            Get.toNamed(Routes.proScreenView);
+                            if(AppSingletons.noOfEstimatesMadeAlready.value >= 1){
+                              Get.toNamed(Routes.proScreenView);
+                            } else{
+                              await controller.saveDataInEstimate();
+                            }
                           }
+
+                          // if(
+                          // AppSingletons.selectedTempIndexToCheck.value == 0
+                          //     || AppSingletons.selectedTempIndexToCheck.value == 1
+                          // ) {
+                          //
+                          // } else{
+                          //   Get.toNamed(Routes.proScreenView);
+                          // }
                         } else{
                           if (AppSingletons.isEditEstimate.value) {
                             await controller.editEstimateData();

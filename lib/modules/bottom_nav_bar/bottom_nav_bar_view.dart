@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../core/preferenceManager/sharedPreferenceManager.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import '../../core/widgets/dialogueToDelete.dart';
 import '../../core/routes/routes.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
@@ -75,6 +77,37 @@ class BottomNavView extends GetView<BottomNavController> {
             if (controller.currentIndex.value == 0) {
               return Row(
                 children: [
+                  IconButton(
+                      onPressed: () async{
+                        AppSingletons.selectedNewLanguage.value = AppSingletons.storedAppLanguage.value;
+
+                        await LanguageSelection.selectALanguage(
+                            context: context,
+                            titleHeading: 'SELECT APP LANGUAGE',
+                            onChange: () async{
+                              await LanguageSelection.updateLocale(
+                                  selectedLanguage: AppSingletons.selectedNewLanguage.value
+                              );
+                              Get.back();
+
+                              await SharedPreferencesManager.setValue(
+                                  AppConstants.keyStoredAppLanguage,
+                                  AppSingletons.selectedNewLanguage.value
+                              );
+
+                              AppSingletons.storedAppLanguage.value = AppSingletons.selectedNewLanguage.value;
+
+                              debugPrint('StoredAppLanguage: ${AppSingletons.selectedNewLanguage.value}');
+
+                            }
+                        );
+
+                        Get.find<HomeController>().loadInvoiceData();
+                      },
+                      icon: const Icon(
+                        Icons.translate,
+                        color: orangeLight_1,
+                      )),
                   Obx(() {
                     if (AppSingletons.isSearchingInvoice.value == false) {
                       return IconButton(
@@ -111,7 +144,7 @@ class BottomNavView extends GetView<BottomNavController> {
                       icon: const Icon(
                         Icons.add_chart,
                         color: orangeLight_1,
-                      ))
+                      )),
                 ],
               );
             }

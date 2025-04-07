@@ -1571,38 +1571,36 @@ class InvoiceEntranceView extends GetView<InvoiceEntranceController> {
                       onTap: () async {
                         controller.showAd();
 
-                        // if(!AppSingletons.isSubscriptionEnabled.value){
-                        //   if(
-                        //   AppSingletons.selectedTempIndexToCheck.value == 0
-                        //   || AppSingletons.selectedTempIndexToCheck.value == 1
-                        //   ) {
-                        //
-                        //     if(AppSingletons.isEditInvoice.value){
-                        //       await controller.editInvoiceData();
-                        //     } else{
-                        //       if(AppSingletons.noOfInvoicesMadeAlready.value >= 1){
-                        //         Get.toNamed(Routes.proScreenView);
-                        //       } else{
-                        //         await controller.saveDataInInvoice();
-                        //       }
-                        //     }
-                        //   } else{
-                        //     Get.toNamed(Routes.proScreenView);
-                        //   }
-                        // }
-                        // else{
-                        //   if (AppSingletons.isEditInvoice.value) {
-                        //     await controller.editInvoiceData();
-                        //   } else {
-                        //     await controller.saveDataInInvoice();
-                        //   }
-                        // }
+                        if(!AppSingletons.isSubscriptionEnabled.value){
 
-                        if (AppSingletons.isEditInvoice.value) {
-                          await controller.editInvoiceData();
-                        } else {
-                          await controller.saveDataInInvoice();
+                          if(AppSingletons.isEditInvoice.value){
+                            await controller.editInvoiceData();
+                          } else{
+                            if(AppSingletons.noOfInvoicesMadeAlready.value >= 1){
+                              Get.toNamed(Routes.proScreenView);
+                            } else{
+                              await controller.saveDataInInvoice();
+                            }
+                          }
+
+                          // if(
+                          // AppSingletons.selectedTempIndexToCheck.value == 0
+                          // || AppSingletons.selectedTempIndexToCheck.value == 1
+                          // ) {
+                          //
+                          //
+                          // } else{
+                          //   Get.toNamed(Routes.proScreenView);
+                          // }
                         }
+                        else{
+                          if (AppSingletons.isEditInvoice.value) {
+                            await controller.editInvoiceData();
+                          } else {
+                            await controller.saveDataInInvoice();
+                          }
+                        }
+
 
                       },
                       child: Container(

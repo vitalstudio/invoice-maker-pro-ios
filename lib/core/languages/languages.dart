@@ -12,6 +12,7 @@ class Languages extends Translations {
           'amount': 'Amount',
           // New Added Translations
           "join_pro": "Join PRO",
+  "start_for_free": "Start For Free",
           "discount_offer": "Discount Offer",
           "reports": "Reports",
           "rate_request": "If you like our app, please rate us 5 stars",
@@ -293,6 +294,7 @@ class Languages extends Translations {
           'total': 'Gesamt',
           // New Added Translations
           "join_pro": "PRO beitreten",
+  "start_for_free": "Kostenlos starten",
           "rate_request":
               "Wenn Sie unsere App mögen, bewerten Sie uns bitte mit 5 Sternen",
           "rate_button": "BEWERTEN",
@@ -582,6 +584,7 @@ class Languages extends Translations {
           'total': 'Total',
           // New Added Languages
           "join_pro": "Gabung PRO",
+  "start_for_free": "Mulai Gratis",
           "rate_request":
               "Jika Anda menyukai aplikasi kami, beri kami rating 5 bintang",
           "rate_button": "BERI NILAI",
@@ -861,6 +864,7 @@ class Languages extends Translations {
           'total': 'Totale',
           // New Added Languages
           "join_pro": "Rejoindre PRO",
+  "start_for_free": "Commencer gratuitement",
           "rate_request":
               "Si vous aimez notre application, veuillez nous noter 5 étoiles",
           "rate_button": "NOTER",
@@ -1143,6 +1147,7 @@ class Languages extends Translations {
           'qty': 'CANTIDAD',
           'price': 'Precio',
           'discount': 'Descuento',
+  "start_for_free": "Empieza gratis",
           'amount': 'Cantidad',
           'subtotal': 'Total parcial',
           'tax': 'Impuesto',
@@ -1434,6 +1439,7 @@ class Languages extends Translations {
           "join_pro": "انضم إلى PRO",
           "add_new": "إضافة جديد",
           "create_new": "إنشاء جديد",
+  "start_for_free": "ابدأ مجانًا",
           "due_today": "مستحق اليوم",
           "due_next_day": "مستحق في اليوم التالي",
           "rate_request": "إذا أعجبك تطبيقنا، يرجى تقييمنا بـ 5 نجوم",
@@ -1705,6 +1711,7 @@ class Languages extends Translations {
           //----
           "join_pro": "加入PRO",
           "rate_request": "如果您喜欢我们的应用，请给我们5星评价",
+  "start_for_free": "免费开始",
           "rate_button": "评分",
           "reports": "报告",
           "item_info": "物品信息",
@@ -1972,6 +1979,7 @@ class Languages extends Translations {
           'discount': 'скидка',
           // Added New Translations
           "join_pro": "Присоединиться к PRO",
+  "start_for_free": "Начать бесплатно",
           "rate_request":
               "Если вам нравится наше приложение, пожалуйста, оцените нас на 5 звёзд",
           "rate_button": "ОЦЕНИТЬ",
@@ -2249,6 +2257,7 @@ class Languages extends Translations {
           'discount': 'desconto',
           // Add New Translations
           "join_pro": "Entrar no PRO",
+  "start_for_free": "Comece de graça",
           "rate_request":
               "Se você gosta do nosso aplicativo, por favor avalie-nos com 5 estrelas",
           "rate_button": "AVALIAR",
@@ -2533,6 +2542,7 @@ class Languages extends Translations {
           "sales": "売上",
           "delete_item": "アイテムを削除",
           "selected_items": "選択されたアイテム？",
+  "start_for_free": "無料で始める",
           "no_pdf_data": "PDFデータがありません",
           "selected_clients": "選択されたクライアント？",
           "add_new": "新規追加",
