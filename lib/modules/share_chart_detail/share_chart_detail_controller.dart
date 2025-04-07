@@ -29,7 +29,7 @@ class ShareChartDetailController extends GetxController {
   final DateTime now = DateTime.now();
   Rx<DateTime> startChosenDate = DateTime.now().obs;
   Rx<DateTime> endChosenDate = DateTime.now().obs;
-  RxString selectedDateFilter = 'Last 30 Days'.obs;
+  RxString selectedDateFilter = 'last_30_days'.obs;
   RxString selectedFilterValue = AppConstants.last30days.obs;
 
   String? randomNumberId;
@@ -139,61 +139,61 @@ class ShareChartDetailController extends GetxController {
     switch (filterType) {
       case 'last7days':
         start = now.subtract(const Duration(days: 7));
-        selectedDateFilter.value = 'Last 7 Days';
+        selectedDateFilter.value = 'last_7_days';
         selectedFilterValue.value = 'last7days';
         break;
       case 'last30days':
         start = now.subtract(const Duration(days: 30));
-        selectedDateFilter.value = 'Last 30 Days';
+        selectedDateFilter.value = 'last_30_days';
         selectedFilterValue.value = 'last30days';
         break;
       case 'thismonth':
         start = DateTime(now.year, now.month, 1);
         end = DateTime(now.year, now.month + 1, 1).subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'This Month';
+        selectedDateFilter.value = 'this_month';
         selectedFilterValue.value = 'thismonth';
         break;
       case 'thisquarter':
         int currentQuarter = ((now.month - 1) ~/ 3) + 1;
         start = DateTime(now.year, (currentQuarter - 1) * 3 + 1, 1);
         end = DateTime(now.year, currentQuarter * 3 + 1, 1).subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'This Quarter';
+        selectedDateFilter.value = 'this_quarter';
         selectedFilterValue.value = 'thisquarter';
         break;
       case 'thisyear':
         start = DateTime(now.year, 1, 1);
         end = DateTime(now.year, 12, 31);
-        selectedDateFilter.value = 'This Year';
+        selectedDateFilter.value = 'this_year';
         selectedFilterValue.value = 'thisyear';
         break;
       case 'lastmonth':
         start = DateTime(now.year, now.month - 1, 1);
         end = DateTime(now.year, now.month, 1).subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'Last Month';
+        selectedDateFilter.value = 'last_month';
         selectedFilterValue.value = 'lastmonth';
         break;
       case 'lastquarter':
         int currentQuarter = ((now.month - 1) ~/ 3) + 1;
         start = DateTime(now.year, (currentQuarter - 2) * 3 + 1, 1);
         end = DateTime(now.year, (currentQuarter - 1) * 3, 1).subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'Last Quarter';
+        selectedDateFilter.value = 'last_quarter';
         selectedFilterValue.value = 'lastquarter';
         break;
       case 'lastyear':
         start = DateTime(now.year - 1, 1, 1);
         end = DateTime(now.year - 1, 12, 31);
-        selectedDateFilter.value = 'Last Year';
+        selectedDateFilter.value = 'last_year';
         selectedFilterValue.value = 'lastyear';
         break;
       case 'custom':
         start = startDate!;
         end = endDate!;
-        selectedDateFilter.value = 'Custom';
+        selectedDateFilter.value = 'custom';
         selectedFilterValue.value = 'custom';
         break;
       default:
         start = now.subtract(const Duration(days: 30));
-        selectedDateFilter.value = 'Last 30 Days';
+        selectedDateFilter.value = 'last_30_days';
         selectedFilterValue.value = 'last30days';
         break;
     }
@@ -292,46 +292,46 @@ class ShareChartDetailController extends GetxController {
     switch (filterType) {
       case 'last7days':
         start = now.subtract(const Duration(days: 7));
-        selectedDateFilter.value = 'Last 7 Days';
+        selectedDateFilter.value = 'last_7_days';
         break;
       case 'last30days':
         start = now.subtract(const Duration(days: 30));
-        selectedDateFilter.value = 'Last 30 Days';
+        selectedDateFilter.value = 'last_30_days';
         break;
       case 'thismonth':
         start = DateTime(now.year, now.month, 1);
-        selectedDateFilter.value = 'This Month';
+        selectedDateFilter.value = 'this_month';
         break;
       case 'thisquarter':
         int currentQuarter = ((now.month - 1) ~/ 3) + 1;
         start = DateTime(now.year, (currentQuarter - 1) * 3 + 1, 1);
-        selectedDateFilter.value = 'This Quarter';
+        selectedDateFilter.value = 'this_quarter';
         break;
       case 'thisyear':
         start = DateTime(now.year, 1, 1);
-        selectedDateFilter.value = 'This Year';
+        selectedDateFilter.value = 'this_year';
         break;
       case 'lastmonth':
         start = DateTime(now.year, now.month - 1, 1);
         end = DateTime(now.year, now.month, 1).subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'Last Month';
+        selectedDateFilter.value = 'last_month';
         break;
       case 'lastquarter':
         int currentQuarter = ((now.month - 1) ~/ 3) + 1;
         start = DateTime(now.year, (currentQuarter - 2) * 3 + 1, 1);
         end = DateTime(now.year, (currentQuarter - 1) * 3, 1)
             .subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'Last Quarter';
+        selectedDateFilter.value = 'last_quarter';
         break;
       case 'lastyear':
         start = DateTime(now.year - 1, 1, 1);
         end = DateTime(now.year - 1, 12, 31);
-        selectedDateFilter.value = 'Last Year';
+        selectedDateFilter.value = 'last_year';
         break;
       case 'custom':
         start = startDate!;
         end = endDate!;
-        selectedDateFilter.value = 'Custom';
+        selectedDateFilter.value = 'custom';
         break;
       default:
         start = now.subtract(const Duration(days: 30));
@@ -406,45 +406,45 @@ class ShareChartDetailController extends GetxController {
     switch (filterType) {
       case 'last7days':
         start = now.subtract(const Duration(days: 7));
-        selectedDateFilter.value = 'Last 7 Days';
+        selectedDateFilter.value = 'last_7_days';
         break;
       case 'last30days':
         start = now.subtract(const Duration(days: 30));
-        selectedDateFilter.value = 'Last 30 Days';
+        selectedDateFilter.value = 'last_30_days';
         break;
       case 'thismonth':
         start = DateTime(now.year, now.month, 1);
-        selectedDateFilter.value = 'This Month';
+        selectedDateFilter.value = 'this_month';
         break;
       case 'thisquarter':
         int currentQuarter = ((now.month - 1) ~/ 3) + 1;
         start = DateTime(now.year, (currentQuarter - 1) * 3 + 1, 1);
-        selectedDateFilter.value = 'This Quarter';
+        selectedDateFilter.value = 'this_quarter';
         break;
       case 'thisyear':
         start = DateTime(now.year, 1, 1);
-        selectedDateFilter.value = 'This Year';
+        selectedDateFilter.value = 'this_year';
         break;
       case 'lastmonth':
         start = DateTime(now.year, now.month - 1, 1);
         end = DateTime(now.year, now.month, 1).subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'Last Month';
+        selectedDateFilter.value = 'last_month';
         break;
       case 'lastquarter':
         int currentQuarter = ((now.month - 1) ~/ 3) + 1;
         start = DateTime(now.year, (currentQuarter - 2) * 3 + 1, 1);
         end = DateTime(now.year, (currentQuarter - 1) * 3, 1).subtract(const Duration(days: 1));
-        selectedDateFilter.value = 'Last Quarter';
+        selectedDateFilter.value = 'last_quarter';
         break;
       case 'lastyear':
         start = DateTime(now.year - 1, 1, 1);
         end = DateTime(now.year - 1, 12, 31);
-        selectedDateFilter.value = 'Last Year';
+        selectedDateFilter.value = 'last_year';
         break;
       case 'custom':
         start = startDate!;
         end = endDate!;
-        selectedDateFilter.value = 'Custom';
+        selectedDateFilter.value = 'custom';
         break;
       default:
         start = now.subtract(const Duration(days: 30));

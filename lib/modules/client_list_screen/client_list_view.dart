@@ -256,7 +256,7 @@ class ClientListView extends GetView<ClientListController> {
                                           CustomDialogues
                                               .showDialogueToDelete(
                                               false,
-                                              'Delete Client',
+                                              'delete_client'.tr,
                                               'are_you_sure_you_want_to_delete'.tr,
                                                   '${note.clientName}?',
                                                   () => controller.deleteClient(note.id!),
@@ -980,62 +980,62 @@ class ClientListView extends GetView<ClientListController> {
     );
   }
 
-  showDialogueToDelete(int indexId, String clientName) async {
-    return Get.dialog(
-      AlertDialog(
-        backgroundColor: sWhite,
-        title: const Text(
-          'Delete Client',
-          style: TextStyle(
-            fontFamily: 'SFProDisplay',
-            color: grey_1,
-            letterSpacing: 1,
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-          ),
-        ),
-        content: Text(
-          'Are your sure you want to delete $clientName?',
-          style: const TextStyle(
-            fontFamily: 'Montserrat',
-            color: grey_1,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-          ),
-        ),
-        alignment: Alignment.center,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: const Text(
-              'Cancel',
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                color: grey_1,
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              controller.deleteClient(indexId);
-              Get.back();
-            },
-            child: const Text(
-              'Delete',
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                color: grey_1,
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // showDialogueToDelete(int indexId, String clientName) async {
+  //   return Get.dialog(
+  //     AlertDialog(
+  //       backgroundColor: sWhite,
+  //       title: const Text(
+  //         'Delete Client',
+  //         style: TextStyle(
+  //           fontFamily: 'SFProDisplay',
+  //           color: grey_1,
+  //           letterSpacing: 1,
+  //           fontWeight: FontWeight.w700,
+  //           fontSize: 16,
+  //         ),
+  //       ),
+  //       content: Text(
+  //         'Are your sure you want to delete $clientName?',
+  //         style: const TextStyle(
+  //           fontFamily: 'Montserrat',
+  //           color: grey_1,
+  //           fontWeight: FontWeight.w400,
+  //           fontSize: 16,
+  //         ),
+  //       ),
+  //       alignment: Alignment.center,
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () {
+  //             Get.back();
+  //           },
+  //           child: const Text(
+  //             'Cancel',
+  //             style: TextStyle(
+  //               fontFamily: 'Montserrat',
+  //               color: grey_1,
+  //               fontWeight: FontWeight.w500,
+  //               fontSize: 16,
+  //             ),
+  //           ),
+  //         ),
+  //         TextButton(
+  //           onPressed: () {
+  //             controller.deleteClient(indexId);
+  //             Get.back();
+  //           },
+  //           child: const Text(
+  //             'Delete',
+  //             style: TextStyle(
+  //               fontFamily: 'Montserrat',
+  //               color: grey_1,
+  //               fontWeight: FontWeight.w500,
+  //               fontSize: 16,
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

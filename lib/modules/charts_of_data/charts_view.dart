@@ -154,7 +154,7 @@ class ChartsView extends GetView<ChartsController> {
                               children: [
                                 const Icon(
                                   Icons.calendar_today, color: blackColor,),
-                                Text(controller.selectedDateFilter.value),
+                                Text(controller.selectedDateFilter.value.tr),
                                 const Icon(Icons.arrow_drop_down_sharp,
                                   color: blackColor,),
                               ],
@@ -521,7 +521,7 @@ class ChartsView extends GetView<ChartsController> {
                               },
                               icon: Row(
                                 children: [
-                                  Text('more'.tr,
+                                    Text('more'.tr,
                                     style: const TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontSize: 12,
@@ -837,7 +837,7 @@ class ChartsView extends GetView<ChartsController> {
                                       const Icon(
                                         Icons.calendar_today,
                                         color: blackColor,),
-                                      Text(controller.selectedDateFilter.value),
+                                      Text(controller.selectedDateFilter.value.tr),
                                       const Icon(Icons.arrow_drop_down_sharp,
                                         color: blackColor,),
                                     ],

@@ -17,15 +17,7 @@ import '../../../core/app_singletons/app_singletons.dart';
 import '../../../core/constants/color/color.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
-import '../../pdf_templates/black_yellow_temp/black_yellow_template.dart';
-import '../../pdf_templates/blue_black_dotted_temp/black_dotted_pdf.dart';
-import '../../pdf_templates/blue_tap_temp/blue_tap_template.dart';
-import '../../pdf_templates/grey_wallpaper_temp/gery_wall_pdf.dart';
-import '../../pdf_templates/mat_brown_temp/mat_brown.dart';
-import '../../pdf_templates/orange_black_temp/orange_temp_pdf.dart';
-import '../../pdf_templates/pink_and_blue_temp/pink_temp_pdf.dart';
 import '../../pdf_templates/purple_temp/purple_template.dart';
-import '../../pdf_templates/simple_blue_template/simple_blue_template_pdf.dart';
 import 'pdf_preview_controller.dart';
 
 class PdfPreviewView extends GetView<PdfPreviewController> {
@@ -663,7 +655,8 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
             previewPageMargin: const EdgeInsets.all(8.0),
 
             build: (format) async {
-              final pdfData = await PdfSimpleRedTemplate.createPreviewPdf(controller.invoiceDataModel!);
+              final pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(
+                  controller.invoiceDataModel!,templateIdNo: 0);
               if (pdfData.isEmpty) {
                 throw Exception("No pages generated for preview.");
               }
@@ -690,7 +683,8 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
             previewPageMargin: const EdgeInsets.all(8.0),
 
             build: (format) async {
-              final pdfData = await PdfSimpleBlueTemplate.createPreviewPdf(controller.invoiceDataModel!);
+              final pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(
+                  controller.invoiceDataModel!,templateIdNo: 1);
               if (pdfData.isEmpty) {
                 throw Exception("No pages generated for preview.");
               }
@@ -716,7 +710,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfPurpleTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 2
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }
@@ -776,7 +773,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfMatBrownTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 3
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }
@@ -835,7 +835,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfBlueTapTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 4
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }
@@ -894,7 +897,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfBlackYellowTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 5
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }
@@ -953,7 +959,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfPinkBlueTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 6
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }
@@ -1012,7 +1021,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfOrangeBlackTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 7
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }
@@ -1071,7 +1083,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfBlueBlackDottedTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 8
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }
@@ -1130,7 +1145,10 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                 pageFormat: PdfPageFormat.a4,
                 previewPageMargin: const EdgeInsets.all(8.0),
                 build: (format) async {
-                  final pdfData = await PdfGreyWallpaperTemplate.createPreviewPdf(controller.invoiceDataModel!);
+                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
+                      controller.invoiceDataModel!,
+                      templateIdNo: 9
+                  );
                   if (pdfData.isEmpty) {
                     throw Exception("No pages generated for preview.");
                   }

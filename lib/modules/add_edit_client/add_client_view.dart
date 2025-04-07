@@ -37,7 +37,8 @@ class AddClientView extends GetView<AddClientController> {
         ),
         title: Text(
           AppSingletons().isEditingClientInfo
-              ? "user_name".trParams({'username': 'Hamza'}) // REMEMBER HERE COME client_info
+              // ? "user_name".trParams({'username': 'Hamza'})
+              ? 'client_info'.tr
               : 'new_client'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',

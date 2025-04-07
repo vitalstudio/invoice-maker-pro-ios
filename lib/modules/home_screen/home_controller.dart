@@ -95,7 +95,7 @@ class HomeController extends GetxController with AdsControllerMixin {
   Future<void> showProIfUserNotSubscribed() async {
 
     if (!AppSingletons.isSubscriptionEnabled.value) {
-      Timer(const Duration(milliseconds: 500), () {
+      Timer(const Duration(seconds: 4), () {
         Get.toNamed(Routes.proScreenView);
       });
     }
@@ -118,16 +118,16 @@ class HomeController extends GetxController with AdsControllerMixin {
       int difference = dueDateOnly.difference(todayDateOnly).inDays;
 
       if (difference == 0) {
-        return 'Due Today';
+        return 'due_today'.tr;
       } else if (difference == 1) {
-        return 'Due the next day';
+        return 'due_next_day'.tr;
       } else if (difference > 1) {
-        return 'Due in $difference days';
+        return '${'due_in'.tr} $difference ${'days'.tr}';
       } else {
-        return 'Overdue by ${difference.abs()} days';
+        return '${'overdue_by'.tr} ${difference.abs()} ${'days'.tr}';
       }
     } catch (e) {
-      return 'Invalid Date';
+      return '';
     }
   }
 
@@ -310,6 +310,22 @@ class HomeController extends GetxController with AdsControllerMixin {
   //   }
   // }
 
+  String getInvoiceStatusText(bool isOverdue, String invoiceStatus) {
+
+    if(invoiceStatus == AppConstants.paidInvoice) {
+      return 'paid'.tr;
+    } else if(isOverdue){
+      return 'overdue'.tr;
+    } else{
+      if(invoiceStatus == AppConstants.unpaidInvoice){
+        return 'unpaid'.tr;
+      } else if(invoiceStatus == AppConstants.partiallyPaidInvoice){
+        return 'partially_paid'.tr;
+      } else{
+        return '';
+      }
+    }
+  }
 
   double _extractNumericValue(String partialPaymentAmount) {
     // Use a regular expression to extract numeric values from the string

@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../core/app_singletons/app_singletons.dart';
 import '../../core/utils/utils.dart';
@@ -8,10 +9,22 @@ import 'package:pdf/widgets.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
-class PdfPurpleTemplate {
-  static Future<Uint8List> createPreviewPdf(
-      DataModel dataModel) async {
+class WithImagesPDFTemplates {
+  static Future<pw.Font> loadCustomFont() async {
+    final fontData = await rootBundle.load("assets/fonts/NotoSansJP-Bold.ttf");
+    return pw.Font.ttf(fontData);
+  }
+
+  static Future<pw.Font> loadCustomFont2() async {
+    final fontData = await rootBundle.load("assets/fonts/NotoSansSC-Bold.ttf");
+    return pw.Font.ttf(fontData);
+  }
+
+  static Future<Uint8List> createPreviewPdf(DataModel dataModel,
+      {int? templateIdNo}) async {
     final pdf = pw.Document();
+
+    PdfColor footerPdfColor = const PdfColor.fromInt(0xFF913EDE);
 
     final boldFont = await PdfGoogleFonts.robotoBold();
     final extraBFont = await PdfGoogleFonts.robotoBlack();
@@ -19,9 +32,41 @@ class PdfPurpleTemplate {
     final italicFont = await PdfGoogleFonts.robotoItalic();
 
     final fallBackFont = await PdfGoogleFonts.notoSansThaiRegular();
+    final fallBackFontOne = await PdfGoogleFonts.notoSansArabicBold();
+    final fallBackFontTwo = await loadCustomFont();
+    final fallBackFontThree = await loadCustomFont2();
 
-    final Uint8List imageData =
+    Uint8List imageData =
         await loadImageFromAssets('assets/images/purple_shade.jpg');
+
+    print('TemplateIDNo: $templateIdNo');
+
+    if (templateIdNo == 2) {
+      imageData = await loadImageFromAssets('assets/images/purple_shade.jpg');
+      footerPdfColor = const PdfColor.fromInt(0xFF913EDE);
+    } else if (templateIdNo == 3) {
+      imageData = await loadImageFromAssets('assets/images/mat_brown.jpg');
+      footerPdfColor = const PdfColor.fromInt(0xFFBA260A);
+    } else if (templateIdNo == 4) {
+      imageData = await loadImageFromAssets('assets/images/blue_temp.jpg');
+      footerPdfColor = const PdfColor.fromInt(0xFF1052EB);
+    } else if (templateIdNo == 5) {
+      imageData = await loadImageFromAssets('assets/images/black_yellow.jpg');
+      footerPdfColor = PdfColors.black;
+    } else if (templateIdNo == 6) {
+      imageData = await loadImageFromAssets('assets/images/pink_blue.jpg');
+      footerPdfColor = PdfColors.blue;
+    } else if (templateIdNo == 7) {
+      imageData = await loadImageFromAssets('assets/images/orange_black.jpg');
+      footerPdfColor = PdfColors.orange;
+    } else if (templateIdNo == 8) {
+      imageData =
+          await loadImageFromAssets('assets/images/blue_black_dotted.jpg');
+      footerPdfColor = const PdfColor.fromInt(0xFF11274b);
+    } else if (templateIdNo == 9) {
+      imageData = await loadImageFromAssets('assets/images/grey_wallpaper.jpg');
+      footerPdfColor = PdfColors.blueGrey;
+    }
 
     pdf.addPage(
       pw.MultiPage(
@@ -37,7 +82,11 @@ class PdfPurpleTemplate {
               dataModel.businessPhoneNumber.toString(),
               dataModel.businessWebsite.toString(),
               dataModel.titleName.toString(),
-              extraBFont),
+              extraBFont,
+              templateIdNo ?? 2,
+              fontCallBackOne: fallBackFontOne,
+              fontCallBackTwo: fallBackFontTwo,
+              fontCallBackThree: fallBackFontThree),
           pw.SizedBox(height: 0.5 * PdfPageFormat.cm),
           belowHeaderInfo(
               boldFont,
@@ -50,7 +99,11 @@ class PdfPurpleTemplate {
               dataModel.uniqueNumber.toString(),
               dataModel.creationDate.toString(),
               dataModel.dueDate.toString(),
-              dataModel.purchaseOrderNo.toString()),
+              dataModel.titleName.toString(),
+              dataModel.purchaseOrderNo.toString(),
+              fontCallBackOne: fallBackFontOne,
+              fontCallBackTwo: fallBackFontTwo,
+              fontCallBackThree: fallBackFontThree),
           buildItemDetail(
               dataModel.itemNames ?? [],
               dataModel.itemsDiscountList ?? [],
@@ -58,7 +111,11 @@ class PdfPurpleTemplate {
               dataModel.itemsPriceList ?? [],
               dataModel.itemsAmountList ?? [],
               dataModel.itemsQuantityList ?? [],
-              boldFont),
+              boldFont,
+              templateIdNo ?? 2,
+              fontCallBackOne: fallBackFontOne,
+              fontCallBackTwo: fallBackFontTwo,
+              fontCallBackThree: fallBackFontThree),
           buildTotal(
               boldFont,
               normalFont,
@@ -72,13 +129,17 @@ class PdfPurpleTemplate {
               dataModel.taxPercentage.toString(),
               dataModel.taxInTotal.toString(),
               dataModel.shippingCost.toString(),
-              dataModel.partiallyPaidAmount.toString(),),
+              dataModel.partiallyPaidAmount.toString(),
+              templateIdNo ?? 2,
+              fontCallBackOne: fallBackFontOne,
+              fontCallBackTwo: fallBackFontTwo,
+              fontCallBackThree: fallBackFontThree),
           pw.Expanded(
-            child: buildTermAndConditions(
-                dataModel.termAndCondition.toString(),
-                boldFont,
-                normalFont,
-                dataModel.signatureImg ?? Uint8List(0)),
+            child: buildTermAndConditions(dataModel.termAndCondition.toString(),
+                boldFont, normalFont, dataModel.signatureImg ?? Uint8List(0),
+                fontCallBackOne: fallBackFontOne,
+                fontCallBackTwo: fallBackFontTwo,
+                fontCallBackThree: fallBackFontThree),
           ),
           pw.SizedBox(height: 1 * PdfPageFormat.cm),
           // pw.Container(
@@ -97,7 +158,7 @@ class PdfPurpleTemplate {
         footer: (format) => pw.Container(
             margin: const pw.EdgeInsets.only(top: 0.5 * PdfPageFormat.cm),
             height: 10,
-            color: const PdfColor.fromInt(0xFF913EDE)),
+            color: footerPdfColor),
         margin: const pw.EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         orientation: pw.PageOrientation.portrait,
         mainAxisAlignment: pw.MainAxisAlignment.start,
@@ -123,13 +184,33 @@ class PdfPurpleTemplate {
       String fPhoneNumber,
       String fWebsiteUrl,
       String invoiceTitle,
-      Font extraBFont) {
+      Font extraBFont,
+      int templateIdNo,
+      {Font? fontCallBackOne,
+      Font? fontCallBackTwo,
+      Font? fontCallBackThree}) {
     String titleCheck;
+    PdfColor pdfColorTitle = PdfColors.white;
 
     if (invoiceTitle.isEmpty) {
-      titleCheck =  AppSingletons.isInvoiceDocument.value ? 'INVOICE' : 'ESTIMATE';
+      titleCheck = AppSingletons.isInvoiceDocument.value
+          ? 'INVOICE'
+          : 'ESTIMATE';
     } else {
       titleCheck = invoiceTitle;
+    }
+
+    if (templateIdNo == 2 ||
+        templateIdNo == 3 ||
+        templateIdNo == 4 ||
+        templateIdNo == 5 ||
+        templateIdNo == 8 ||
+        templateIdNo == 9) {
+      pdfColorTitle = PdfColors.white;
+    } else if (templateIdNo == 6 || templateIdNo == 7) {
+      pdfColorTitle = PdfColors.black;
+    } else {
+      pdfColorTitle = PdfColors.white;
     }
 
     return pw.Container(
@@ -146,20 +227,20 @@ class PdfPurpleTemplate {
           child: pw.Row(
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: [
-                if(businessLogoImg.isNotEmpty)
-                pw.Expanded(
-                    flex: 1,
-                    child: businessLogoImg.isEmpty
-                        ? pw.SizedBox.shrink()
-                        : pw.Container(
-                            width: 80,
-                            height: 80,
-                            alignment: pw.Alignment.centerLeft,
-                            child: pw.Image(MemoryImage(businessLogoImg),
-                                width: 75,
-                                height: 75,
-                                alignment: pw.Alignment.center,
-                                fit: pw.BoxFit.fill))),
+                if (businessLogoImg.isNotEmpty)
+                  pw.Expanded(
+                      flex: 1,
+                      child: businessLogoImg.isEmpty
+                          ? pw.SizedBox.shrink()
+                          : pw.Container(
+                              width: 80,
+                              height: 80,
+                              alignment: pw.Alignment.centerLeft,
+                              child: pw.Image(MemoryImage(businessLogoImg),
+                                  width: 75,
+                                  height: 75,
+                                  alignment: pw.Alignment.center,
+                                  fit: pw.BoxFit.fill))),
                 pw.Expanded(
                   flex: 2,
                   child: pw.Column(
@@ -167,12 +248,16 @@ class PdfPurpleTemplate {
                       crossAxisAlignment: pw.CrossAxisAlignment.start,
                       mainAxisSize: pw.MainAxisSize.min,
                       children: [
-                        pw.Text('From',
+                        pw.Text('from'.tr,
                             style: pw.TextStyle(
-                              color: PdfColors.white,
-                              font: boldFont,
-                              fontWeight: pw.FontWeight.bold,
-                            )),
+                                color: PdfColors.white,
+                                font: boldFont,
+                                fontWeight: pw.FontWeight.bold,
+                                fontFallback: [
+                                  fontCallBackOne!,
+                                  fontCallBackTwo!,
+                                  fontCallBackThree!
+                                ])),
                         pw.Text(fName,
                             maxLines: 2,
                             style: pw.TextStyle(
@@ -218,7 +303,12 @@ class PdfPurpleTemplate {
                           fontSize: 30,
                           fontWeight: pw.FontWeight.bold,
                           font: extraBFont,
-                          color: PdfColors.white)),
+                          color: pdfColorTitle,
+                          fontFallback: [
+                            fontCallBackOne,
+                            fontCallBackTwo,
+                            fontCallBackThree
+                          ])),
                 ),
               ])),
     );
@@ -235,7 +325,15 @@ class PdfPurpleTemplate {
       String invoiceNumber,
       String creationDate,
       String dueDate,
-      String poNumber) {
+      String invoiceTitle,
+      String poNumber,
+      {Font? fontCallBackOne,
+      Font? fontCallBackTwo,
+      Font? fontCallBackThree}) {
+    String titleCheck;
+
+    titleCheck = AppSingletons.isInvoiceDocument.value ? 'invoice' : 'estimate';
+
     return pw.Container(
         margin: const pw.EdgeInsets.symmetric(horizontal: 30),
         child: pw.Row(
@@ -249,12 +347,16 @@ class PdfPurpleTemplate {
                     crossAxisAlignment: pw.CrossAxisAlignment.start,
                     mainAxisSize: pw.MainAxisSize.min,
                     children: [
-                      pw.Text('BILL TO',
+                      pw.Text('bill_to'.tr,
                           style: pw.TextStyle(
-                            fontWeight: pw.FontWeight.bold,
-                            fontSize: 16,
-                            font: boldFont,
-                          )),
+                              fontWeight: pw.FontWeight.bold,
+                              fontSize: 16,
+                              font: boldFont,
+                              fontFallback: [
+                                fontCallBackOne!,
+                                fontCallBackTwo!,
+                                fontCallBackThree!
+                              ])),
                       pw.Text(cName,
                           style: pw.TextStyle(
                               fontWeight: pw.FontWeight.normal,
@@ -293,35 +395,51 @@ class PdfPurpleTemplate {
                         mainAxisSize: pw.MainAxisSize.min,
                         mainAxisAlignment: pw.MainAxisAlignment.start,
                         children: [
-                          pw.Text('INVOICE #',
+                          pw.Text('${titleCheck.tr} #',
                               style: pw.TextStyle(
-                                color: PdfColors.black,
-                                font: boldFont,
-                                fontWeight: pw.FontWeight.bold,
-                                fontSize: 16,
-                              )),
-                          pw.Text('CREATION DATE',
-                              style: pw.TextStyle(
-                                color: PdfColors.black,
-                                font: boldFont,
-                                fontWeight: pw.FontWeight.bold,
-                                fontSize: 16,
-                              )),
-                          pw.Text('DUE DATE',
-                              style: pw.TextStyle(
-                                color: PdfColors.black,
-                                font: boldFont,
-                                fontWeight: pw.FontWeight.bold,
-                                fontSize: 16,
-                              )),
-                          if (poNumber.isNotEmpty)
-                            pw.Text('P.O.#',
-                                style: pw.TextStyle(
                                   color: PdfColors.black,
                                   font: boldFont,
                                   fontWeight: pw.FontWeight.bold,
                                   fontSize: 16,
-                                )),
+                                  fontFallback: [
+                                    fontCallBackOne,
+                                    fontCallBackTwo,
+                                    fontCallBackThree
+                                  ])),
+                          pw.Text('creation_date'.tr,
+                              style: pw.TextStyle(
+                                  color: PdfColors.black,
+                                  font: boldFont,
+                                  fontWeight: pw.FontWeight.bold,
+                                  fontSize: 16,
+                                  fontFallback: [
+                                    fontCallBackOne,
+                                    fontCallBackTwo,
+                                    fontCallBackThree
+                                  ])),
+                          pw.Text('due_date'.tr,
+                              style: pw.TextStyle(
+                                  color: PdfColors.black,
+                                  font: boldFont,
+                                  fontWeight: pw.FontWeight.bold,
+                                  fontSize: 16,
+                                  fontFallback: [
+                                    fontCallBackOne,
+                                    fontCallBackTwo,
+                                    fontCallBackThree
+                                  ])),
+                          if (poNumber.isNotEmpty)
+                            pw.Text('P.O.#',
+                                style: pw.TextStyle(
+                                    color: PdfColors.black,
+                                    font: boldFont,
+                                    fontWeight: pw.FontWeight.bold,
+                                    fontSize: 16,
+                                    fontFallback: [
+                                      fontCallBackOne,
+                                      fontCallBackTwo,
+                                      fontCallBackThree
+                                    ])),
                         ]),
                     pw.SizedBox(width: 20),
                     pw.Expanded(
@@ -377,15 +495,48 @@ class PdfPurpleTemplate {
       List<String> itemsPriceList,
       List<String> itemsAmountList,
       List<String> itemsQuantityList,
-      Font boldFont) {
+      Font boldFont,
+      int templateIdNo,
+      {Font? fontCallBackOne,
+      Font? fontCallBackTwo,
+      Font? fontCallBackThree}) {
     final headers = [
-      'Name',
-      'QTY',
-      'PRICE',
-      'DISCOUNT',
-      'TAX',
-      'AMOUNT'
+      'name'.tr,
+      'qty'.tr,
+      'price'.tr,
+      'discount'.tr,
+      'tax'.tr,
+      'amount'.tr
     ];
+
+    PdfColor pdfColorsHeader = const PdfColor.fromInt(0xFF913EDE);
+    PdfColor odwRowColor = const PdfColor.fromInt(0XFFEDC7FE);
+
+    if (templateIdNo == 2) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFF913EDE);
+      odwRowColor = const PdfColor.fromInt(0XFFEDC7FE);
+    } else if (templateIdNo == 3) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFFBA260A);
+      odwRowColor = const PdfColor.fromInt(0XFFFFD7BE);
+    } else if (templateIdNo == 4) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFF1052EB);
+      odwRowColor = const PdfColor.fromInt(0XFFBAC3FF);
+    } else if (templateIdNo == 5) {
+      pdfColorsHeader = PdfColors.black;
+      odwRowColor = const PdfColor.fromInt(0XFFC3C7D0);
+    } else if (templateIdNo == 6) {
+      pdfColorsHeader = PdfColors.blue;
+      odwRowColor = const PdfColor.fromInt(0x661E88E5);
+    } else if (templateIdNo == 7) {
+      pdfColorsHeader = PdfColors.orange;
+      odwRowColor = const PdfColor.fromInt(0x66FF9800);
+    } else if (templateIdNo == 8) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFF11274b);
+      odwRowColor = const PdfColor.fromInt(0XFFC2CEFC);
+    } else if (templateIdNo == 9) {
+      pdfColorsHeader = PdfColors.blueGrey;
+      odwRowColor = const PdfColor.fromInt(0xFFE0EEFD);
+    }
 
     final data = List.generate(itemsNameList.length, (index) {
       return [
@@ -409,11 +560,14 @@ class PdfPurpleTemplate {
           headerStyle: pw.TextStyle(
               fontWeight: pw.FontWeight.bold,
               font: boldFont,
+              fontFallback: [
+                fontCallBackOne!,
+                fontCallBackTwo!,
+                fontCallBackThree!
+              ],
               color: PdfColors.white),
-          headerDecoration:
-              const pw.BoxDecoration(color: PdfColor.fromInt(0xFF913EDE)),
-          oddRowDecoration:
-              const pw.BoxDecoration(color: PdfColor.fromInt(0XFFEDC7FE)),
+          headerDecoration: pw.BoxDecoration(color: pdfColorsHeader),
+          oddRowDecoration: pw.BoxDecoration(color: odwRowColor),
           cellHeight: 30,
           cellAlignments: {
             0: pw.Alignment.centerLeft,
@@ -439,8 +593,31 @@ class PdfPurpleTemplate {
       String taxPercentage,
       String taxAmount,
       String shippingCost,
-      String partiallyPaid
-      ) {
+      String partiallyPaid,
+      int templateIdNo,
+      {Font? fontCallBackOne,
+      Font? fontCallBackTwo,
+      Font? fontCallBackThree}) {
+    PdfColor pdfColorsHeader = const PdfColor.fromInt(0xFF913EDE);
+
+    if (templateIdNo == 2) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFF913EDE);
+    } else if (templateIdNo == 3) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFFBA260A);
+    } else if (templateIdNo == 4) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFF1052EB);
+    } else if (templateIdNo == 5) {
+      pdfColorsHeader = PdfColors.black;
+    } else if (templateIdNo == 6) {
+      pdfColorsHeader = PdfColors.blue;
+    } else if (templateIdNo == 7) {
+      pdfColorsHeader = PdfColors.orange;
+    } else if (templateIdNo == 8) {
+      pdfColorsHeader = const PdfColor.fromInt(0xFF11274b);
+    } else if (templateIdNo == 9) {
+      pdfColorsHeader = PdfColors.blueGrey;
+    }
+
     return pw.Container(
         margin: const pw.EdgeInsets.only(
             left: 30, right: 30, top: 0.5 * PdfPageFormat.cm),
@@ -455,12 +632,16 @@ class PdfPurpleTemplate {
                     mainAxisSize: pw.MainAxisSize.min,
                     children: [
                       pw.Text(
-                        'PAYMENT METHOD',
+                        'payment_method'.tr,
                         style: pw.TextStyle(
-                          font: boldFont,
-                          fontSize: 16,
-                          fontWeight: pw.FontWeight.bold,
-                        ),
+                            font: boldFont,
+                            fontSize: 16,
+                            fontWeight: pw.FontWeight.bold,
+                            fontFallback: [
+                              fontCallBackOne!,
+                              fontCallBackTwo!,
+                              fontCallBackThree!
+                            ]),
                       ),
                       pw.Text(
                         paymentMethod,
@@ -481,17 +662,26 @@ class PdfPurpleTemplate {
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
                       pw.Text(
-                        'SubTotal',
+                        'subtotal'.tr,
                         style: pw.TextStyle(
-                          font: boldFont,
-                          fontSize: 16,
-                          fontWeight: pw.FontWeight.bold,
-                        ),
+                            font: boldFont,
+                            fontSize: 16,
+                            fontWeight: pw.FontWeight.bold,
+                            fontFallback: [
+                              fontCallBackOne,
+                              fontCallBackTwo,
+                              fontCallBackThree
+                            ]),
                       ),
                       pw.Text(
                         '$currencySymbol $subTotal',
                         style: pw.TextStyle(
-                          fontFallback: [fallback],
+                          fontFallback: [
+                            fallback,
+                            fontCallBackOne,
+                            fontCallBackTwo,
+                            fontCallBackThree
+                          ],
                           font: boldFont,
                           fontSize: 15,
                           fontWeight: pw.FontWeight.bold,
@@ -503,17 +693,26 @@ class PdfPurpleTemplate {
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
                       pw.Text(
-                        'Discount ($discountPercentage)%',
+                        '${'discount'.tr}($discountPercentage)%',
                         style: pw.TextStyle(
-                          font: boldFont,
-                          fontSize: 16,
-                          fontWeight: pw.FontWeight.bold,
-                        ),
+                            font: boldFont,
+                            fontSize: 16,
+                            fontWeight: pw.FontWeight.bold,
+                            fontFallback: [
+                              fontCallBackOne,
+                              fontCallBackTwo,
+                              fontCallBackThree
+                            ]),
                       ),
                       pw.Text(
                         '- $currencySymbol $discountAmount',
                         style: pw.TextStyle(
-                          fontFallback: [fallback],
+                          fontFallback: [
+                            fallback,
+                            fontCallBackOne,
+                            fontCallBackTwo,
+                            fontCallBackThree
+                          ],
                           font: boldFont,
                           fontSize: 15,
                           fontWeight: pw.FontWeight.bold,
@@ -525,17 +724,26 @@ class PdfPurpleTemplate {
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
                       pw.Text(
-                        'Tax ($taxPercentage)%',
+                        '${'tax'.tr} ($taxPercentage)%',
                         style: pw.TextStyle(
-                          font: boldFont,
-                          fontSize: 16,
-                          fontWeight: pw.FontWeight.bold,
-                        ),
+                            font: boldFont,
+                            fontSize: 16,
+                            fontWeight: pw.FontWeight.bold,
+                            fontFallback: [
+                              fontCallBackOne,
+                              fontCallBackTwo,
+                              fontCallBackThree
+                            ]),
                       ),
                       pw.Text(
                         '+ $currencySymbol $taxAmount',
                         style: pw.TextStyle(
-                          fontFallback: [fallback],
+                          fontFallback: [
+                            fallback,
+                            fontCallBackOne,
+                            fontCallBackTwo,
+                            fontCallBackThree
+                          ],
                           font: boldFont,
                           fontSize: 15,
                           fontWeight: pw.FontWeight.bold,
@@ -547,17 +755,26 @@ class PdfPurpleTemplate {
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
                       pw.Text(
-                        'Shipping',
+                        'shipping'.tr,
                         style: pw.TextStyle(
-                          font: boldFont,
-                          fontSize: 16,
-                          fontWeight: pw.FontWeight.bold,
-                        ),
+                            font: boldFont,
+                            fontSize: 16,
+                            fontWeight: pw.FontWeight.bold,
+                            fontFallback: [
+                              fontCallBackOne,
+                              fontCallBackTwo,
+                              fontCallBackThree
+                            ]),
                       ),
                       pw.Text(
                         '$currencySymbol $shippingCost',
                         style: pw.TextStyle(
-                          fontFallback: [fallback],
+                          fontFallback: [
+                            fallback,
+                            fontCallBackOne,
+                            fontCallBackTwo,
+                            fontCallBackThree
+                          ],
                           font: boldFont,
                           fontSize: 15,
                           fontWeight: pw.FontWeight.bold,
@@ -566,50 +783,65 @@ class PdfPurpleTemplate {
                     ]),
                 pw.SizedBox(height: 0.5 * PdfPageFormat.cm),
                 pw.Container(
-                    color: const PdfColor.fromInt(0xFF913EDE),
+                    color: pdfColorsHeader,
                     padding: const pw.EdgeInsets.all(5),
                     child: pw.Row(
                         mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                         children: [
                           pw.Text(
-                            'TOTAL',
+                            'total'.tr,
                             style: pw.TextStyle(
                                 font: boldFont,
                                 fontSize: 16,
                                 fontWeight: pw.FontWeight.bold,
-                                color: PdfColors.white),
+                                color: PdfColors.white,
+                                fontFallback: [
+                                  fontCallBackOne,
+                                  fontCallBackTwo,
+                                  fontCallBackThree
+                                ]),
                           ),
                           pw.Text(
                             '$currencySymbol $netTotal',
                             style: pw.TextStyle(
-                                fontFallback: [fallback],
+                                fontFallback: [
+                                  fallback,
+                                  fontCallBackOne,
+                                  fontCallBackTwo,
+                                  fontCallBackThree,
+                                ],
                                 font: boldFont,
                                 fontSize: 15,
                                 fontWeight: pw.FontWeight.bold,
                                 color: PdfColors.white),
                           ),
                         ])),
-                    if(partiallyPaid.isNotEmpty)
-                      pw.SizedBox(height: 0.5 * PdfPageFormat.cm),
-                    if(partiallyPaid.isNotEmpty)
-                      pw.Container(
-                        alignment: pw.Alignment.centerRight,
-                        child: pw.Text(
-                            '*Partially $currencySymbol $partiallyPaid Paid',
-                            style: pw.TextStyle(
-                              fontFallback: [fallback],
-                              font: boldFont,
-                              fontSize: 15,
-                              fontWeight: pw.FontWeight.normal,
-                            )
-                        ),
-                      )
+                if (partiallyPaid.isNotEmpty)
+                  pw.SizedBox(height: 0.5 * PdfPageFormat.cm),
+                if (partiallyPaid.isNotEmpty)
+                  pw.Container(
+                    alignment: pw.Alignment.centerRight,
+                    child: pw.Text(
+                        '*${'partially'.tr} $currencySymbol $partiallyPaid ${'paid'.tr}',
+                        style: pw.TextStyle(
+                          fontFallback: [
+                            fallback,
+                            fontCallBackOne,
+                            fontCallBackTwo,
+                            fontCallBackThree
+                          ],
+                          font: boldFont,
+                          fontSize: 15,
+                          fontWeight: pw.FontWeight.normal,
+                        )),
+                  )
               ])),
             ]));
   }
 
   static Widget buildTermAndConditions(String termAndCondition, Font boldFont,
-      Font normalFont, Uint8List signImg) {
+      Font normalFont, Uint8List signImg,
+      {Font? fontCallBackOne, Font? fontCallBackTwo, Font? fontCallBackThree}) {
     return pw.Container(
         margin: const pw.EdgeInsets.only(top: 1 * PdfPageFormat.cm),
         child: pw.Row(
@@ -624,23 +856,27 @@ class PdfPurpleTemplate {
                       mainAxisAlignment: pw.MainAxisAlignment.end,
                       mainAxisSize: pw.MainAxisSize.min,
                       children: [
-                        pw.Text(
-                          'TERMS & CONDITION',
-                          style: pw.TextStyle(
-                            font: boldFont,
-                            fontSize: 16,
-                            fontWeight: pw.FontWeight.bold,
-                          ),
-                        ),
-                        pw.Text(
-                          termAndCondition,
-                          style: pw.TextStyle(
-                            font: normalFont,
-                            fontSize: 15,
-                            fontWeight: pw.FontWeight.normal,
-                          ),
-                        ),
-                      ])),
+                    pw.Text(
+                      'term_and_condition'.tr,
+                      style: pw.TextStyle(
+                          font: boldFont,
+                          fontSize: 16,
+                          fontWeight: pw.FontWeight.bold,
+                          fontFallback: [
+                            fontCallBackOne!,
+                            fontCallBackTwo!,
+                            fontCallBackThree!
+                          ]),
+                    ),
+                    pw.Text(
+                      termAndCondition,
+                      style: pw.TextStyle(
+                        font: normalFont,
+                        fontSize: 15,
+                        fontWeight: pw.FontWeight.normal,
+                      ),
+                    ),
+                  ])),
               pw.SizedBox(width: 2 * PdfPageFormat.cm),
               pw.Expanded(
                   child: pw.Column(
@@ -648,17 +884,21 @@ class PdfPurpleTemplate {
                       mainAxisAlignment: pw.MainAxisAlignment.end,
                       mainAxisSize: pw.MainAxisSize.min,
                       children: [
-                        pw.Text(
-                          'Signature',
-                          style: pw.TextStyle(
-                            font: boldFont,
-                            fontSize: 16,
-                            fontWeight: pw.FontWeight.bold,
-                          ),
-                        ),
-                        signImg.isEmpty
-                            ? pw.SizedBox()
-                            : pw.Container(
+                    pw.Text(
+                      'signature'.tr,
+                      style: pw.TextStyle(
+                          font: boldFont,
+                          fontSize: 16,
+                          fontWeight: pw.FontWeight.bold,
+                          fontFallback: [
+                            fontCallBackOne,
+                            fontCallBackTwo,
+                            fontCallBackThree
+                          ]),
+                    ),
+                    signImg.isEmpty
+                        ? pw.SizedBox()
+                        : pw.Container(
                             color: PdfColors.white,
                             width: 80,
                             height: 60,
@@ -668,9 +908,7 @@ class PdfPurpleTemplate {
                                 height: 50,
                                 alignment: pw.Alignment.center,
                                 fit: pw.BoxFit.fill)),
-                      ]
-                  )
-              ),
+                  ])),
               pw.SizedBox(width: 30),
             ]));
   }

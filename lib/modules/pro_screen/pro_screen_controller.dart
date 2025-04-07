@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:currency_code_to_currency_symbol/currency_code_to_currency_symbol.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
@@ -47,22 +48,27 @@ class ProScreenController extends GetxController implements PurchaseCallback{
 
     yearlyPurchaseValue.value = setCurrencyCodeAndPriceString(
         productsDetailsAndroid[3].rawPrice,
-        productsDetailsAndroid[3].currencyCode);
+        getCurrencySymbol(productsDetailsAndroid[3].currencyCode));
     monthlyPurchaseValue.value = setCurrencyCodeAndPriceString(
         productsDetailsAndroid[1].rawPrice,
-        productsDetailsAndroid[1].currencyCode);
+        getCurrencySymbol(productsDetailsAndroid[1].currencyCode));
     weeklyPurchaseValue.value = setCurrencyCodeAndPriceString(
         productsDetailsAndroid[2].rawPrice,
-        productsDetailsAndroid[2].currencyCode);
+        getCurrencySymbol(productsDetailsAndroid[2].currencyCode));
     lifeTimeValue.value = setCurrencyCodeAndPriceString(
         productsDetailsAndroid[0].rawPrice,
-        productsDetailsAndroid[0].currencyCode);
+        getCurrencySymbol(productsDetailsAndroid[0].currencyCode));
 
     double yearlyPrice = productsDetailsAndroid[3].rawPrice;
     double yearlyPricePerWeek = yearlyPrice / 52;
     String currencyCode = productsDetailsAndroid[3].currencyCode;
+    debugPrint('CurrencyCode: $currencyCode');
 
-    discountYearlyPricePerWeek.value = '$currencyCode ${yearlyPricePerWeek.toStringAsFixed(2)}';
+    String symbolFromCode = getCurrencySymbol(currencyCode);
+
+    debugPrint('CurrencySymbol: $symbolFromCode');
+
+    discountYearlyPricePerWeek.value = '$symbolFromCode ${yearlyPricePerWeek.toStringAsFixed(2)}';
 
     debugPrint('CV: ${discountYearlyPricePerWeek.value}');
 
@@ -75,22 +81,28 @@ class ProScreenController extends GetxController implements PurchaseCallback{
 
     yearlyPurchaseValue.value = setCurrencyCodeAndPriceString(
         productsDetailsIOS.value[2].storeProduct.price,
-        productsDetailsIOS.value[2].storeProduct.currencyCode);
+        getCurrencySymbol(productsDetailsIOS.value[2].storeProduct.currencyCode));
     monthlyPurchaseValue.value = setCurrencyCodeAndPriceString(
         productsDetailsIOS.value[1].storeProduct.price,
-        productsDetailsIOS.value[1].storeProduct.currencyCode);
+        getCurrencySymbol(productsDetailsIOS.value[1].storeProduct.currencyCode));
     weeklyPurchaseValue.value = setCurrencyCodeAndPriceString(
         productsDetailsIOS.value[0].storeProduct.price,
-        productsDetailsIOS.value[0].storeProduct.currencyCode);
+        getCurrencySymbol(productsDetailsIOS.value[0].storeProduct.currencyCode));
     lifeTimeValue.value = setCurrencyCodeAndPriceString(
         productsDetailsIOS.value[3].storeProduct.price,
-        productsDetailsIOS.value[3].storeProduct.currencyCode);
+        getCurrencySymbol(productsDetailsIOS.value[3].storeProduct.currencyCode));
 
     double yearlyPrice = productsDetailsIOS.value[2].storeProduct.price;
     double yearlyPricePerWeek = yearlyPrice / 52;
     String currencyCode = productsDetailsIOS.value[2].storeProduct.currencyCode;
 
-    discountYearlyPricePerWeek.value = '$currencyCode ${yearlyPricePerWeek.toStringAsFixed(2)}';
+    debugPrint('CurrencyCode: $currencyCode');
+
+    String symbolFromCode = getCurrencySymbol(currencyCode);
+
+    debugPrint('CurrencySymbol: $symbolFromCode');
+
+    discountYearlyPricePerWeek.value = '$symbolFromCode ${yearlyPricePerWeek.toStringAsFixed(2)}';
 
     debugPrint('CV: ${discountYearlyPricePerWeek.value}');
 

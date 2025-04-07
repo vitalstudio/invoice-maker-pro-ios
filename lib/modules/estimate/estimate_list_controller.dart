@@ -324,13 +324,13 @@ class EstimateListController extends GetxController{
 
   String getEstimateStatusText(bool isOverdue, String invoiceStatus) {
     if(invoiceStatus == AppConstants.approved){
-      return invoiceStatus;
+      return 'approved'.tr;
     } else if(invoiceStatus == AppConstants.cancel){
-      return invoiceStatus;
+      return 'cancel'.tr;
     } else if(isOverdue){
-      return 'Overdue';
+      return 'overdue'.tr;
     } else if(invoiceStatus == AppConstants.pending){
-      return invoiceStatus;
+      return 'pending'.tr;
     } else{
       return '';
     }

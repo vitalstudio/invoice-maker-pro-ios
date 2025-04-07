@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:invoice/core/app_singletons/app_singletons.dart';
+import 'package:invoice/modules/home_screen/home_controller.dart';
 import '../../core/preferenceManager/sharedPreferenceManager.dart';
 import '../../core/utils/dialogue_to_select_language.dart';
 import 'package:share_plus/share_plus.dart';
@@ -225,6 +226,9 @@ class SettingScreenView extends GetView<SettingScreenController> {
 
                     }
                 );
+
+                Get.find<HomeController>().loadInvoiceData();
+
               },
               iconData: Icons.translate,
               title: 'app_language'.tr,

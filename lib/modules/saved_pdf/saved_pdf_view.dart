@@ -187,7 +187,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10),
                           child: Text(
-                            controller.currentStatusOfData.value.tr,
+                            'paid'.tr,
                             style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w600,
@@ -212,7 +212,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 10),
                           child: Text(
-                            controller.currentStatusOfData.value.tr,
+                            'partially_paid'.tr,
                             style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w600,
@@ -447,7 +447,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
           icon: const Icon(Icons.arrow_back,color: sWhite,),
         ),
         title: Text(
-          AppSingletons.isInvoiceDocument.value ? 'INVOICE' : 'ESTIMATE',
+          AppSingletons.isInvoiceDocument.value ? 'invoice'.tr : 'estimate'.tr,
           style: const TextStyle(
               fontFamily: 'SFProDisplay',
               color: sWhite,

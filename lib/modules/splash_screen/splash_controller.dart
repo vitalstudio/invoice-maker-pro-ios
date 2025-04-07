@@ -58,7 +58,7 @@ class SplashController extends GetxController  with AdsControllerMixin {
   }
 
   Future<void> startTimerForSplash() async{
-    Timer(const Duration(seconds: 5),(){
+    Timer(const Duration(seconds: 4),(){
       // if(!AppSingletons.isSubscriptionEnabled.value) {
       //   if (Platform.isAndroid && AppSingletons.openAppAdsAndroidEnabled.value) {
       //     adsControllerService.showIOpenAppAd();

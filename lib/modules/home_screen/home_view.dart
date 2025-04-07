@@ -94,14 +94,13 @@ class HomeView extends GetView<HomeController> {
                         const SizedBox(
                           height: 10,
                         ),
-                         Text(
+                        Text(
                           'total_unpaid'.tr,
                           style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
-                              letterSpacing: 1
-                          ),
+                              letterSpacing: 1),
                         ),
                         const SizedBox(
                           height: 15,
@@ -146,14 +145,13 @@ class HomeView extends GetView<HomeController> {
                         const SizedBox(
                           height: 10,
                         ),
-                         Text(
+                        Text(
                           'total_overdue'.tr,
                           style: const TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
-                              letterSpacing: 1
-                          ),
+                              letterSpacing: 1),
                         ),
                         const SizedBox(
                           height: 15,
@@ -183,225 +181,221 @@ class HomeView extends GetView<HomeController> {
             const SizedBox(
               height: 20,
             ),
-            Stack(
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Obx(() {
-                      return Row(
-                        children: [
-
-                          Visibility(
-                              visible: AppSingletons.storedAppLanguage.value == AppConstants.arabic,
-                              child: const SizedBox(width: 50,)
-                          ),
-
-                          GestureDetector(
-                            onTap: () {
-                              controller.listShowingType.value =
-                                  AppConstants.all;
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              margin: const EdgeInsets.only(right: 5, left: 18),
-                              decoration: BoxDecoration(
-                                  color: controller.listShowingType.value ==
+            Stack(children: [
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Obx(() {
+                  return Row(
+                    children: [
+                      Visibility(
+                          visible: AppSingletons.storedAppLanguage.value ==
+                              AppConstants.arabic,
+                          child: const SizedBox(
+                            width: 50,
+                          )),
+                      GestureDetector(
+                        onTap: () {
+                          controller.listShowingType.value = AppConstants.all;
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          margin: const EdgeInsets.only(right: 5, left: 18),
+                          decoration: BoxDecoration(
+                              color: controller.listShowingType.value ==
                                       AppConstants.all
-                                      ? mainPurpleColor
-                                      : offWhite_2,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Text(
-                                'all'.tr,
-                                style: TextStyle(
-                                    color: controller.listShowingType.value ==
+                                  ? mainPurpleColor
+                                  : offWhite_2,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Text(
+                            'all'.tr,
+                            style: TextStyle(
+                                color: controller.listShowingType.value ==
                                         AppConstants.all
-                                        ? sWhite
-                                        : blackColor,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
+                                    ? sWhite
+                                    : blackColor,
+                                fontFamily: 'Montserrat',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              controller.listShowingType.value =
-                                  AppConstants.unpaidInvoice;
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                  color: controller.listShowingType.value ==
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.listShowingType.value =
+                              AppConstants.unpaidInvoice;
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                              color: controller.listShowingType.value ==
                                       AppConstants.unpaidInvoice
-                                      ? mainPurpleColor
-                                      : offWhite_2,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Text(
-                                'unpaid'.tr,
-                                style: TextStyle(
-                                    color: controller.listShowingType.value ==
+                                  ? mainPurpleColor
+                                  : offWhite_2,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Text(
+                            'unpaid'.tr,
+                            style: TextStyle(
+                                color: controller.listShowingType.value ==
                                         AppConstants.unpaidInvoice
-                                        ? sWhite
-                                        : blackColor,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
+                                    ? sWhite
+                                    : blackColor,
+                                fontFamily: 'Montserrat',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              controller.listShowingType.value =
-                                  AppConstants.partiallyPaidInvoice;
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                  color: controller.listShowingType.value ==
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.listShowingType.value =
+                              AppConstants.partiallyPaidInvoice;
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                              color: controller.listShowingType.value ==
                                       AppConstants.partiallyPaidInvoice
-                                      ? mainPurpleColor
-                                      : offWhite_2,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Text(
-                                'partially_paid'.tr,
-                                style: TextStyle(
-                                    color: controller.listShowingType.value ==
+                                  ? mainPurpleColor
+                                  : offWhite_2,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Text(
+                            'partially_paid'.tr,
+                            style: TextStyle(
+                                color: controller.listShowingType.value ==
                                         AppConstants.partiallyPaidInvoice
-                                        ? sWhite
-                                        : blackColor,
-                                    fontSize: 14,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
+                                    ? sWhite
+                                    : blackColor,
+                                fontSize: 14,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w600),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              controller.listShowingType.value =
-                                  AppConstants.overdue;
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                  color: controller.listShowingType.value ==
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.listShowingType.value =
+                              AppConstants.overdue;
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                              color: controller.listShowingType.value ==
                                       AppConstants.overdue
-                                      ? mainPurpleColor
-                                      : offWhite_2,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Text(
-                                'overdue'.tr,
-                                style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: controller.listShowingType.value ==
+                                  ? mainPurpleColor
+                                  : offWhite_2,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Text(
+                            'overdue'.tr,
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                color: controller.listShowingType.value ==
                                         AppConstants.overdue
-                                        ? sWhite
-                                        : blackColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
+                                    ? sWhite
+                                    : blackColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              controller.listShowingType.value =
-                                  AppConstants.paidInvoice;
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              margin: const EdgeInsets.only(left: 5, right: 60),
-                              decoration: BoxDecoration(
-                                  color: controller.listShowingType.value ==
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.listShowingType.value =
+                              AppConstants.paidInvoice;
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          margin: const EdgeInsets.only(left: 5, right: 60),
+                          decoration: BoxDecoration(
+                              color: controller.listShowingType.value ==
                                       AppConstants.paidInvoice
-                                      ? mainPurpleColor
-                                      : offWhite_2,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Text(
-                                'paid'.tr,
-                                style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: controller.listShowingType.value ==
+                                  ? mainPurpleColor
+                                  : offWhite_2,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Text(
+                            'paid'.tr,
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                color: controller.listShowingType.value ==
                                         AppConstants.paidInvoice
-                                        ? sWhite
-                                        : blackColor,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
+                                    ? sWhite
+                                    : blackColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
                           ),
-                        ],
+                        ),
+                      ),
+                    ],
+                  );
+                }),
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                top: 0,
+                child: GestureDetector(
+                  onTap: () async {
+                    if (controller.isFilteringList.value) {
+                      // controller.filteredDataList.value = controller.fetchedDataList.value;
+                      // controller.filteredUnpaidList.value = controller.fetchedUnpaidList.value;
+                      // controller.filteredPPList.value = controller.fetchedPPList.value;
+                      // controller.filteredOverdueList.value = controller.fetchedOverdueList.value;
+                      // controller.filteredPaidList.value = controller.fetchedPaidList.value;
+
+                      await controller.loadInvoiceData();
+
+                      controller.isFilteringList.value = false;
+
+                      controller.selectedName.value = '';
+                      controller.fromDate.value = null;
+                      controller.toDate.value = null;
+                    } else {
+                      addFilterByClientAndDate(context);
+                    }
+                  },
+                  child: Container(
+                    color: orangeLight_1,
+                    padding: const EdgeInsets.symmetric(horizontal: 13),
+                    child: Obx(() {
+                      return Icon(
+                        controller.isFilteringList.value
+                            ? Icons.filter_alt_off_outlined
+                            : Icons.filter_alt_outlined,
+                        color: blackColor,
                       );
                     }),
                   ),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    top: 0,
-                    child: GestureDetector(
-                      onTap: () async{
-                        if(controller.isFilteringList.value){
-                          // controller.filteredDataList.value = controller.fetchedDataList.value;
-                          // controller.filteredUnpaidList.value = controller.fetchedUnpaidList.value;
-                          // controller.filteredPPList.value = controller.fetchedPPList.value;
-                          // controller.filteredOverdueList.value = controller.fetchedOverdueList.value;
-                          // controller.filteredPaidList.value = controller.fetchedPaidList.value;
-
-                          await controller.loadInvoiceData();
-
-                          controller.isFilteringList.value = false;
-
-                          controller.selectedName.value = '';
-                          controller.fromDate.value = null;
-                          controller.toDate.value = null;
-
-                        } else {
-                          addFilterByClientAndDate(context);
-                        }
-                      },
-                      child: Container(
-                        color: orangeLight_1,
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
-                        child: Obx(() {
-                          return Icon(
-                            controller.isFilteringList.value
-                                ? Icons.filter_alt_off_outlined
-                                : Icons.filter_alt_outlined,
-                            color: blackColor,);
-                        }),
-                      ),
-                    ),
-                  )
-                ]
-            ),
+                ),
+              )
+            ]),
             const SizedBox(
               height: 10,
             ),
             Obx(
-                  () =>
-              controller.isLoadingData.value
+              () => controller.isLoadingData.value
                   ? const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 100,
-                  ),
-                  CupertinoActivityIndicator(
-                    color: mainPurpleColor,
-                    radius: 20,
-                  ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                ],
-              )
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 100,
+                        ),
+                        CupertinoActivityIndicator(
+                          color: mainPurpleColor,
+                          radius: 20,
+                        ),
+                        SizedBox(
+                          height: 100,
+                        ),
+                      ],
+                    )
                   : showListAccordingToSelectedTap(),
             ),
           ],
@@ -461,42 +455,56 @@ class HomeView extends GetView<HomeController> {
           backgroundColor: mainPurpleColor,
           automaticallyImplyLeading: false,
           elevation: 0,
-          title: const Text('INVOICE',
+          title: const Text(
+            'INVOICE',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Montserrat',
                 color: sWhite,
-                fontSize: 16
-            ),
+                fontSize: 16),
           ),
           actions: [
             Obx(() {
               if (AppSingletons.isSearchingInvoice.value == false) {
-                return IconButton(onPressed: () {
-                  AppSingletons.isSearchingInvoice.value = true;
-                }, icon: const Icon(Icons.search, color: sWhite,));
+                return IconButton(
+                    onPressed: () {
+                      AppSingletons.isSearchingInvoice.value = true;
+                    },
+                    icon: const Icon(
+                      Icons.search,
+                      color: sWhite,
+                    ));
               } else {
-                return IconButton(onPressed: () {
-                  AppSingletons.isSearchingInvoice.value = false;
-                  AppSingletons.isKeyboardVisible.value = false;
+                return IconButton(
+                    onPressed: () {
+                      AppSingletons.isSearchingInvoice.value = false;
+                      AppSingletons.isKeyboardVisible.value = false;
 
-                  controller.searchController.clear();
-                }, icon: const Icon(Icons.cancel, color: sWhite,));
+                      controller.searchController.clear();
+                    },
+                    icon: const Icon(
+                      Icons.cancel,
+                      color: sWhite,
+                    ));
               }
             }),
-
             IconButton(
-                onPressed: (){
+                onPressed: () {
                   Get.toNamed(Routes.chartsView);
                 },
-                icon: const Icon(Icons.add_chart,color: sWhite,)),
-
+                icon: const Icon(
+                  Icons.add_chart,
+                  color: sWhite,
+                )),
             IconButton(
                 onPressed: () {
                   Get.toNamed(Routes.proScreenView);
                 },
-                icon: Image.asset('assets/icons/vip_icon.png',height: 35,width: 35,)
-            ),
+                icon: Image.asset(
+                  'assets/icons/vip_icon.png',
+                  height: 35,
+                  width: 35,
+                )),
           ],
         ),
         body: Container(
@@ -505,480 +513,510 @@ class HomeView extends GetView<HomeController> {
           color: orangeLight_1,
           child: SingleChildScrollView(
               child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 5,
+                    width: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 20,),
-                      Expanded(
-                          flex: 4,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Obx(() {
-                                  return Visibility(
-                                    visible: AppSingletons.isSearchingInvoice
-                                        .value,
-                                    child: Focus(
-                                      onFocusChange: (value) {
-                                        controller.updateKeyboardVisibility(
-                                            value);
-                                      },
-                                      child: Container(
-                                        margin: const EdgeInsets.all(15),
-                                        child: TextField(
-                                          controller: controller
-                                              .searchController,
-                                          autofocus: true,
-                                          decoration: InputDecoration(
-                                              contentPadding: const EdgeInsets
-                                                  .all(10),
-                                              hintText: 'search_invoice'.tr,
-                                              prefixIcon: const Icon(
-                                                  Icons.search),
-                                              border: OutlineInputBorder(
-                                                  borderSide: BorderSide.none,
-                                                  borderRadius: BorderRadius
-                                                      .circular(15)),
-                                              fillColor: textFieldColor,
-                                              filled: true),
-                                        ),
-                                      ),
+                  Expanded(
+                      flex: 4,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Obx(() {
+                              return Visibility(
+                                visible: AppSingletons.isSearchingInvoice.value,
+                                child: Focus(
+                                  onFocusChange: (value) {
+                                    controller.updateKeyboardVisibility(value);
+                                  },
+                                  child: Container(
+                                    margin: const EdgeInsets.all(15),
+                                    child: TextField(
+                                      controller: controller.searchController,
+                                      autofocus: true,
+                                      decoration: InputDecoration(
+                                          contentPadding:
+                                              const EdgeInsets.all(10),
+                                          hintText: 'search_invoice',
+                                          prefixIcon: const Icon(Icons.search),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          fillColor: textFieldColor,
+                                          filled: true),
                                     ),
-                                  );
-                                }),
-                                Obx(() {
-                                  return Visibility(
-                                      visible: !AppSingletons.isSearchingInvoice
-                                          .value,
-                                      child: const SizedBox(
-                                        height: 10,
-                                      ));
-                                }),
-                                Stack(
-                                  children: [
-                                    SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Obx(() {
-                                        return Row(
-                                          crossAxisAlignment: CrossAxisAlignment
-                                              .start,
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .center,
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                controller.listShowingType.value =
-                                                    AppConstants.all;
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 20, vertical: 7),
-                                                margin: const EdgeInsets.only(
-                                                    right: 5, left: 18),
-                                                decoration: BoxDecoration(
-                                                    color: controller
-                                                        .listShowingType.value ==
+                                  ),
+                                ),
+                              );
+                            }),
+                            Obx(() {
+                              return Visibility(
+                                  visible:
+                                      !AppSingletons.isSearchingInvoice.value,
+                                  child: const SizedBox(
+                                    height: 10,
+                                  ));
+                            }),
+                            Stack(
+                              children: [
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Obx(() {
+                                    return Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.listShowingType.value =
+                                                AppConstants.all;
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 7),
+                                            margin: const EdgeInsets.only(
+                                                right: 5, left: 18),
+                                            decoration: BoxDecoration(
+                                                color: controller
+                                                            .listShowingType
+                                                            .value ==
                                                         AppConstants.all
-                                                        ? mainPurpleColor
-                                                        : offWhite_2,
-                                                    borderRadius: BorderRadius
-                                                        .circular(100)),
-                                                child: Text(
-                                                  'All',
-                                                  style: TextStyle(
-                                                      color: controller
-                                                          .listShowingType.value ==
+                                                    ? mainPurpleColor
+                                                    : offWhite_2,
+                                                borderRadius:
+                                                    BorderRadius.circular(100)),
+                                            child: Text(
+                                              'All',
+                                              style: TextStyle(
+                                                  color: controller
+                                                              .listShowingType
+                                                              .value ==
                                                           AppConstants.all
-                                                          ? sWhite
-                                                          : blackColor,
-                                                      fontFamily: 'Montserrat',
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ),
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontFamily: 'Montserrat',
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                controller.listShowingType.value =
-                                                    AppConstants.unpaidInvoice;
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 20, vertical: 7),
-                                                margin: const EdgeInsets.symmetric(
-                                                    horizontal: 5),
-                                                decoration: BoxDecoration(
-                                                    color: controller
-                                                        .listShowingType.value ==
-                                                        AppConstants.unpaidInvoice
-                                                        ? mainPurpleColor
-                                                        : offWhite_2,
-                                                    borderRadius: BorderRadius
-                                                        .circular(100)),
-                                                child: Text(
-                                                  'Unpaid',
-                                                  style: TextStyle(
-                                                      color: controller
-                                                          .listShowingType.value ==
-                                                          AppConstants.unpaidInvoice
-                                                          ? sWhite
-                                                          : blackColor,
-                                                      fontFamily: 'Montserrat',
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.listShowingType.value =
+                                                AppConstants.unpaidInvoice;
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 7),
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: controller
+                                                            .listShowingType
+                                                            .value ==
+                                                        AppConstants
+                                                            .unpaidInvoice
+                                                    ? mainPurpleColor
+                                                    : offWhite_2,
+                                                borderRadius:
+                                                    BorderRadius.circular(100)),
+                                            child: Text(
+                                              'Unpaid',
+                                              style: TextStyle(
+                                                  color: controller
+                                                              .listShowingType
+                                                              .value ==
+                                                          AppConstants
+                                                              .unpaidInvoice
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontFamily: 'Montserrat',
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                controller.listShowingType.value =
-                                                    AppConstants
-                                                        .partiallyPaidInvoice;
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 20, vertical: 7),
-                                                margin: const EdgeInsets.symmetric(
-                                                    horizontal: 5),
-                                                decoration: BoxDecoration(
-                                                    color: controller
-                                                        .listShowingType.value ==
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.listShowingType.value =
+                                                AppConstants
+                                                    .partiallyPaidInvoice;
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 7),
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: controller
+                                                            .listShowingType
+                                                            .value ==
                                                         AppConstants
                                                             .partiallyPaidInvoice
-                                                        ? mainPurpleColor
-                                                        : offWhite_2,
-                                                    borderRadius: BorderRadius
-                                                        .circular(100)),
-                                                child: Text(
-                                                  'Partially Paid',
-                                                  style: TextStyle(
-                                                      color: controller
-                                                          .listShowingType.value ==
+                                                    ? mainPurpleColor
+                                                    : offWhite_2,
+                                                borderRadius:
+                                                    BorderRadius.circular(100)),
+                                            child: Text(
+                                              'Partially Paid',
+                                              style: TextStyle(
+                                                  color: controller
+                                                              .listShowingType
+                                                              .value ==
                                                           AppConstants
                                                               .partiallyPaidInvoice
-                                                          ? sWhite
-                                                          : blackColor,
-                                                      fontSize: 14,
-                                                      fontFamily: 'Montserrat',
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ),
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontSize: 14,
+                                                  fontFamily: 'Montserrat',
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                controller.listShowingType.value =
-                                                    AppConstants.overdue;
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 20, vertical: 7),
-                                                margin: const EdgeInsets.symmetric(
-                                                    horizontal: 5),
-                                                decoration: BoxDecoration(
-                                                    color: controller
-                                                        .listShowingType.value ==
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.listShowingType.value =
+                                                AppConstants.overdue;
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 7),
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: controller
+                                                            .listShowingType
+                                                            .value ==
                                                         AppConstants.overdue
-                                                        ? mainPurpleColor
-                                                        : offWhite_2,
-                                                    borderRadius: BorderRadius
-                                                        .circular(100)),
-                                                child: Text(
-                                                  'Overdue',
-                                                  style: TextStyle(
-                                                      fontFamily: 'Montserrat',
-                                                      color: controller
-                                                          .listShowingType.value ==
+                                                    ? mainPurpleColor
+                                                    : offWhite_2,
+                                                borderRadius:
+                                                    BorderRadius.circular(100)),
+                                            child: Text(
+                                              'Overdue',
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: controller
+                                                              .listShowingType
+                                                              .value ==
                                                           AppConstants.overdue
-                                                          ? sWhite
-                                                          : blackColor,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ),
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                controller.listShowingType.value =
-                                                    AppConstants.paidInvoice;
-                                              },
-                                              child: Container(
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 20, vertical: 7),
-                                                margin: const EdgeInsets.only(
-                                                    left: 5, right: 50),
-                                                decoration: BoxDecoration(
-                                                    color: controller
-                                                        .listShowingType.value ==
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            controller.listShowingType.value =
+                                                AppConstants.paidInvoice;
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 7),
+                                            margin: const EdgeInsets.only(
+                                                left: 5, right: 50),
+                                            decoration: BoxDecoration(
+                                                color: controller
+                                                            .listShowingType
+                                                            .value ==
                                                         AppConstants.paidInvoice
-                                                        ? mainPurpleColor
-                                                        : offWhite_2,
-                                                    borderRadius: BorderRadius
-                                                        .circular(100)),
-                                                child: Text(
-                                                  'Paid',
-                                                  style: TextStyle(
-                                                      fontFamily: 'Montserrat',
-                                                      color: controller
-                                                          .listShowingType.value ==
-                                                          AppConstants.paidInvoice
-                                                          ? sWhite
-                                                          : blackColor,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ),
+                                                    ? mainPurpleColor
+                                                    : offWhite_2,
+                                                borderRadius:
+                                                    BorderRadius.circular(100)),
+                                            child: Text(
+                                              'Paid',
+                                              style: TextStyle(
+                                                  fontFamily: 'Montserrat',
+                                                  color: controller
+                                                              .listShowingType
+                                                              .value ==
+                                                          AppConstants
+                                                              .paidInvoice
+                                                      ? sWhite
+                                                      : blackColor,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                          ],
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
+                                ),
+                                Positioned(
+                                  right: 0,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      if (controller.isFilteringList.value) {
+                                        controller.filteredDataList.value =
+                                            controller.fetchedDataList.value;
+                                        controller.filteredUnpaidList.value =
+                                            controller.fetchedUnpaidList.value;
+                                        controller.filteredPPList.value =
+                                            controller.fetchedPPList.value;
+                                        controller.filteredOverdueList.value =
+                                            controller.fetchedOverdueList.value;
+                                        controller.filteredPaidList.value =
+                                            controller.fetchedPaidList.value;
+                                        controller.isFilteringList.value =
+                                            false;
+
+                                        controller.selectedName.value = '';
+                                        controller.fromDate.value = null;
+                                        controller.toDate.value = null;
+                                      } else {
+                                        addFilterByClientAndDate(context);
+                                      }
+                                    },
+                                    child: Container(
+                                      color: orangeLight_1,
+                                      height: 35,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 13),
+                                      child: Obx(() {
+                                        return Icon(
+                                          controller.isFilteringList.value
+                                              ? Icons.filter_alt_off_outlined
+                                              : Icons.filter_alt_outlined,
+                                          color: blackColor,
                                         );
                                       }),
                                     ),
-                                    Positioned(
-                                      right: 0,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          if(controller.isFilteringList.value){
-                                            controller.filteredDataList.value = controller.fetchedDataList.value;
-                                            controller.filteredUnpaidList.value = controller.fetchedUnpaidList.value;
-                                            controller.filteredPPList.value = controller.fetchedPPList.value;
-                                            controller.filteredOverdueList.value = controller.fetchedOverdueList.value;
-                                            controller.filteredPaidList.value = controller.fetchedPaidList.value;
-                                            controller.isFilteringList.value = false;
-
-                                            controller.selectedName.value = '';
-                                            controller.fromDate.value = null;
-                                            controller.toDate.value = null;
-
-                                          } else {
-                                            addFilterByClientAndDate(context);
-                                          }
-                                        },
-                                        child: Container(
-                                          color: orangeLight_1,
-                                          height: 35,
-                                          padding: const EdgeInsets.symmetric(horizontal: 13),
-                                          child: Obx(() {
-                                            return Icon(
-                                              controller.isFilteringList.value
-                                                  ? Icons.filter_alt_off_outlined
-                                                  : Icons.filter_alt_outlined,
-                                              color: blackColor,);
-                                          }),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Obx(() => controller.isLoadingData.value
-                                      ? const Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .center,
-                                    children: [
-                                      SizedBox(
-                                        height: 100,
-                                      ),
-                                      CupertinoActivityIndicator(
-                                        color: mainPurpleColor,
-                                        radius: 20,
-                                      ),
-                                      SizedBox(
-                                        height: 100,
-                                      ),
-                                    ],
-                                  )
-                                      : showListAccordingToSelectedTap(),
-                                ),
-                                const SizedBox(
-                                  height: 70,
+                                  ),
                                 ),
                               ],
                             ),
-                          )),
-                      Expanded(
-                          flex: 1,
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 10,),
-                              GestureDetector(
-                                onTap: () {
-
-                                  if(AppSingletons.isSubscriptionEnabled.value){
-                                    AppSingletons.isInvoiceDocument.value = true;
-                                    AppSingletons.isMakingNewINVEST.value = true;
-                                    Get.toNamed(Routes.invoiceInputView);
-                                    AppSingletons.isEditInvoice.value = false;
-                                    AppSingletons.isEditingOnlyTemplate.value = false;
-
-                                    Utils.clearInvoiceVariables();
-                                  } else {
-                                    if(AppSingletons.noOfInvoicesMadeAlready.value >= 3){
-                                      Get.toNamed(Routes.proScreenView);
-                                    } else {
-                                      AppSingletons.isInvoiceDocument.value = true;
-                                      AppSingletons.isMakingNewINVEST.value = true;
-                                      Get.toNamed(Routes.invoiceInputView);
-                                      AppSingletons.isEditInvoice.value = false;
-                                      AppSingletons.isEditingOnlyTemplate.value = false;
-
-                                      Utils.clearInvoiceVariables();
-                                    }
-                                  }
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  decoration: BoxDecoration(
-                                    color: sWhite,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: grey_4,
-                                          spreadRadius: 1,
-                                          blurRadius: 10,
-                                          offset: Offset(2, 1))
-                                    ],
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        'Create New',
-                                        style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w700,
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Obx(
+                              () => controller.isLoadingData.value
+                                  ? const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          height: 100,
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Icon(Icons.add, color: mainPurpleColor,),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                    ],
+                                        CupertinoActivityIndicator(
+                                          color: mainPurpleColor,
+                                          radius: 20,
+                                        ),
+                                        SizedBox(
+                                          height: 100,
+                                        ),
+                                      ],
+                                    )
+                                  : showListAccordingToSelectedTap(),
+                            ),
+                            const SizedBox(
+                              height: 70,
+                            ),
+                          ],
+                        ),
+                      )),
+                  Expanded(
+                      flex: 1,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              if (AppSingletons.isSubscriptionEnabled.value) {
+                                AppSingletons.isInvoiceDocument.value = true;
+                                AppSingletons.isMakingNewINVEST.value = true;
+                                Get.toNamed(Routes.invoiceInputView);
+                                AppSingletons.isEditInvoice.value = false;
+                                AppSingletons.isEditingOnlyTemplate.value =
+                                    false;
+
+                                Utils.clearInvoiceVariables();
+                              } else {
+                                if (AppSingletons
+                                        .noOfInvoicesMadeAlready.value >=
+                                    3) {
+                                  Get.toNamed(Routes.proScreenView);
+                                } else {
+                                  AppSingletons.isInvoiceDocument.value = true;
+                                  AppSingletons.isMakingNewINVEST.value = true;
+                                  Get.toNamed(Routes.invoiceInputView);
+                                  AppSingletons.isEditInvoice.value = false;
+                                  AppSingletons.isEditingOnlyTemplate.value =
+                                      false;
+
+                                  Utils.clearInvoiceVariables();
+                                }
+                              }
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              decoration: BoxDecoration(
+                                color: sWhite,
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: grey_4,
+                                      spreadRadius: 1,
+                                      blurRadius: 10,
+                                      offset: Offset(2, 1))
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'Create New',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Icon(
+                                    Icons.add,
+                                    color: mainPurpleColor,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: sWhite,
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: grey_4,
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: Offset(-1, 1))
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  'Total Unpaid',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 20,),
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
-                                decoration: BoxDecoration(
-                                  color: sWhite,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: grey_4,
-                                        spreadRadius: 1,
-                                        blurRadius: 10,
-                                        offset: Offset(-1, 1))
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
+                                const SizedBox(
+                                  height: 15,
                                 ),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 10,
+                                Obx(() {
+                                  return Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value}${AppSingletons.totalUnpaidInvoices.value}',
+                                    style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w700,
                                     ),
-                                    const Text(
-                                      'Total Unpaid',
-                                      style: TextStyle(
+                                  );
+                                }),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: BoxDecoration(
+                              color: sWhite,
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: grey_4,
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: Offset(2, 1))
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  'Total Overdue',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Obx(() {
+                                  return Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value}${AppSingletons.totalOverdueInvoices.value}',
+                                    style: const TextStyle(
                                         fontFamily: 'Montserrat',
-                                        fontSize: 15,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    Obx(() {
-                                      return Text(
-                                        '${AppSingletons.storedInvoiceCurrency.value}${AppSingletons.totalUnpaidInvoices.value}',
-                                        style: const TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      );
-                                    }),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
+                                        color: orangeMedium_1),
+                                  );
+                                }),
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                              const SizedBox(height: 20,),
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
-                                decoration: BoxDecoration(
-                                  color: sWhite,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: grey_4,
-                                        spreadRadius: 1,
-                                        blurRadius: 10,
-                                        offset: Offset(2, 1))
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const Text(
-                                      'Total Overdue',
-                                      style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    Obx(() {
-                                      return Text(
-                                        '${AppSingletons.storedInvoiceCurrency.value}${AppSingletons.totalOverdueInvoices.value}',
-                                        style: const TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w700,
-                                            color: orangeMedium_1),
-                                      );
-                                    }),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )),
-                      const SizedBox(width: 20,),
-                    ],
+                              ],
+                            ),
+                          ),
+                        ],
+                      )),
+                  const SizedBox(
+                    width: 20,
                   ),
                 ],
-              )
-          ),
-        )
-    );
+              ),
+            ],
+          )),
+        ));
   }
 
   Future selectInvoiceStatus(BuildContext context, int itemPrice, int invoiceId,
@@ -990,15 +1028,13 @@ class HomeView extends GetView<HomeController> {
         builder: (BuildContext context) {
           controller.invoicePaidStatus.value = invoicePaidStatus;
           return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10)
-            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             title: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: mainPurpleColor,
-                borderRadius: BorderRadius.circular(8)
-              ),
+                  color: mainPurpleColor,
+                  borderRadius: BorderRadius.circular(8)),
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Text('mark_as'.tr,
@@ -1018,8 +1054,9 @@ class HomeView extends GetView<HomeController> {
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         onTap: () {
-                            controller.invoicePaidStatus.value = AppConstants.paidInvoice;
-                            debugPrint(controller.invoicePaidStatus.value);
+                          controller.invoicePaidStatus.value =
+                              AppConstants.paidInvoice;
+                          debugPrint(controller.invoicePaidStatus.value);
                         },
                         title: Text(
                           'paid'.tr,
@@ -1041,10 +1078,11 @@ class HomeView extends GetView<HomeController> {
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         onTap: () {
-                            controller.invoicePaidStatus.value = AppConstants.unpaidInvoice;
-                            debugPrint(controller.invoicePaidStatus.value);
+                          controller.invoicePaidStatus.value =
+                              AppConstants.unpaidInvoice;
+                          debugPrint(controller.invoicePaidStatus.value);
                         },
-                        title:  Text(
+                        title: Text(
                           'unpaid'.tr,
                           style: const TextStyle(
                               fontFamily: 'Montserrat',
@@ -1064,10 +1102,11 @@ class HomeView extends GetView<HomeController> {
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         onTap: () {
-                            controller.invoicePaidStatus.value = AppConstants.partiallyPaidInvoice;
-                            debugPrint(controller.invoicePaidStatus.value);
+                          controller.invoicePaidStatus.value =
+                              AppConstants.partiallyPaidInvoice;
+                          debugPrint(controller.invoicePaidStatus.value);
                         },
-                        title:  Text(
+                        title: Text(
                           'partially_paid'.tr,
                           style: const TextStyle(
                               fontFamily: 'Montserrat',
@@ -1076,20 +1115,23 @@ class HomeView extends GetView<HomeController> {
                               color: blackColor),
                         ),
                         subtitle: Visibility(
-                          visible: controller.invoicePaidStatus.value == AppConstants.partiallyPaidInvoice,
+                          visible: controller.invoicePaidStatus.value ==
+                              AppConstants.partiallyPaidInvoice,
                           child: Container(
                             padding: const EdgeInsets.only(top: 10),
                             child: CommonTextField(
-                              textEditingController: controller.partiallyPaidController,
+                              textEditingController:
+                                  controller.partiallyPaidController,
                               textInputAction: TextInputAction.done,
                               textInputType: TextInputType.number,
                               hintText: 'enter_amount'.tr,
                               inputFormatter: [AmountInputFormatter()],
                               validator: (_) {
-                                if (controller.partiallyPaidController.text.isEmpty) {
+                                if (controller
+                                    .partiallyPaidController.text.isEmpty) {
                                   return 'please_enter_amount'.tr;
                                 } else if (int.parse(controller
-                                    .partiallyPaidController.text) >=
+                                        .partiallyPaidController.text) >=
                                     itemPrice) {
                                   return 'larger_amount_than_total'.tr;
                                 } else {
@@ -1119,8 +1161,9 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: (){
-                        controller.invoicePaidStatus.value = AppSingletons.invoiceStatus.value;
+                      onTap: () {
+                        controller.invoicePaidStatus.value =
+                            AppSingletons.invoiceStatus.value;
                         Utils.clearInvoiceVariables();
                         Get.back();
                       },
@@ -1132,10 +1175,9 @@ class HomeView extends GetView<HomeController> {
                             color: grey_4,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(5),
-                                bottomLeft: Radius.circular(5)
-                            )
-                        ),
-                        child: Text('cancel'.tr,
+                                bottomLeft: Radius.circular(5))),
+                        child: Text(
+                          'cancel'.tr,
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
@@ -1148,40 +1190,40 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Expanded(
                     child: GestureDetector(
-                      onTap: ()async {
-          if (controller.invoicePaidStatus.value == AppConstants.partiallyPaidInvoice) {
-          if (controller.formKey.currentState!.validate()) {
-          AppSingletons.invoiceStatus.value = controller.invoicePaidStatus.value;
-          AppSingletons.partialPaymentAmount?.value = controller.partiallyPaidController.text;
-          debugPrint('${AppSingletons.partialPaymentAmount?.value} ');
-          await controller.updatePaidStatusInDatabase(
-          invoiceId,
-          controller.invoicePaidStatus.value,
-          controller.partiallyPaidController.text
-          );
-          controller.isFilteringList.value = false;
-          controller.selectedName.value = '';
-          controller.fromDate.value = null;
-          controller.toDate.value = null;
-          controller.partiallyPaidController.text = '';
-          }
-          }
-          else {
-          AppSingletons.partialPaymentAmount?.value = '';
-          controller.partiallyPaidController.text = '';
-          AppSingletons.invoiceStatus.value =
-          controller.invoicePaidStatus.value;
-          await controller.updatePaidStatusInDatabase(
-          invoiceId, controller.invoicePaidStatus.value,'');
+                      onTap: () async {
+                        if (controller.invoicePaidStatus.value ==
+                            AppConstants.partiallyPaidInvoice) {
+                          if (controller.formKey.currentState!.validate()) {
+                            AppSingletons.invoiceStatus.value =
+                                controller.invoicePaidStatus.value.tr;
+                            AppSingletons.partialPaymentAmount?.value =
+                                controller.partiallyPaidController.text;
+                            debugPrint(
+                                '${AppSingletons.partialPaymentAmount?.value}');
+                            await controller.updatePaidStatusInDatabase(
+                                invoiceId,
+                                controller.invoicePaidStatus.value.tr,
+                                controller.partiallyPaidController.text);
+                            controller.isFilteringList.value = false;
+                            controller.selectedName.value = '';
+                            controller.fromDate.value = null;
+                            controller.toDate.value = null;
+                            controller.partiallyPaidController.text = '';
+                          }
+                        } else {
+                          AppSingletons.partialPaymentAmount?.value = '';
+                          controller.partiallyPaidController.text = '';
+                          AppSingletons.invoiceStatus.value =
+                              controller.invoicePaidStatus.value.tr;
+                          await controller.updatePaidStatusInDatabase(invoiceId,
+                              controller.invoicePaidStatus.value, ''.tr);
 
-          controller.isFilteringList.value = false;
-          controller.selectedName.value = '';
-          controller.fromDate.value = null;
-          controller.toDate.value = null;
-
-          }
-
-          },
+                          controller.isFilteringList.value = false;
+                          controller.selectedName.value = '';
+                          controller.fromDate.value = null;
+                          controller.toDate.value = null;
+                        }
+                      },
                       child: Container(
                         width: double.infinity,
                         alignment: Alignment.center,
@@ -1190,10 +1232,9 @@ class HomeView extends GetView<HomeController> {
                             color: mainPurpleColor,
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(5),
-                                bottomRight: Radius.circular(5)
-                            )
-                        ),
-                        child: Text('change'.tr,
+                                bottomRight: Radius.circular(5))),
+                        child: Text(
+                          'change'.tr,
                           style: const TextStyle(
                             fontFamily: 'Montserrat',
                             color: sWhite,
@@ -1216,1268 +1257,1325 @@ class HomeView extends GetView<HomeController> {
       if (controller.listShowingType.value == AppConstants.all) {
         return controller.filteredDataList.value.isNotEmpty
             ? ListView.builder(
-          itemCount: controller.filteredDataList.value.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            int reverse = controller.filteredDataList.value.length - 1 - index;
-            var note = controller.filteredDataList.value[reverse];
+                itemCount: controller.filteredDataList.value.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  int reverse =
+                      controller.filteredDataList.value.length - 1 - index;
+                  var note = controller.filteredDataList.value[reverse];
 
-            return GestureDetector(
-              onTap: () {
-                debugPrint('Sent ID: ${note.id}');
+                  return GestureDetector(
+                    onTap: () {
+                      debugPrint('Sent ID: ${note.id}');
 
-                Get.toNamed(Routes.savedPdfView);
+                      Get.toNamed(Routes.savedPdfView);
 
-                AppSingletons.isPreviewingPdfBeforeSave.value = false;
+                      AppSingletons.isPreviewingPdfBeforeSave.value = false;
 
-                AppSingletons.isInvoiceDocument.value = true;
+                      AppSingletons.isInvoiceDocument.value = true;
 
-                AppSingletons.isMakingNewINVEST.value = false;
+                      AppSingletons.isMakingNewINVEST.value = false;
 
-                AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
+                      AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
 
-                AppSingletons.isEditInvoice.value = true;
+                      AppSingletons.isEditInvoice.value = true;
 
-                AppSingletons.isEditEstimate.value = false;
-              },
-              onLongPress: () {
-                CustomDialogues.showDialogueToDelete(
-                    false,
-                    'delete_invoice'.tr,
-                    'are_you_sure_you_want_to_delete'.tr,
-                        '?',
-                        () => controller.deleteInvoice(note.id!),
-                        () => controller.loadInvoiceData());
-              },
-              child: Container(
-                constraints: const BoxConstraints(minHeight: 100,),
-                margin: EdgeInsets.symmetric(horizontal:
-                AppConstants.isMobileScreen.value ? 15 : 50.0,
-                  vertical: 5.0,),
-                decoration: BoxDecoration(
-                  color: sWhite,
-                  borderRadius: BorderRadius.circular(12),
-                  // border: const Border(
-                  //   top: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   left: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   right: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  // ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      AppSingletons.isEditEstimate.value = false;
+                    },
+                    onLongPress: () {
+                      CustomDialogues.showDialogueToDelete(
+                          false,
+                          'delete_invoice'.tr,
+                          'are_you_sure_you_want_to_delete'.tr,
+                          '?',
+                          () => controller.deleteInvoice(note.id!),
+                          () => controller.loadInvoiceData());
+                    },
+                    child: Container(
+                      constraints: const BoxConstraints(
+                        minHeight: 100,
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal:
+                            AppConstants.isMobileScreen.value ? 15 : 50.0,
+                        vertical: 5.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: sWhite,
+                        borderRadius: BorderRadius.circular(12),
+                        // border: const Border(
+                        //   top: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   left: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   right: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        // ),
+                      ),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              note.invoiceId.toString(),
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    note.invoiceId.toString(),
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    note.clientName.toString(),
+                                    textAlign: TextAlign.end,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded(
-                            child: Text(
-                              note.clientName.toString(),
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  DateFormat('dd-MMM-yyyy').format(
+                                      DateTime.parse(
+                                          note.startDate.toString())),
+                                  style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${note.currencyName ?? ''} ',
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      note.itemPrice.toString(),
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            DateFormat('dd-MMM-yyyy').format(
-                                DateTime.parse(note.startDate.toString())),
-                            style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: orangeDark_3,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                '${note.currencyName ?? ''} ',
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
+                              Visibility(
+                                visible: note.invoicePaidStatus !=
+                                        AppConstants.paidInvoice &&
+                                    !note.isOverdue!,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 5),
+                                  child: Text(
+                                    note.dueDaysData ?? '',
+                                    style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              Text(
-                                note.itemPrice.toString(),
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
+                              Visibility(
+                                visible: note.invoicePaidStatus ==
+                                    AppConstants.partiallyPaidInvoice,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 5),
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value} ${note.remainingPayableAmount ?? ''}',
+                                    style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: redTemplate,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                                color: grey_5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Visibility(
+                                  visible:
+                                      note.partialPaymentAmount!.isNotEmpty,
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? 'paid'.tr} ',
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: blackColor),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 33,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        backgroundColor:
+                                            controller.giveInvoiceStatusColor(
+                                                note.isOverdue ?? false,
+                                                note.invoicePaidStatus
+                                                    .toString())),
+                                    onPressed: () {
+                                      selectInvoiceStatus(
+                                          context,
+                                          note.itemPrice ?? 0,
+                                          note.id!,
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString());
+
+                                      debugPrint('Selected Id: ${note.id}');
+                                    },
+                                    child: Text(
+                                        // note.invoicePaidStatus ==
+                                        //     AppConstants.paidInvoice
+                                        //     ? 'paid'.tr ?? ''
+                                        //     : note.isOverdue!
+                                        //     ? 'overdue'.tr
+                                        //     : note.invoicePaidStatus ??
+                                        //     ''
+                                      controller.getInvoiceStatusText(
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString()
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: sWhite),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Visibility(
-                          visible: note.invoicePaidStatus != AppConstants.paidInvoice && !note.isOverdue!,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                            child: Text(note.dueDaysData ?? '',
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        Visibility(
-                          visible: note.invoicePaidStatus == AppConstants.partiallyPaidInvoice,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                            child: Text(
-                            '${AppSingletons.storedInvoiceCurrency.value} ${note.remainingPayableAmount ?? ''}',
-                              style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: redTemplate,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 5),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
-                          ),
-                          color: grey_5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Visibility(
-                            visible: note.partialPaymentAmount!.isNotEmpty,
-                            child: Text(
-                              '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''} Paid',
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: blackColor),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 33,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: controller.
-                                  giveInvoiceStatusColor(
-                                      note.isOverdue ?? false,
-                                      note.invoicePaidStatus.toString())
-                              ),
-                              onPressed: () {
-                                selectInvoiceStatus(
-                                    context,
-                                    note.itemPrice ?? 0,
-                                    note.id!,
-                                    note.isOverdue ?? false,
-                                    note.invoicePaidStatus.toString());
-
-                                debugPrint('Selected Id: ${note.id}');
-                              },
-                              child: Text(
-                                note.invoicePaidStatus == AppConstants.paidInvoice
-                                ? note.invoicePaidStatus ?? ''
-                                : note.isOverdue!
-                                    ? 'Overdue'
-                                    : note.invoicePaidStatus ?? '',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: sWhite),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        )
+                  );
+                },
+              )
             : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 80,
-            ),
-            Image.asset(
-              'assets/icons/empty_box.png',
-              height: 120,
-              width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
-            ),
-             Text(
-              'tap_plus_to_create_invoice'.tr,
-              style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  color: blackColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16),
-            )
-          ],
-        );
-      }
-      else if (controller.listShowingType.value == AppConstants.unpaidInvoice) {
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Image.asset(
+                    'assets/icons/empty_box.png',
+                    height: 120,
+                    width: 120,
+                    color: mainPurpleColor.withOpacity(0.7),
+                  ),
+                  Text(
+                    'tap_plus_to_create_invoice'.tr,
+                    style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: blackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  )
+                ],
+              );
+      } else if (controller.listShowingType.value ==
+          AppConstants.unpaidInvoice) {
         return controller.filteredUnpaidList.value.isNotEmpty
             ? ListView.builder(
-          itemCount: controller.filteredUnpaidList.value.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            int reverse =
-                controller.filteredUnpaidList.value.length - 1 - index;
-            var note = controller.filteredUnpaidList.value[reverse];
+                itemCount: controller.filteredUnpaidList.value.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  int reverse =
+                      controller.filteredUnpaidList.value.length - 1 - index;
+                  var note = controller.filteredUnpaidList.value[reverse];
 
-            return GestureDetector(
-              onTap: () {
-                debugPrint('Sent ID: ${note.id}');
+                  return GestureDetector(
+                    onTap: () {
+                      debugPrint('Sent ID: ${note.id}');
 
-                Get.toNamed(Routes.savedPdfView);
+                      Get.toNamed(Routes.savedPdfView);
 
-                AppSingletons.isMakingNewINVEST.value = false;
+                      AppSingletons.isMakingNewINVEST.value = false;
 
-                AppSingletons.isPreviewingPdfBeforeSave.value = false;
+                      AppSingletons.isPreviewingPdfBeforeSave.value = false;
 
-                AppSingletons.isInvoiceDocument.value = true;
+                      AppSingletons.isInvoiceDocument.value = true;
 
-                AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
+                      AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
 
-                AppSingletons.isEditInvoice.value = true;
+                      AppSingletons.isEditInvoice.value = true;
 
-                AppSingletons.isEditEstimate.value = false;
-              },
-              onLongPress: () {
-                CustomDialogues.showDialogueToDelete(
-                    false,
-                    'delete_invoice'.tr,
-                    'are_you_sure_you_want_to_delete'.tr,
-                    '?',
-                        () => controller.deleteInvoice(note.id!),
-                        () => controller.loadInvoiceData());
-              },
-              child: Container(
-                constraints: const BoxConstraints(
-                  minHeight: 100,
-                ),
-                margin: EdgeInsets.symmetric(
-                  horizontal: AppConstants.isMobileScreen.value ? 15 : 50.0,
-                  vertical: 5.0,
-                ),
-                decoration: BoxDecoration(
-                  color: sWhite,
-                  borderRadius: BorderRadius.circular(12),
-                  // border: const Border(
-                  //   top: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   left: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   right: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  // ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      AppSingletons.isEditEstimate.value = false;
+                    },
+                    onLongPress: () {
+                      CustomDialogues.showDialogueToDelete(
+                          false,
+                          'delete_invoice'.tr,
+                          'are_you_sure_you_want_to_delete'.tr,
+                          '?',
+                          () => controller.deleteInvoice(note.id!),
+                          () => controller.loadInvoiceData());
+                    },
+                    child: Container(
+                      constraints: const BoxConstraints(
+                        minHeight: 100,
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal:
+                            AppConstants.isMobileScreen.value ? 15 : 50.0,
+                        vertical: 5.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: sWhite,
+                        borderRadius: BorderRadius.circular(12),
+                        // border: const Border(
+                        //   top: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   left: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   right: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        // ),
+                      ),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              note.invoiceId.toString(),
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    note.invoiceId.toString(),
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    note.clientName.toString(),
+                                    textAlign: TextAlign.end,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded(
-                            child: Text(
-                              note.clientName.toString(),
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  DateFormat('dd-MMM-yyyy').format(
+                                      DateTime.parse(
+                                          note.startDate.toString())),
+                                  style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${note.currencyName ?? ''} ',
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      note.itemPrice.toString(),
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            DateFormat('dd-MMM-yyyy').format(
-                                DateTime.parse(note.startDate.toString())),
-                            style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: orangeDark_3,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '${note.currencyName ?? ''} ',
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              Text(
-                                note.itemPrice.toString(),
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Visibility(
-                      visible: note.invoicePaidStatus != AppConstants.paidInvoice && !note.isOverdue!,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                        child: Text(note.dueDaysData ?? '',
-                          style: const TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: orangeDark_3,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 5),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
-                          ),
-                          color: grey_5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
                           Visibility(
-                            visible: note.partialPaymentAmount!.isNotEmpty,
-                            child: Text(
-                              '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''}',
-                              style: const TextStyle(
+                            visible: note.invoicePaidStatus !=
+                                    AppConstants.paidInvoice &&
+                                !note.isOverdue!,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 5),
+                              child: Text(
+                                note.dueDaysData ?? '',
+                                style: const TextStyle(
                                   fontFamily: 'Montserrat',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: blackColor),
+                                  color: orangeDark_3,
+                                ),
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            height: 33,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: controller.
-                                  giveInvoiceStatusColor(
-                                      note.isOverdue ?? false,
-                                      note.invoicePaidStatus.toString())
-                              ),
-                              onPressed: () {
-                                selectInvoiceStatus(
-                                    context,
-                                    note.itemPrice ?? 0,
-                                    note.id!,
-                                    note.isOverdue ?? false,
-                                    note.invoicePaidStatus.toString());
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                                color: grey_5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Visibility(
+                                  visible:
+                                      note.partialPaymentAmount!.isNotEmpty,
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''}',
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: blackColor),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 33,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        backgroundColor:
+                                            controller.giveInvoiceStatusColor(
+                                                note.isOverdue ?? false,
+                                                note.invoicePaidStatus
+                                                    .toString())),
+                                    onPressed: () {
+                                      selectInvoiceStatus(
+                                          context,
+                                          note.itemPrice ?? 0,
+                                          note.id!,
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString());
 
-                                debugPrint('Selected Id: ${note.id}');
-                              },
-                              child: Text(
-                                note.invoicePaidStatus == AppConstants.paidInvoice
-                                    ? note.invoicePaidStatus ?? ''
-                                    : note.isOverdue!
-                                    ? 'Overdue'
-                                    : note.invoicePaidStatus ?? '',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: sWhite),
-                              ),
+                                      debugPrint('Selected Id: ${note.id}');
+                                    },
+                                    child: Text(
+                                        controller.getInvoiceStatusText(
+                                            note.isOverdue ?? false,
+                                            note.invoicePaidStatus.toString()
+                                        ),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: sWhite),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            );
-          },
-        )
+                  );
+                },
+              )
             : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 80,
-            ),
-            Image.asset(
-              'assets/icons/empty_box.png',
-              height: 120,
-              width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
-            ),
-             Text(
-              'no_invoice'.tr,
-              style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  color: blackColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16),
-            )
-          ],
-        );
-      }
-      else if (controller.listShowingType.value == AppConstants.partiallyPaidInvoice) {
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Image.asset(
+                    'assets/icons/empty_box.png',
+                    height: 120,
+                    width: 120,
+                    color: mainPurpleColor.withOpacity(0.7),
+                  ),
+                  Text(
+                    'no_invoice'.tr,
+                    style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: blackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  )
+                ],
+              );
+      } else if (controller.listShowingType.value ==
+          AppConstants.partiallyPaidInvoice) {
         return controller.filteredPPList.value.isNotEmpty
             ? ListView.builder(
-          itemCount: controller.filteredPPList.value.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            int reverse =
-                controller.filteredPPList.value.length - 1 - index;
-            var note = controller.filteredPPList.value[reverse];
+                itemCount: controller.filteredPPList.value.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  int reverse =
+                      controller.filteredPPList.value.length - 1 - index;
+                  var note = controller.filteredPPList.value[reverse];
 
-            return GestureDetector(
-              onTap: () {
-                debugPrint('Sent ID: ${note.id}');
-                debugPrint('Partially Paid ON UI: ${note.partialPaymentAmount}');
+                  return GestureDetector(
+                    onTap: () {
+                      debugPrint('Sent ID: ${note.id}');
+                      debugPrint(
+                          'Partially Paid ON UI: ${note.partialPaymentAmount}');
 
-                Get.toNamed(Routes.savedPdfView);
+                      Get.toNamed(Routes.savedPdfView);
 
-                AppSingletons.isMakingNewINVEST.value = false;
+                      AppSingletons.isMakingNewINVEST.value = false;
 
-                AppSingletons.isPreviewingPdfBeforeSave.value = false;
+                      AppSingletons.isPreviewingPdfBeforeSave.value = false;
 
-                AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
+                      AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
 
-                AppSingletons.isInvoiceDocument.value = true;
+                      AppSingletons.isInvoiceDocument.value = true;
 
-                AppSingletons.isEditInvoice.value = true;
+                      AppSingletons.isEditInvoice.value = true;
 
-                AppSingletons.isEditEstimate.value = false;
-              },
-              onLongPress: () {
-                CustomDialogues.showDialogueToDelete(
-                    false,
-                    'delete_invoice'.tr,
-                    'are_you_sure_you_want_to_delete'.tr,
-                    '?',
-                        () => controller.deleteInvoice(note.id!),
-                        () => controller.loadInvoiceData());
-              },
-              child: Container(
-                constraints: const BoxConstraints(
-                  minHeight: 100,
-                ),
-                margin: EdgeInsets.symmetric(
-                  horizontal: AppConstants.isMobileScreen.value ? 15 : 50.0,
-                  vertical: 5.0,
-                ),
-                decoration: BoxDecoration(
-                  color: sWhite,
-                  borderRadius: BorderRadius.circular(12),
-                  // border: const Border(
-                  //   top: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   left: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   right: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  // ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      AppSingletons.isEditEstimate.value = false;
+                    },
+                    onLongPress: () {
+                      CustomDialogues.showDialogueToDelete(
+                          false,
+                          'delete_invoice'.tr,
+                          'are_you_sure_you_want_to_delete'.tr,
+                          '?',
+                          () => controller.deleteInvoice(note.id!),
+                          () => controller.loadInvoiceData());
+                    },
+                    child: Container(
+                      constraints: const BoxConstraints(
+                        minHeight: 100,
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal:
+                            AppConstants.isMobileScreen.value ? 15 : 50.0,
+                        vertical: 5.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: sWhite,
+                        borderRadius: BorderRadius.circular(12),
+                        // border: const Border(
+                        //   top: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   left: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   right: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        // ),
+                      ),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              note.invoiceId.toString(),
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    note.invoiceId.toString(),
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    note.clientName.toString(),
+                                    textAlign: TextAlign.end,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded(
-                            child: Text(
-                              note.clientName.toString(),
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  DateFormat('dd-MMM-yyyy').format(
+                                      DateTime.parse(
+                                          note.startDate.toString())),
+                                  style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${note.currencyName ?? ''} ',
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      note.itemPrice.toString(),
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            DateFormat('dd-MMM-yyyy').format(
-                                DateTime.parse(note.startDate.toString())),
-                            style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: orangeDark_3,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                '${note.currencyName ?? ''} ',
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
+                              Visibility(
+                                visible: note.invoicePaidStatus !=
+                                        AppConstants.paidInvoice &&
+                                    !note.isOverdue!,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 5),
+                                  child: Text(
+                                    note.dueDaysData ?? '',
+                                    style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              Text(
-                                note.itemPrice.toString(),
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
+                              Visibility(
+                                visible: note.invoicePaidStatus ==
+                                    AppConstants.partiallyPaidInvoice,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 5),
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value} ${note.remainingPayableAmount ?? ''}',
+                                    style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: redTemplate,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                                color: grey_5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Visibility(
+                                  visible:
+                                      note.partialPaymentAmount!.isNotEmpty,
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''} Paid',
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: blackColor),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 33,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        backgroundColor:
+                                            controller.giveInvoiceStatusColor(
+                                                note.isOverdue ?? false,
+                                                note.invoicePaidStatus
+                                                    .toString())),
+                                    onPressed: () {
+                                      selectInvoiceStatus(
+                                          context,
+                                          note.itemPrice ?? 0,
+                                          note.id!,
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString());
+
+                                      debugPrint('Selected Id: ${note.id}');
+                                    },
+                                    child: Text(
+                                      controller.getInvoiceStatusText(
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString()
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: sWhite),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Visibility(
-                          visible: note.invoicePaidStatus != AppConstants.paidInvoice && !note.isOverdue!,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                            child: Text(note.dueDaysData ?? '',
-                              style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: orangeDark_3,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        Visibility(
-                          visible: note.invoicePaidStatus == AppConstants.partiallyPaidInvoice,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                            child: Text(
-                              '${AppSingletons.storedInvoiceCurrency.value} ${note.remainingPayableAmount ?? ''}',
-                              style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: redTemplate,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 5),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
-                          ),
-                          color: grey_5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Visibility(
-                            visible: note.partialPaymentAmount!.isNotEmpty,
-                            child: Text(
-                              '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''} Paid',
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: blackColor),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 33,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: controller.
-                                  giveInvoiceStatusColor(
-                                      note.isOverdue ?? false,
-                                      note.invoicePaidStatus.toString())
-                              ),
-                              onPressed: () {
-                                selectInvoiceStatus(
-                                    context,
-                                    note.itemPrice ?? 0,
-                                    note.id!,
-                                    note.isOverdue ?? false,
-                                    note.invoicePaidStatus.toString());
-
-                                debugPrint('Selected Id: ${note.id}');
-                              },
-                              child: Text(
-                                note.invoicePaidStatus == AppConstants.paidInvoice
-                                    ? note.invoicePaidStatus ?? ''
-                                    : note.isOverdue!
-                                    ? 'Overdue'
-                                    : note.invoicePaidStatus ?? '',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: sWhite),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        )
+                  );
+                },
+              )
             : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 80,
-            ),
-            Image.asset(
-              'assets/icons/empty_box.png',
-              height: 120,
-              width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
-            ),
-             Text(
-              'no_invoice'.tr,
-              style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  color: blackColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16),
-            )
-          ],
-        );
-      }
-      else if (controller.listShowingType.value == AppConstants.overdue) {
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Image.asset(
+                    'assets/icons/empty_box.png',
+                    height: 120,
+                    width: 120,
+                    color: mainPurpleColor.withOpacity(0.7),
+                  ),
+                  Text(
+                    'no_invoice'.tr,
+                    style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: blackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  )
+                ],
+              );
+      } else if (controller.listShowingType.value == AppConstants.overdue) {
         return controller.filteredOverdueList.value.isNotEmpty
             ? ListView.builder(
-          itemCount: controller.filteredOverdueList.value.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            int reverse =
-                controller.filteredOverdueList.value.length - 1 - index;
-            var note = controller.filteredOverdueList.value[reverse];
+                itemCount: controller.filteredOverdueList.value.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  int reverse =
+                      controller.filteredOverdueList.value.length - 1 - index;
+                  var note = controller.filteredOverdueList.value[reverse];
 
-            return GestureDetector(
-              onTap: () {
-                debugPrint('Sent ID: ${note.id}');
+                  return GestureDetector(
+                    onTap: () {
+                      debugPrint('Sent ID: ${note.id}');
 
-                Get.toNamed(Routes.savedPdfView);
+                      Get.toNamed(Routes.savedPdfView);
 
-                AppSingletons.isMakingNewINVEST.value = false;
+                      AppSingletons.isMakingNewINVEST.value = false;
 
-                AppSingletons.isPreviewingPdfBeforeSave.value = false;
+                      AppSingletons.isPreviewingPdfBeforeSave.value = false;
 
-                AppSingletons.isInvoiceDocument.value = true;
+                      AppSingletons.isInvoiceDocument.value = true;
 
-                AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
+                      AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
 
-                AppSingletons.isEditInvoice.value = true;
+                      AppSingletons.isEditInvoice.value = true;
 
-                AppSingletons.isEditEstimate.value = false;
-              },
-              onLongPress: () {
-                CustomDialogues.showDialogueToDelete(
-                    false,
-                    'delete_invoice'.tr,
-                    'are_you_sure_you_want_to_delete'.tr,
-                    '?',
-                        () => controller.deleteInvoice(note.id!),
-                        () => controller.loadInvoiceData());
-              },
-              child: Container(
-                constraints: const BoxConstraints(
-                  minHeight: 100,
-                ),
-                margin: EdgeInsets.symmetric(
-                  horizontal: AppConstants.isMobileScreen.value ? 15 : 50.0,
-                  vertical: 5.0,
-                ),
-                decoration: BoxDecoration(
-                  color: sWhite,
-                  borderRadius: BorderRadius.circular(12),
-                  // border: const Border(
-                  //   top: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   left: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   right: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  // ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      AppSingletons.isEditEstimate.value = false;
+                    },
+                    onLongPress: () {
+                      CustomDialogues.showDialogueToDelete(
+                          false,
+                          'delete_invoice'.tr,
+                          'are_you_sure_you_want_to_delete'.tr,
+                          '?',
+                          () => controller.deleteInvoice(note.id!),
+                          () => controller.loadInvoiceData());
+                    },
+                    child: Container(
+                      constraints: const BoxConstraints(
+                        minHeight: 100,
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal:
+                            AppConstants.isMobileScreen.value ? 15 : 50.0,
+                        vertical: 5.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: sWhite,
+                        borderRadius: BorderRadius.circular(12),
+                        // border: const Border(
+                        //   top: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   left: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   right: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        // ),
+                      ),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              note.invoiceId.toString(),
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    note.invoiceId.toString(),
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    note.clientName.toString(),
+                                    textAlign: TextAlign.end,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded(
-                            child: Text(
-                              note.clientName.toString(),
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  DateFormat('dd-MMM-yyyy').format(
+                                      DateTime.parse(
+                                          note.startDate.toString())),
+                                  style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${note.currencyName ?? ''} ',
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      note.itemPrice.toString(),
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            DateFormat('dd-MMM-yyyy').format(
-                                DateTime.parse(note.startDate.toString())),
-                            style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: orangeDark_3,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                '${note.currencyName ?? ''} ',
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
+                              Visibility(
+                                visible: note.invoicePaidStatus !=
+                                        AppConstants.paidInvoice &&
+                                    !note.isOverdue!,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 5),
+                                  child: Text(
+                                    note.dueDaysData ?? '',
+                                    style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              Text(
-                                note.itemPrice.toString(),
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
+                              Visibility(
+                                visible: note.invoicePaidStatus ==
+                                    AppConstants.partiallyPaidInvoice,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 5),
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value} ${note.remainingPayableAmount ?? ''}',
+                                    style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: redTemplate,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                                color: grey_5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Visibility(
+                                  visible:
+                                      note.partialPaymentAmount!.isNotEmpty,
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''}',
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: blackColor),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 33,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        backgroundColor:
+                                            controller.giveInvoiceStatusColor(
+                                                note.isOverdue ?? false,
+                                                note.invoicePaidStatus
+                                                    .toString())),
+                                    onPressed: () {
+                                      selectInvoiceStatus(
+                                          context,
+                                          note.itemPrice ?? 0,
+                                          note.id!,
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString());
+
+                                      debugPrint('Selected Id: ${note.id}');
+                                    },
+                                    child: Text(
+                                      controller.getInvoiceStatusText(
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString()
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: sWhite),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Visibility(
-                          visible: note.invoicePaidStatus != AppConstants.paidInvoice && !note.isOverdue!,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                            child: Text(note.dueDaysData ?? '',
-                              style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: orangeDark_3,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        Visibility(
-                          visible: note.invoicePaidStatus == AppConstants.partiallyPaidInvoice,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                            child: Text(
-                              '${AppSingletons.storedInvoiceCurrency.value} ${note.remainingPayableAmount ?? ''}',
-                              style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: redTemplate,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 5),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
-                          ),
-                          color: grey_5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Visibility(
-                            visible: note.partialPaymentAmount!.isNotEmpty,
-                            child: Text(
-                              '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''}',
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: blackColor),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 33,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: controller.
-                                  giveInvoiceStatusColor(
-                                      note.isOverdue ?? false,
-                                      note.invoicePaidStatus.toString())
-                              ),
-                              onPressed: () {
-                                selectInvoiceStatus(
-                                    context,
-                                    note.itemPrice ?? 0,
-                                    note.id!,
-                                    note.isOverdue ?? false,
-                                    note.invoicePaidStatus.toString());
-
-                                debugPrint('Selected Id: ${note.id}');
-                              },
-                              child: Text(
-                                note.invoicePaidStatus == AppConstants.paidInvoice
-                                    ? note.invoicePaidStatus ?? ''
-                                    : note.isOverdue!
-                                    ? 'Overdue'
-                                    : note.invoicePaidStatus ?? '',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: sWhite),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        )
+                  );
+                },
+              )
             : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 80,
-            ),
-            Image.asset(
-              'assets/icons/empty_box.png',
-              height: 120,
-              width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
-            ),
-             Text(
-              'no_invoice'.tr,
-              style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  color: blackColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16),
-            )
-          ],
-        );
-      }
-      else if (controller.listShowingType.value == AppConstants.paidInvoice) {
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Image.asset(
+                    'assets/icons/empty_box.png',
+                    height: 120,
+                    width: 120,
+                    color: mainPurpleColor.withOpacity(0.7),
+                  ),
+                  Text(
+                    'no_invoice'.tr,
+                    style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: blackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  )
+                ],
+              );
+      } else if (controller.listShowingType.value == AppConstants.paidInvoice) {
         return controller.filteredPaidList.value.isNotEmpty
             ? ListView.builder(
-          itemCount: controller.filteredPaidList.value.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            int reverse = controller.filteredPaidList.value.length - 1 - index;
-            var note = controller.filteredPaidList.value[reverse];
+                itemCount: controller.filteredPaidList.value.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  int reverse =
+                      controller.filteredPaidList.value.length - 1 - index;
+                  var note = controller.filteredPaidList.value[reverse];
 
-            return GestureDetector(
-              onTap: () {
-                debugPrint('Sent ID: ${note.id}');
+                  return GestureDetector(
+                    onTap: () {
+                      debugPrint('Sent ID: ${note.id}');
 
-                Get.toNamed(Routes.savedPdfView);
+                      Get.toNamed(Routes.savedPdfView);
 
-                AppSingletons.isMakingNewINVEST.value = false;
+                      AppSingletons.isMakingNewINVEST.value = false;
 
-                AppSingletons.isPreviewingPdfBeforeSave.value = false;
+                      AppSingletons.isPreviewingPdfBeforeSave.value = false;
 
-                AppSingletons.isInvoiceDocument.value = true;
+                      AppSingletons.isInvoiceDocument.value = true;
 
-                AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
+                      AppSingletons.invoiceIdWhichWillEdit.value = note.id ?? 0;
 
-                AppSingletons.isEditInvoice.value = true;
+                      AppSingletons.isEditInvoice.value = true;
 
-                AppSingletons.isEditEstimate.value = false;
-              },
-              onLongPress: () {
-                CustomDialogues.showDialogueToDelete(
-                    false,
-                    'delete_invoice'.tr,
-                    'are_you_sure_you_want_to_delete'.tr,
-                    '?',
-                        () => controller.deleteInvoice(note.id!),
-                        () => controller.loadInvoiceData());
-              },
-              child: Container(
-                constraints: const BoxConstraints(
-                  minHeight: 100,
-                ),
-                margin: EdgeInsets.symmetric(
-                  horizontal: AppConstants.isMobileScreen.value ? 15 : 50.0,
-                  vertical: 5.0,
-                ),
-                decoration: BoxDecoration(
-                  color: sWhite,
-                  borderRadius: BorderRadius.circular(12),
-                  // border: const Border(
-                  //   top: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   left: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  //   right: BorderSide(
-                  //     color: mainPurpleColor,
-                  //     width: 1,
-                  //   ),
-                  // ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      AppSingletons.isEditEstimate.value = false;
+                    },
+                    onLongPress: () {
+                      CustomDialogues.showDialogueToDelete(
+                          false,
+                          'delete_invoice'.tr,
+                          'are_you_sure_you_want_to_delete'.tr,
+                          '?',
+                          () => controller.deleteInvoice(note.id!),
+                          () => controller.loadInvoiceData());
+                    },
+                    child: Container(
+                      constraints: const BoxConstraints(
+                        minHeight: 100,
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal:
+                            AppConstants.isMobileScreen.value ? 15 : 50.0,
+                        vertical: 5.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: sWhite,
+                        borderRadius: BorderRadius.circular(12),
+                        // border: const Border(
+                        //   top: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   left: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        //   right: BorderSide(
+                        //     color: mainPurpleColor,
+                        //     width: 1,
+                        //   ),
+                        // ),
+                      ),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              note.invoiceId.toString(),
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    note.invoiceId.toString(),
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    note.clientName.toString(),
+                                    textAlign: TextAlign.end,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: orangeDark_3,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Expanded(
-                            child: Text(
-                              note.clientName.toString(),
-                              textAlign: TextAlign.end,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: orangeDark_3,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  DateFormat('dd-MMM-yyyy').format(
+                                      DateTime.parse(
+                                          note.startDate.toString())),
+                                  style: const TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      color: orangeDark_3,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '${note.currencyName ?? ''} ',
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      note.itemPrice.toString(),
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: orangeDark_3,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            DateFormat('dd-MMM-yyyy').format(
-                                DateTime.parse(note.startDate.toString())),
-                            style: const TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: orangeDark_3,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '${note.currencyName ?? ''} ',
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              Text(
-                                note.itemPrice.toString(),
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: orangeDark_3,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Visibility(
-                      visible: note.invoicePaidStatus != AppConstants.paidInvoice && !note.isOverdue!,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                        child: Text(note.dueDaysData ?? '',
-                          style: const TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: orangeDark_3,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 5),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
-                          ),
-                          color: grey_5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
                           Visibility(
-                            visible: note.partialPaymentAmount!.isNotEmpty,
-                            child: Text(
-                              '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''}',
-                              style: const TextStyle(
+                            visible: note.invoicePaidStatus !=
+                                    AppConstants.paidInvoice &&
+                                !note.isOverdue!,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 5),
+                              child: Text(
+                                note.dueDaysData ?? '',
+                                style: const TextStyle(
                                   fontFamily: 'Montserrat',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: blackColor),
+                                  color: orangeDark_3,
+                                ),
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            height: 33,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                  backgroundColor: controller.
-                                  giveInvoiceStatusColor(
-                                      note.isOverdue ?? false,
-                                      note.invoicePaidStatus.toString())
-                              ),
-                              onPressed: () {
-                                selectInvoiceStatus(
-                                    context,
-                                    note.itemPrice ?? 0,
-                                    note.id!,
-                                    note.isOverdue ?? false,
-                                    note.invoicePaidStatus.toString());
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 5),
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                ),
+                                color: grey_5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Visibility(
+                                  visible:
+                                      note.partialPaymentAmount!.isNotEmpty,
+                                  child: Text(
+                                    '${AppSingletons.storedInvoiceCurrency.value}${note.partialPaymentAmount ?? ''}',
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: blackColor),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 33,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        backgroundColor:
+                                            controller.giveInvoiceStatusColor(
+                                                note.isOverdue ?? false,
+                                                note.invoicePaidStatus
+                                                    .toString())),
+                                    onPressed: () {
+                                      selectInvoiceStatus(
+                                          context,
+                                          note.itemPrice ?? 0,
+                                          note.id!,
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString());
 
-                                debugPrint('Selected Id: ${note.id}');
-                              },
-                              child: Text(
-                                note.invoicePaidStatus == AppConstants.paidInvoice
-                                    ? note.invoicePaidStatus ?? ''
-                                    : note.isOverdue!
-                                    ? 'Overdue'
-                                    : note.invoicePaidStatus ?? '',
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: sWhite),
-                              ),
+                                      debugPrint('Selected Id: ${note.id}');
+                                    },
+                                    child: Text(
+                                      controller.getInvoiceStatusText(
+                                          note.isOverdue ?? false,
+                                          note.invoicePaidStatus.toString()
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: sWhite),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            );
-          },
-        )
+                  );
+                },
+              )
             : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 80,
-            ),
-            Image.asset(
-              'assets/icons/empty_box.png',
-              height: 120,
-              width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
-            ),
-            Text(
-              'no_invoice'.tr,
-              style: const TextStyle(
-                  fontFamily: 'Montserrat',
-                  color: blackColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16),
-            )
-          ],
-        );
-      }
-      else {
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Image.asset(
+                    'assets/icons/empty_box.png',
+                    height: 120,
+                    width: 120,
+                    color: mainPurpleColor.withOpacity(0.7),
+                  ),
+                  Text(
+                    'no_invoice'.tr,
+                    style: const TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: blackColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  )
+                ],
+              );
+      } else {
         return Container();
       }
     });
@@ -2490,7 +2588,8 @@ class HomeView extends GetView<HomeController> {
           return AlertDialog(
             contentPadding: EdgeInsets.zero,
             backgroundColor: sWhite,
-            title: Text('filter_by'.tr,
+            title: Text(
+              'filter_by'.tr,
               style: const TextStyle(
                 fontFamily: 'Montserrat',
                 fontSize: 17,
@@ -2504,27 +2603,27 @@ class HomeView extends GetView<HomeController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 15,),
-                   Text('client_name'.tr,
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    'client_name'.tr,
                     style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       color: grey_4,
                     ),
                   ),
-
-                  const SizedBox(height: 5,),
-
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Container(
                     width: double.infinity,
                     height: 45,
                     decoration: BoxDecoration(
                         color: textFieldColor,
-                        borderRadius: BorderRadius.circular(5)
-                    ),
-
+                        borderRadius: BorderRadius.circular(5)),
                     child: PopupMenuButton(
-
                       itemBuilder: (BuildContext context) {
                         return controller.allClientNameList.map((client) {
                           return PopupMenuItem<String>(
@@ -2542,8 +2641,7 @@ class HomeView extends GetView<HomeController> {
                         height: 45,
                         decoration: BoxDecoration(
                             color: textFieldColor,
-                            borderRadius: BorderRadius.circular(5)
-                        ),
+                            borderRadius: BorderRadius.circular(5)),
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Row(
@@ -2553,8 +2651,8 @@ class HomeView extends GetView<HomeController> {
                             Obx(() {
                               return Text(
                                 controller.selectedName.value.isNotEmpty
-                                ? controller.selectedName.value
-                                : 'all_clients'.tr,
+                                    ? controller.selectedName.value
+                                    : 'all_clients'.tr,
                                 style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 14,
@@ -2563,25 +2661,28 @@ class HomeView extends GetView<HomeController> {
                               );
                             }),
                             const Icon(
-                              Icons.arrow_drop_down_sharp, color: blackColor,)
+                              Icons.arrow_drop_down_sharp,
+                              color: blackColor,
+                            )
                           ],
                         ),
                       ),
                     ),
                   ),
-
-                  const SizedBox(height: 15,),
-
-                   Text('creation_date'.tr,
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    'creation_date'.tr,
                     style: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 14,
                       color: grey_4,
                     ),
                   ),
-
-                  const SizedBox(height: 10,),
-
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -2589,16 +2690,17 @@ class HomeView extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                             Text('date_from'.tr,
+                            Text(
+                              'date_from'.tr,
                               style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 12,
                                 color: blackColor,
                               ),
                             ),
-
-                            const SizedBox(height: 3,),
-
+                            const SizedBox(
+                              height: 3,
+                            ),
                             GestureDetector(
                               onTap: () {
                                 _creationDateAndTime(context);
@@ -2608,20 +2710,21 @@ class HomeView extends GetView<HomeController> {
                                 height: 50,
                                 decoration: BoxDecoration(
                                     color: textFieldColor,
-                                    borderRadius: BorderRadius.circular(5)
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 6),
+                                    borderRadius: BorderRadius.circular(5)),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 6),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Obx(() {
                                       return Text(
-                                          controller.fromDate.value != null
-                                        ? DateFormat('dd-MM-yyyy')
-                                          .format(controller.fromDate.value!)
-                                          .toString() : '',
+                                        controller.fromDate.value != null
+                                            ? DateFormat('dd-MM-yyyy')
+                                                .format(
+                                                    controller.fromDate.value!)
+                                                .toString()
+                                            : '',
                                         style: const TextStyle(
                                           fontFamily: 'Montserrat',
                                           fontSize: 12,
@@ -2629,8 +2732,10 @@ class HomeView extends GetView<HomeController> {
                                         ),
                                       );
                                     }),
-                                    const Icon(Icons.calendar_month_outlined,
-                                      color: blackColor,)
+                                    const Icon(
+                                      Icons.calendar_month_outlined,
+                                      color: blackColor,
+                                    )
                                   ],
                                 ),
                               ),
@@ -2638,20 +2743,25 @@ class HomeView extends GetView<HomeController> {
                           ],
                         ),
                       ),
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                             Text('date_to'.tr,
+                            Text(
+                              'date_to'.tr,
                               style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 fontSize: 12,
                                 color: blackColor,
                               ),
                             ),
-                            const SizedBox(height: 3,),
+                            const SizedBox(
+                              height: 3,
+                            ),
                             GestureDetector(
                               onTap: () {
                                 _dueDateAndTime(context);
@@ -2661,20 +2771,21 @@ class HomeView extends GetView<HomeController> {
                                 height: 45,
                                 decoration: BoxDecoration(
                                     color: textFieldColor,
-                                    borderRadius: BorderRadius.circular(5)
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 6),
+                                    borderRadius: BorderRadius.circular(5)),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 6),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Obx(() {
                                       return Text(
-                                          controller.toDate.value != null
-                                       ? DateFormat('dd-MM-yyyy')
-                                          .format(controller.toDate.value!)
-                                          .toString() : '',
+                                        controller.toDate.value != null
+                                            ? DateFormat('dd-MM-yyyy')
+                                                .format(
+                                                    controller.toDate.value!)
+                                                .toString()
+                                            : '',
                                         style: const TextStyle(
                                           fontFamily: 'Montserrat',
                                           fontSize: 12,
@@ -2682,8 +2793,10 @@ class HomeView extends GetView<HomeController> {
                                         ),
                                       );
                                     }),
-                                    const Icon(Icons.calendar_month_outlined,
-                                      color: blackColor,)
+                                    const Icon(
+                                      Icons.calendar_month_outlined,
+                                      color: blackColor,
+                                    )
                                   ],
                                 ),
                               ),
@@ -2696,30 +2809,30 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
             ),
-
             actions: [
               TextButton(
                 onPressed: () {
                   Get.back();
-                }, child: Text('cancel'.tr,
-                style: const TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 14,
-                    color: grey_4
+                },
+                child: Text(
+                  'cancel'.tr,
+                  style: const TextStyle(
+                      fontFamily: 'Montserrat', fontSize: 14, color: grey_4),
                 ),
-              ),),
+              ),
               TextButton(
                 onPressed: () {
                   controller.filterData();
                   Get.back();
-
-                }, child: Text('apply'.tr,
-                style: const TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 14,
-                    color: mainPurpleColor
+                },
+                child: Text(
+                  'apply'.tr,
+                  style: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 14,
+                      color: mainPurpleColor),
                 ),
-              ),)
+              )
             ],
           );
         });
@@ -2737,13 +2850,11 @@ class HomeView extends GetView<HomeController> {
         builder: (context, child) {
           return Theme(
               data: Theme.of(context).copyWith(
-
                 colorScheme: ColorScheme.fromSeed(
                   primary: mainPurpleColor,
                   onPrimary: sWhite,
                   seedColor: mainPurpleColor,
                 ),
-
                 textButtonTheme: TextButtonThemeData(
                     style: TextButton.styleFrom(
                         foregroundColor: orangeDark_3,
@@ -2790,5 +2901,4 @@ class HomeView extends GetView<HomeController> {
       controller.dateTo(pickedDate);
     }
   }
-
 }

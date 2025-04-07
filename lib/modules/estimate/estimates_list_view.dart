@@ -1288,9 +1288,9 @@ class EstimateListView extends GetView<EstimateListController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Estimate',
-              style: TextStyle(
+             Text(
+              '${'no'.tr} ${'estimate'.tr}',
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -1500,9 +1500,9 @@ class EstimateListView extends GetView<EstimateListController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Estimate',
-              style: TextStyle(
+             Text(
+              '${'no'.tr} ${'estimate'.tr}',
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -1712,9 +1712,9 @@ class EstimateListView extends GetView<EstimateListController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Estimate',
-              style: TextStyle(
+            Text(
+              '${'no'.tr} ${'estimate'.tr}',
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,
@@ -1925,9 +1925,9 @@ class EstimateListView extends GetView<EstimateListController> {
               width: 120,
               color: mainPurpleColor.withOpacity(0.7),
             ),
-            const Text(
-              'No Estimate',
-              style: TextStyle(
+             Text(
+              '${'no'.tr} ${'estimate'.tr}',
+              style: const TextStyle(
                   fontFamily: 'Montserrat',
                   color: blackColor,
                   fontWeight: FontWeight.w600,

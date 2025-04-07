@@ -133,32 +133,24 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                             },
                             itemBuilder: (context) =>
                             [
-                              const PopupMenuItem(
-                                  value: 'last7days',
-                                  child: Text('Last 7 Days')),
-                              const PopupMenuItem(
-                                  value: 'last30days',
-                                  child: Text('Last 30 Days')),
-                              const PopupMenuItem(
-                                  value: 'thismonth',
-                                  child: Text('This Month')),
-                              const PopupMenuItem(
-                                  value: 'thisquarter',
-                                  child: Text('This Quarter')),
-                              const PopupMenuItem(
-                                  value: 'thisyear',
-                                  child: Text('This Year')),
-                              const PopupMenuItem(
-                                  value: 'lastmonth',
-                                  child: Text('Last Month')),
-                              const PopupMenuItem(
-                                  value: 'lastquarter',
-                                  child: Text('Last Quarter')),
-                              const PopupMenuItem(
-                                  value: 'lastyear',
-                                  child: Text('Last Year')),
-                              const PopupMenuItem(
-                                  value: 'custom', child: Text('Custom')),
+                              PopupMenuItem(
+                                  value: 'last7days', child: Text('last_7_days'.tr)),
+                              PopupMenuItem(
+                                  value: 'last30days', child: Text('last_30_days'.tr)),
+                              PopupMenuItem(
+                                  value: 'thismonth', child: Text('this_month'.tr)),
+                              PopupMenuItem(
+                                  value: 'thisquarter', child: Text('this_quarter'.tr)),
+                              PopupMenuItem(
+                                  value: 'thisyear', child: Text('this_year'.tr)),
+                              PopupMenuItem(
+                                  value: 'lastmonth', child: Text('last_month'.tr)),
+                              PopupMenuItem(
+                                  value: 'lastquarter', child: Text('last_quarter'.tr)),
+                              PopupMenuItem(
+                                  value: 'lastyear', child: Text('last_year'.tr)),
+                              PopupMenuItem(
+                                  value: 'custom', child: Text('custom'.tr)),
                             ],
                             child: Container(
                                 width: double.infinity,
@@ -184,7 +176,7 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                                     ),
                                     Obx(() {
                                       return Text(
-                                          controller.selectedDateFilter.value);
+                                          controller.selectedDateFilter.value.tr);
                                     }),
                                     const Icon(
                                       Icons.arrow_drop_down_sharp,
@@ -681,7 +673,7 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                                         ),
                                         Obx(() {
                                           return Text(
-                                              controller.selectedDateFilter.value);
+                                              controller.selectedDateFilter.value.tr);
                                         }),
                                         const Icon(
                                           Icons.arrow_drop_down_sharp,

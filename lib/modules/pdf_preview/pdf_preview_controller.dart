@@ -399,27 +399,27 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
     switch (tempId) {
       case 0:
-        return PdfSimpleRedTemplate.createPreviewPdf(invoiceDataModel!);
+        return SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
       case 1:
-        return PdfSimpleBlueTemplate.createPreviewPdf(invoiceDataModel!);
+        return SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 1);
       case 2:
-        return PdfPurpleTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
       case 3:
-        return PdfMatBrownTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
       case 4:
-        return PdfBlueTapTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
       case 5:
-        return PdfBlackYellowTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
       case 6:
-        return PdfPinkBlueTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
       case 7:
-        return PdfOrangeBlackTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 7);
       case 8:
-        return PdfBlueBlackDottedTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 8);
       case 9:
-        return PdfGreyWallpaperTemplate.createPreviewPdf(invoiceDataModel!);
+        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 9);
       default:
-        return PdfSimpleRedTemplate.createPreviewPdf(invoiceDataModel!);
+        return SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 0);
     }
   }
 

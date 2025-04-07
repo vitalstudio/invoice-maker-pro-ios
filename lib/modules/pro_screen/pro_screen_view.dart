@@ -614,9 +614,9 @@ class ProScreenView extends GetView<ProScreenController> {
                                 horizontal: 10,
                                 vertical: 5
                             ),
-                            child: const Text(
-                              'Discount Offer',
-                              style: TextStyle(
+                            child: Text(
+                              'discount_offer'.tr,
+                              style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 15,
                                   color: sWhite
