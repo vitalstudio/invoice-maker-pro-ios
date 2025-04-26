@@ -2,6 +2,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../core/app_singletons/app_singletons.dart';
+import '../../core/constants/app_constants/App_Constants.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import '../../core/utils/utils.dart';
 import '../../model/data_model.dart';
 import 'package:pdf/pdf.dart';
@@ -33,6 +35,8 @@ class SimpleRedAndBluePDFTemplate {
     final fallBackFontOne = await PdfGoogleFonts.notoSansArabicBold();
     final fallBackFontTwo = await loadCustomFont();
     final fallBackFontThree = await loadCustomFont2();
+
+    await LanguageSelection.updateLocale(selectedLanguage: dataModel.languageName ?? AppConstants.english);
 
     pdf.addPage(
       pw.MultiPage(

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 // import '../../core/utils/triangle_painter.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import '../../pdf_templates/simple_red_template/simple_red_temp_pdf.dart';
 import 'package:open_file_manager/open_file_manager.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
@@ -38,8 +39,11 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
       appBar: AppBar(
         backgroundColor: mainPurpleColor,
         leading: IconButton(
-          onPressed: () {
+          onPressed: () async{
             Get.back();
+            await LanguageSelection.updateLocale(
+                selectedLanguage: AppSingletons.storedAppLanguage.value
+            );
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -142,12 +146,17 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
               ))
         ],
       ),
-      body: WillPopScope(
-        onWillPop: () async {
+      body: PopScope(
+        onPopInvokedWithResult: (didPop, result) async{
+          if(didPop){
+            return;
+          }
+
           if (AppSingletons.isPreviewingPdfBeforeSave.value) {
             Get.back();
             AppSingletons.isPreviewingPdfBeforeSave.value = false;
-          } else {
+          }
+          else {
             AppSingletons.isPreviewingPdfBeforeSave.value = false;
 
             if (AppSingletons.isInvoiceDocument.value) {
@@ -167,8 +176,13 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
             }
           }
 
-          return true;
+          await LanguageSelection.updateLocale(
+              selectedLanguage: AppSingletons.storedAppLanguage.value
+          );
         },
+        // onWillPop: () async {
+        //  return true;
+        // },
         child: Obx(() {
           return controller.isLoading.value
               ? const Center(
@@ -209,7 +223,7 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                     // ),
                     // ),
 
-                    showingAllTemplatesInPreview(),
+                    setAllPdfTemplatesForPreview(),
 
                     Obx(() {
                       if (controller.isOverdue.value) {
@@ -577,7 +591,7 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
                                   PointerDeviceKind.touch,
                                 },
                               ),
-                              child: showingAllTemplatesInPreview())),
+                              child: setAllPdfTemplatesForPreview())),
                       Positioned(
                         bottom: 15,
                         left: 0,
@@ -629,567 +643,502 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
     );
   }
 
-  Widget showingAllTemplatesInPreview() {
-    return PageView(
+  Widget setAllPdfTemplatesForPreview() {
+    return ListView(
       scrollDirection: Axis.horizontal,
-      controller: controller.pageController,
-      onPageChanged: (value) async {
-        debugPrint('Temp ID: $value');
-        controller.previewTempNo.value = value;
-        debugPrint('Change Temp ID: ${controller.previewTempNo.value}');
-      },
       children: [
+        const SizedBox(width: 20,),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 0 ? 15 : 30),
-          child: PdfPreviewCustom(
-            scrollViewDecoration: const BoxDecoration(
-              color: orangeLight_1,
-            ),
-            pages: const [0],
-            loadingWidget: const CupertinoActivityIndicator(
-              color: mainPurpleColor,
-              radius: 20,
-            ),
-            pageFormat: PdfPageFormat.a4,
-            previewPageMargin: const EdgeInsets.all(8.0),
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf00,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
 
-            build: (format) async {
-              final pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(
-                  controller.invoiceDataModel!,templateIdNo: 0);
-              if (pdfData.isEmpty) {
-                throw Exception("No pages generated for preview.");
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('LOADING...'.tr));
               }
-              return pdfData;
             },
-            //
-            // build: (format) => PdfSimpleRedTemplate.createPreviewPdf(
-            //     controller.invoiceDataModel!),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 1 ? 15 : 30),
-          child: PdfPreviewCustom(
-            scrollViewDecoration: const BoxDecoration(
-              color: orangeLight_1,
-            ),
-            pages: const [0],
-            loadingWidget: const CupertinoActivityIndicator(
-              color: mainPurpleColor,
-              radius: 20,
-            ),
-            pageFormat: PdfPageFormat.a4,
-            previewPageMargin: const EdgeInsets.all(8.0),
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf01,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
 
-            build: (format) async {
-              final pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(
-                  controller.invoiceDataModel!,templateIdNo: 1);
-              if (pdfData.isEmpty) {
-                throw Exception("No pages generated for preview.");
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
               }
-              return pdfData;
             },
+          ),
+        ),
+        Container(
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf02,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
 
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 2 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 2
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfPurpleTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
 
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(2),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 3 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 3
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfMatBrownTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(3),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf03,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
+
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 4 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 4
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfBlueTapTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(4),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf04,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
+
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 5 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 5
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfBlackYellowTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(5),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf05,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
+
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 6 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 6
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfPinkBlueTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(6),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf06,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
+
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 7 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 7
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfOrangeBlackTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(7),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf07,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
+
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 8 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 8
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfBlueBlackDottedTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(8),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf08,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
+
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
         Container(
-          margin: EdgeInsets.only(
-              top: controller.previewTempNo.value == 9 ? 15 : 30),
-          child: Stack(
-            children: [
-              PdfPreviewCustom(
-                scrollViewDecoration: const BoxDecoration(
-                  color: orangeLight_1,
-                ),
-                pages: const [0],
-                loadingWidget: const CupertinoActivityIndicator(
-                  color: mainPurpleColor,
-                  radius: 20,
-                ),
-                pageFormat: PdfPageFormat.a4,
-                previewPageMargin: const EdgeInsets.all(8.0),
-                build: (format) async {
-                  final pdfData = await WithImagesPDFTemplates.createPreviewPdf(
-                      controller.invoiceDataModel!,
-                      templateIdNo: 9
-                  );
-                  if (pdfData.isEmpty) {
-                    throw Exception("No pages generated for preview.");
-                  }
-                  return pdfData;
-                },
-                // build: (format) => PdfGreyWallpaperTemplate.createPreviewPdf(
-                //     controller.invoiceDataModel!),
-              ),
-              // Visibility(
-              //   visible: !AppSingletons.isSubscriptionEnabled.value,
-              //   child: Visibility(
-              //     visible: !controller.isUnlocked(9),
-              //     child: Container(
-              //       margin: const EdgeInsets.all(8.0),
-              //       child: CustomPaint(
-              //         size: const Size(40, 40), // Full-size overlay
-              //         painter: TrianglePainter(
-              //           color: proIconColor, // Color changes based on the condition
-              //         ),
-              //         child: Container(
-              //           height: 50,
-              //           width: 40,
-              //           padding: const EdgeInsets.only(left: 15),
-              //           child: Transform.rotate(
-              //             angle: -0.854,
-              //             child: const Text('PRO',
-              //               style: TextStyle(
-              //                 color: sWhite,
-              //                 fontFamily: 'Montserrat',
-              //                 fontSize: 10,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-            ],
+          height: 600,
+          width: 300,
+          margin: const EdgeInsets.only(top: 15, bottom: 100),
+          child: FutureBuilder<Uint8List> (
+            future: controller.pdf09,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CupertinoActivityIndicator(color: mainPurpleColor,radius: 15,));
+              } else if (snapshot.hasError) {
+                return const Center(child: Text('LOADING...'));
+              } else if (snapshot.hasData) {
+
+                return  PdfPreviewCustom(
+                  scrollViewDecoration: const BoxDecoration(
+                    color: orangeLight_1,
+                  ),
+                  loadingWidget: const CupertinoActivityIndicator(
+                    color: mainPurpleColor,
+                    radius: 20,
+                  ),
+                  pageFormat: PdfPageFormat.a4,
+                  previewPageMargin: const EdgeInsets.all(8.0),
+                  build: (format) => snapshot.data!,
+                );
+
+
+                //   SfPdfViewerTheme(
+                //   data: SfPdfViewerThemeData(
+                //     backgroundColor: orangeLight_1,
+                //     progressBarColor: mainPurpleColor,
+                //   ),
+                //   child: SfPdfViewer.memory(
+                //     snapshot.data!,
+                //     onTap: (_){
+                //
+                //         Get.toNamed(Routes.pdfTemplateSelect);
+                //         AppSingletons.isEditingOnlyTemplate.value = true;
+                //         debugPrint('ABC 2');
+                //
+                //     },
+                //   ),
+                // );
+              } else {
+                return Center(child: Text('no_pdf_data'.tr));
+              }
+            },
           ),
         ),
+        const SizedBox(width: 20,),
       ],
     );
   }

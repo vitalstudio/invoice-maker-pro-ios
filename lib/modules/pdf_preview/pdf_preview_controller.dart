@@ -5,8 +5,10 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../core/constants/app_constants/App_Constants.dart';
 import '../../core/services/ads_controller.dart';
 import '../../core/services/ads_helper.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import '../../modules/estimate/estimate_list_controller.dart';
 import '../../modules/home_screen/home_controller.dart';
 import 'package:path_provider/path_provider.dart';
@@ -51,6 +53,17 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
   final unlockedTemplates = <int>[0, 1].obs;
 
   RxBool isOverdue = false.obs;
+
+  Future<Uint8List>? pdf00;
+  Future<Uint8List>? pdf01;
+  Future<Uint8List>? pdf02;
+  Future<Uint8List>? pdf03;
+  Future<Uint8List>? pdf04;
+  Future<Uint8List>? pdf05;
+  Future<Uint8List>? pdf06;
+  Future<Uint8List>? pdf07;
+  Future<Uint8List>? pdf08;
+  Future<Uint8List>? pdf09;
 
   final homeScController = Get.put(HomeController());
   final estListController = Get.put(EstimateListController());
@@ -333,6 +346,14 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
         discountPercentage: AppSingletons.estDiscountPercentage?.value ?? '0',
         subTotal: AppSingletons.estSubTotal?.value.toString() ?? '',
       );
+
+      await getPDFTemplates();
+
+      await Future.delayed(const Duration(seconds: 15));
+
+      await LanguageSelection.updateLocale(
+          selectedLanguage: AppSingletons.storedAppLanguage.value);
+
     }
     else {
       debugPrint('Previewing INVOICE Data');
@@ -378,6 +399,14 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
           documentStatus: AppSingletons.documentStatus.value,
           partiallyPaidAmount: AppSingletons.partialPaymentAmount?.value ?? ''
       );
+
+      await getPDFTemplates();
+
+      await Future.delayed(const Duration(seconds: 15));
+
+      await LanguageSelection.updateLocale(
+          selectedLanguage: AppSingletons.storedAppLanguage.value);
+
     }
 
   }
@@ -397,30 +426,48 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
     debugPrint('TEMP ID: $tempId');
 
+    Uint8List pdfData;
+
     switch (tempId) {
       case 0:
-        return SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
+        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
+        break;
       case 1:
-        return SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 1);
+        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 1);
+        break;
       case 2:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
+        break;
       case 3:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
+         break;
       case 4:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
+         break;
       case 5:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
+         break;
       case 6:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
+         break;
       case 7:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 7);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 7);
+         break;
       case 8:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 8);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 8);
+         break;
       case 9:
-        return WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 9);
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 9);
+         break;
       default:
-        return SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 0);
+        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 0);
     }
+
+    await LanguageSelection.updateLocale(
+        selectedLanguage: AppSingletons.storedAppLanguage.value);
+
+    return pdfData;
+
   }
 
   Future<void> saveAndSharePdf(Uint8List pdfData, String filename) async {
@@ -534,6 +581,22 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
       itemsTaxesList: AppSingletons().itemsTaxesList,
       itemsUnitList: AppSingletons().itemUnitList,
     );
+  }
+
+  Future<void> getPDFTemplates() async{
+
+    debugPrint('getPDFTemplates called');
+
+    pdf00 = SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
+    pdf01 = SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 1);
+    pdf02 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
+    pdf03 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
+    pdf04 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
+    pdf05 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
+    pdf06 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
+    pdf07 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 7);
+    pdf08 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 8);
+    pdf09 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 9);
   }
 
   // void selectProBillTemplate() {
