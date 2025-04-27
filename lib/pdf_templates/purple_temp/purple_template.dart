@@ -169,6 +169,10 @@ class WithImagesPDFTemplates {
         crossAxisAlignment: pw.CrossAxisAlignment.start,
       ),
     );
+
+    await LanguageSelection.updateLocale(
+        selectedLanguage: AppSingletons.storedAppLanguage.value);
+
     return pdf.save();
   }
 

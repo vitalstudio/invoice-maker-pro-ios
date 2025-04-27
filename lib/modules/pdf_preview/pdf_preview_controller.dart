@@ -349,10 +349,10 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
       await getPDFTemplates();
 
-      await Future.delayed(const Duration(seconds: 15));
+      // await Future.delayed(const Duration(seconds: 15));
 
-      await LanguageSelection.updateLocale(
-          selectedLanguage: AppSingletons.storedAppLanguage.value);
+      // await LanguageSelection.updateLocale(
+      //     selectedLanguage: AppSingletons.storedAppLanguage.value);
 
     }
     else {
@@ -402,10 +402,10 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
       await getPDFTemplates();
 
-      await Future.delayed(const Duration(seconds: 15));
-
-      await LanguageSelection.updateLocale(
-          selectedLanguage: AppSingletons.storedAppLanguage.value);
+      // await Future.delayed(const Duration(seconds: 15));
+      //
+      // await LanguageSelection.updateLocale(
+      //     selectedLanguage: AppSingletons.storedAppLanguage.value);
 
     }
 

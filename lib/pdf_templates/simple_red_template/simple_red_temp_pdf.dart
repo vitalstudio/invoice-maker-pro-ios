@@ -140,6 +140,10 @@ class SimpleRedAndBluePDFTemplate {
         crossAxisAlignment: pw.CrossAxisAlignment.start,
       ),
     );
+
+    await LanguageSelection.updateLocale(
+        selectedLanguage: AppSingletons.storedAppLanguage.value);
+
     return pdf.save();
   }
 
