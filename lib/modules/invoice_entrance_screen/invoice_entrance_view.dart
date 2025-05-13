@@ -1580,7 +1580,7 @@ class InvoiceEntranceView extends GetView<InvoiceEntranceController> {
                             if(AppSingletons.noOfInvoicesMadeAlready.value >= 1){
                               CallWarningDialogueBox.openDialogueBox(
                                   context: context,
-                                  isInvoiceWarningBox: false
+                                  isInvoiceWarningBox: true
                               );
                             } else{
                               await controller.saveDataInInvoice();
