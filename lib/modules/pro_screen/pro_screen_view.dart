@@ -592,8 +592,8 @@ class ProScreenView extends GetView<ProScreenController> {
                         ),
                       ),
                       Visibility(
-                        visible: AppSingletons.selectedPlanForProInvoice.value == 1
-                        || AppSingletons.selectedPlanForProInvoice.value == 2,
+                        visible: AppSingletons.selectedPlanForProInvoice.value == 1,
+                        // || AppSingletons.selectedPlanForProInvoice.value == 2,
                         child: Align(
                           alignment: Alignment.center,
                           child: Container(
@@ -616,9 +616,10 @@ class ProScreenView extends GetView<ProScreenController> {
                                 vertical: 5
                             ),
                             child: Text(
-                              AppSingletons.selectedPlanForProInvoice.value == 1
-                              ? 'discount_offer'.tr
-                              : '3_days_free_trial'.tr,
+                              // AppSingletons.selectedPlanForProInvoice.value == 1
+                              // ?
+                              'discount_offer'.tr,
+                              // : '3_days_free_trial'.tr,
                               style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 15,
@@ -1139,9 +1140,10 @@ class ProScreenView extends GetView<ProScreenController> {
                               ])),
                           alignment: Alignment.center,
                           child:  Text(
-                            AppSingletons.selectedPlanForProInvoice.value == 2
-                            ? 'start_for_free'.tr
-                            : 'continue'.tr,
+                            // AppSingletons.selectedPlanForProInvoice.value == 2
+                            // ? 'start_for_free'.tr
+                            // :
+                            'continue'.tr,
                             style: const TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: sWhite,

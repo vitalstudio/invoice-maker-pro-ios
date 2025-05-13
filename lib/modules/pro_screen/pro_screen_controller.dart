@@ -188,8 +188,6 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     isUserPro.value = true;
     AppSingletons.isSubscriptionEnabled.value = true;
     SharedPreferencesManager.setValue(AppConstants.userStatusKey, true);
-
-    // TODO: implement onPurchasedRestored
   }
 
   @override

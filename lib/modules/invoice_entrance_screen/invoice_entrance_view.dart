@@ -7,8 +7,9 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
 import 'package:currency_picker/currency_picker.dart';
-import 'package:invoice/core/utils/dialogue_to_select_language.dart';
+import '../../core/utils/dialogue_to_select_language.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
+import '../../core/utils/call_warning_box.dart';
 import '../../core/utils/utils.dart';
 import '../../core/routes/routes.dart';
 import '../../../core/widgets/custom_container.dart';
@@ -1577,7 +1578,10 @@ class InvoiceEntranceView extends GetView<InvoiceEntranceController> {
                             await controller.editInvoiceData();
                           } else{
                             if(AppSingletons.noOfInvoicesMadeAlready.value >= 1){
-                              Get.toNamed(Routes.proScreenView);
+                              CallWarningDialogueBox.openDialogueBox(
+                                  context: context,
+                                  isInvoiceWarningBox: false
+                              );
                             } else{
                               await controller.saveDataInInvoice();
                             }

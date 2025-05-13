@@ -68,7 +68,7 @@ class AppSingletons{
 
   static RxString? partialPaymentAmount = ''.obs;
 
-  static RxInt selectedPlanForProInvoice = 2.obs;
+  static RxInt selectedPlanForProInvoice = 1.obs;
 
   static RxBool isStartDeletingItem = false.obs;
 

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
+import '../../core/utils/call_warning_box.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
 import '../../core/utils/dialogue_to_select_language.dart';
 import '../../modules/bottom_nav_bar/bottom_nav_bar_controller.dart';
@@ -1728,7 +1729,10 @@ class EstimateEntranceView extends GetView<EstimateEntranceController> {
                             await controller.editEstimateData();
                           } else{
                             if(AppSingletons.noOfEstimatesMadeAlready.value >= 1){
-                              Get.toNamed(Routes.proScreenView);
+                              CallWarningDialogueBox.openDialogueBox(
+                                  context: context,
+                                  isInvoiceWarningBox: false
+                              );
                             } else{
                               await controller.saveDataInEstimate();
                             }
