@@ -36,6 +36,11 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
   RxBool isLoading = false.obs;
 
+  ScrollController scrollController = ScrollController();
+  final double itemWidth = 200.0;
+  final RxInt fullyVisibleIndex = 0.obs;
+  double itemSpacing = 0.0;
+
   DBHelper? pdfDbHelper;
   String? netTotal;
 
@@ -79,6 +84,8 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
     // updateUnlockedTemplatesFromDatabase();
 
+    scrollController.addListener(_onScroll);
+
     if(!AppSingletons.isSubscriptionEnabled.value){
       if(Platform.isAndroid && AppSingletons.androidBannerAdsEnabled.value){
         _loadBannerAd();
@@ -117,6 +124,28 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
     await fetchInvoiceData();
 
     super.onInit();
+  }
+
+  void _onScroll() {
+    double offset = scrollController.offset;
+    double viewportWidth = scrollController.position.viewportDimension;
+
+    for (int i = 0; i < 10; i++) {
+      double itemStart = i * (300 + itemSpacing);
+      double itemEnd = itemStart + 300;
+
+      bool isFullyVisible =
+          itemStart >= offset && itemEnd <= offset + viewportWidth;
+
+      if (isFullyVisible) {
+        if (fullyVisibleIndex.value != i) {
+          debugPrint("Fully visible item: $i");
+          fullyVisibleIndex.value = i;
+          debugPrint('StoredValue: ${fullyVisibleIndex.value}');
+        }
+        break;
+      }
+    }
   }
 
   void _loadBannerAd() {
