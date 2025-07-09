@@ -126,6 +126,33 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
     super.onInit();
   }
 
+  @override
+  void onReady() async{
+    super.onReady();
+
+    int pdfIndex = 0;
+
+    if(AppSingletons.isInvoiceDocument.value){
+      pdfIndex = int.tryParse(AppSingletons.invoiceTemplateIdINV.value) ?? 0;
+    } else{
+      pdfIndex = int.tryParse(AppSingletons.estTemplateIdINV.value) ?? 0;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      scrollToPdfIndex(pdfIndex);
+    });
+
+  }
+
+  void scrollToPdfIndex(int index) {
+    final double targetPosition = index * (300 + itemSpacing);
+    scrollController.animateTo(
+        targetPosition,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+    );
+  }
+
   void _onScroll() {
     double offset = scrollController.offset;
     double viewportWidth = scrollController.position.viewportDimension;
