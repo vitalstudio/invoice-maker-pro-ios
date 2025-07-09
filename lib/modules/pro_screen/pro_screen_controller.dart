@@ -34,6 +34,9 @@ class ProScreenController extends GetxController implements PurchaseCallback{
   RxString monthlyPurchaseValue = ''.obs;
   RxString weeklyPurchaseValue = ''.obs;
 
+  RxString discPercInMonthlyAmount = ''.obs;
+  RxString discPercInYearlyAmount = ''.obs;
+
   List imagesList = [
     'assets/images/slide1.jpg',
     'assets/images/slide2.jpg',
@@ -73,6 +76,15 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     debugPrint('CV: ${discountYearlyPricePerWeek.value}');
 
     debugPrint("InApp Products:: $productsDetailsAndroid");
+
+   discPercInMonthlyAmount.value = calculateMonthlyPercentage(
+       monthlyVal: productsDetailsAndroid[1].rawPrice,
+       weeklyVal: productsDetailsAndroid[2].rawPrice
+   );
+    discPercInYearlyAmount.value = calculateYearlyPercentage(
+        yearlyVal: productsDetailsAndroid[3].rawPrice,
+        weeklyVal: productsDetailsAndroid[2].rawPrice
+    );
   }
 
   void nowGetProductsIOS() async {
@@ -106,6 +118,15 @@ class ProScreenController extends GetxController implements PurchaseCallback{
 
     debugPrint('CV: ${discountYearlyPricePerWeek.value}');
 
+    discPercInMonthlyAmount.value = calculateMonthlyPercentage(
+        monthlyVal: productsDetailsIOS.value[1].storeProduct.price,
+        weeklyVal: productsDetailsIOS.value[0].storeProduct.price
+    );
+    discPercInYearlyAmount.value = calculateYearlyPercentage(
+        yearlyVal: productsDetailsIOS.value[2].storeProduct.price,
+        weeklyVal: productsDetailsIOS.value[0].storeProduct.price
+    );
+
   }
 
   String setCurrencyCodeAndPriceString(double price, String currencyCode){
@@ -122,6 +143,7 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     //   // });
     // }
     super.onInit();
+
   }
 
   @override
@@ -132,6 +154,7 @@ class ProScreenController extends GetxController implements PurchaseCallback{
       nowGetProductsIOS();
     }
     super.onReady();
+
   }
 
   void buyProduct(ProductDetails productDetails) {
@@ -244,6 +267,45 @@ class ProScreenController extends GetxController implements PurchaseCallback{
       return '/lifetime'.tr.obs;
     }
     return ''.obs;
+  }
+
+  String calculateMonthlyPercentage(
+      {
+        required double monthlyVal,
+        required double weeklyVal,
+     }
+      ) {
+
+    double originalValWeek = weeklyVal * 4.33;
+
+    double minusVal = originalValWeek - monthlyVal;
+    double divVal = minusVal / originalValWeek;
+
+    double percentageVal = divVal * 100;
+
+    debugPrint('Per Month: ${percentageVal.toStringAsFixed(0)}');
+
+    return percentageVal.toStringAsFixed(0);
+
+  }
+
+  String calculateYearlyPercentage(
+      {
+        required double yearlyVal,
+        required double weeklyVal,
+      }
+      ) {
+
+    double originalValWeek = weeklyVal * 52;
+
+    double minusVal = originalValWeek - yearlyVal;
+    double divVal = minusVal / originalValWeek;
+
+    double percentageVal = divVal * 100;
+
+    debugPrint('Per Yearly: ${percentageVal.toStringAsFixed(0)}');
+
+    return percentageVal.toStringAsFixed(0);
   }
 
 }

@@ -233,7 +233,7 @@ class ProScreenView extends GetView<ProScreenController> {
                       height: 20,
                     ),
 
-                Container(
+                   Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: sWhite,
@@ -394,9 +394,9 @@ class ProScreenView extends GetView<ProScreenController> {
                   ),
                 ),
 
-                const SizedBox(height: 5,),
+                   const SizedBox(height: 5,),
 
-                Align(
+                   Align(
                   alignment: Alignment.center,
                   child: Obx(() {
                     return GestureDetector(
@@ -476,9 +476,9 @@ class ProScreenView extends GetView<ProScreenController> {
                   }),
                 ),
 
-                const SizedBox(height: 10,),
+                   const SizedBox(height: 10,),
 
-                Obx(() {
+                   Obx(() {
                   return Stack(
                     children: [
                       Container(
@@ -592,8 +592,8 @@ class ProScreenView extends GetView<ProScreenController> {
                         ),
                       ),
                       Visibility(
-                        visible: AppSingletons.selectedPlanForProInvoice.value == 1,
-                        // || AppSingletons.selectedPlanForProInvoice.value == 2,
+                        visible: AppSingletons.selectedPlanForProInvoice.value == 1
+                        || AppSingletons.selectedPlanForProInvoice.value == 2,
                         child: Align(
                           alignment: Alignment.center,
                           child: Container(
@@ -616,10 +616,10 @@ class ProScreenView extends GetView<ProScreenController> {
                                 vertical: 5
                             ),
                             child: Text(
-                              // AppSingletons.selectedPlanForProInvoice.value == 1
-                              // ?
-                              'discount_offer'.tr,
-                              // : '3_days_free_trial'.tr,
+                              AppSingletons.selectedPlanForProInvoice.value == 1
+                              ?
+                              '${controller.discPercInYearlyAmount.value}% ${'discount'.tr}'
+                              :'${controller.discPercInMonthlyAmount.value}% ${'discount'.tr}',
                               style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 15,
