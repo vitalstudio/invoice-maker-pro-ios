@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:currency_code_to_currency_symbol/currency_code_to_currency_symbol.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,10 +16,13 @@ import '../services/in_app_services_ios.dart';
 
 class WarningScreenDialogue extends GetxController implements PurchaseCallback {
 
+  RxList<ProductDetails> productsDetailsAndroid = <ProductDetails>[].obs;
   Rx<List<Package>> productsDetailsIOS = Rx<List<Package>>([]);
 
   RxString monthlyPurchaseValue = ''.obs;
   RxString perWeekMonthlyValue = ''.obs;
+
+  RxString discPercInMonthlyAmount = ''.obs;
 
   Future showWarningDialogue({required BuildContext context,
     required bool isInvoiceWarningBox
@@ -50,11 +55,11 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
 
                   Container(
                     margin: const EdgeInsets.only(
-                      right: 10
+                        right: 10
                     ),
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Get.back();
                         },
                         child: const Icon(
@@ -119,16 +124,19 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
                                 height: 22,
                               ),
                               Center(
-                                child: Text(
-                                  '${'save'.tr} 25%',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      color: sWhite,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w600
-                                  ),
-                                ),
+                                child: Obx(() {
+                                  return Text(
+                                    '${'save'.tr} ${discPercInMonthlyAmount
+                                        .value}%',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: sWhite,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600
+                                    ),
+                                  );
+                                }),
                               ),
                               const SizedBox(
                                 height: 5,
@@ -138,9 +146,9 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
                                 child: Obx(() {
                                   return Text(
                                     monthlyPurchaseValue.value.isNotEmpty
-                                    || monthlyPurchaseValue.value != ''
-                                    ? monthlyPurchaseValue.value
-                                    : '\$00.00',
+                                        || monthlyPurchaseValue.value != ''
+                                        ? monthlyPurchaseValue.value
+                                        : '\$00.00',
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         fontFamily: 'Montserrat',
@@ -161,7 +169,8 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
                                   return Text(
                                     perWeekMonthlyValue.value.isNotEmpty
                                         || perWeekMonthlyValue.value != ''
-                                        ? '${perWeekMonthlyValue.value} ${'per_week'.tr}'
+                                        ? '${perWeekMonthlyValue
+                                        .value} ${'per_week'.tr}'
                                         : '00.00 ${'per_week'.tr}',
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
@@ -226,7 +235,7 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
                   const SizedBox(height: 5,),
 
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       buyProductIOS(
                           productsDetailsIOS.value[1]);
                     },
@@ -236,8 +245,8 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       padding: const EdgeInsets.symmetric(
-                        vertical: 2,
-                        horizontal: 20
+                          vertical: 2,
+                          horizontal: 20
                       ),
                       child: Text(
                         'continue'.tr,
@@ -255,7 +264,7 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
                   const SizedBox(height: 15,),
 
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Get.toNamed(Routes.proScreenView);
                     },
                     child: Container(
@@ -358,6 +367,39 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
     double convertToPerWeek = monthlyValue / 4.325;
 
     perWeekMonthlyValue.value = convertToPerWeek.toStringAsFixed(2);
+
+    discPercInMonthlyAmount.value = calculateMonthlyPercentage(
+        monthlyVal: productsDetailsIOS.value[1].storeProduct.price,
+        weeklyVal: productsDetailsIOS.value[0].storeProduct.price
+    );
+  }
+
+  void nowGetProductsForAndroid() async {
+    List<ProductDetails> items = await InAppServices().getStoreProducts();
+    productsDetailsAndroid.assignAll(items);
+
+    monthlyPurchaseValue.value = setCurrencyCodeAndPriceString(
+        productsDetailsAndroid[1].rawPrice,
+        getCurrencySymbol(productsDetailsAndroid[1].currencyCode));
+
+    String currencyCode = productsDetailsAndroid[1].currencyCode;
+    debugPrint('CurrencyCode: $currencyCode');
+
+    String symbolFromCode = getCurrencySymbol(currencyCode);
+
+    debugPrint('CurrencySymbol: $symbolFromCode');
+
+    debugPrint("InApp Products:: $productsDetailsAndroid");
+
+    double monthlyAmount = productsDetailsAndroid[1].rawPrice;
+    double convertToPerWeek = monthlyAmount / 4.325;
+
+    perWeekMonthlyValue.value = convertToPerWeek.toStringAsFixed(2);
+
+    discPercInMonthlyAmount.value = calculateMonthlyPercentage(
+        monthlyVal: productsDetailsAndroid[1].rawPrice,
+        weeklyVal: productsDetailsAndroid[2].rawPrice
+    );
   }
 
   String setCurrencyCodeAndPriceString(double price, String currencyCode) {
@@ -369,7 +411,28 @@ class WarningScreenDialogue extends GetxController implements PurchaseCallback {
   void onReady() {
     super.onReady();
     debugPrint('OnReady Start');
-    nowGetProductsIOS();
+    if(Platform.isAndroid) {
+      nowGetProductsForAndroid();
+    } else{
+      nowGetProductsIOS();
+    }
+
+  }
+
+  String calculateMonthlyPercentage({
+    required double monthlyVal,
+    required double weeklyVal,
+  }) {
+    double originalValWeek = weeklyVal * 4.33;
+
+    double minusVal = originalValWeek - monthlyVal;
+    double divVal = minusVal / originalValWeek;
+
+    double percentageVal = divVal * 100;
+
+    debugPrint('Per Month: ${percentageVal.toStringAsFixed(0)}');
+
+    return percentageVal.toStringAsFixed(0);
   }
 
 }
