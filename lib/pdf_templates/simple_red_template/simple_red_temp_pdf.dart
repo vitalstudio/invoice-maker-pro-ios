@@ -51,7 +51,7 @@ class SimpleRedAndBluePDFTemplate {
               dataModel.businessWebsite.toString(),
               dataModel.titleName.toString(),
               extraBFont,
-              templateIdNo ?? 0,
+              templateIdNo ?? 5,
               boldFont: boldFont,
               fallBackOne: fallBackFontOne,
               fallBackTwo: fallBackFontTwo,
@@ -88,7 +88,7 @@ class SimpleRedAndBluePDFTemplate {
               dataModel.itemsAmountList ?? [],
               dataModel.itemsQuantityList ?? [],
               boldFont,
-              templateIdNo ?? 0,
+              templateIdNo ?? 5,
               fallbackFontOne: fallBackFontOne,
             fallBackFontTwo: fallBackFontTwo,
             fallBackFontThree: fallBackFontThree
@@ -107,7 +107,7 @@ class SimpleRedAndBluePDFTemplate {
               dataModel.taxInTotal.toString(),
               dataModel.shippingCost.toString(),
               dataModel.partiallyPaidAmount.toString(),
-              templateIdNo ?? 0,
+              templateIdNo ?? 5,
               fallBackFontOne: fallBackFontOne,
               fallBackFontTwo: fallBackFontTwo,
             fallBackFontThree: fallBackFontThree
@@ -180,9 +180,9 @@ class SimpleRedAndBluePDFTemplate {
       titleCheck = invoiceTitle;
     }
 
-    if(templateIdNo == 0){
+    if(templateIdNo == 5){
       pdfColor = PdfColors.black;
-    } else if(templateIdNo == 1){
+    } else if(templateIdNo == 6){
       pdfColor = PdfColors.blue;
     }
 
@@ -480,9 +480,9 @@ class SimpleRedAndBluePDFTemplate {
 
     PdfColor pdfColors = PdfColors.red;
 
-    if(templateIdNo == 0){
+    if(templateIdNo == 5){
       pdfColors = PdfColors.red;
-    } else if(templateIdNo == 1){
+    } else if(templateIdNo == 6){
       pdfColors = PdfColors.blue;
     }
 
@@ -552,9 +552,9 @@ class SimpleRedAndBluePDFTemplate {
 
     PdfColor pdfColors = PdfColors.red;
 
-    if(templateIdNo == 0){
+    if(templateIdNo == 5){
       pdfColors = PdfColors.red;
-    } else if(templateIdNo == 1){
+    } else if(templateIdNo == 6){
       pdfColors = PdfColors.blue;
     }
 

@@ -24,16 +24,21 @@ class TemplatesController extends GetxController with AdsControllerMixin {
   final unlockedTemplates = <int>[0, 1].obs;
 
   List<String> tempDesignList = [
-    'assets/images/temp_00.jpg',
-    'assets/images/temp_01.jpg',
-    'assets/images/temp_02.jpg',
-    'assets/images/temp_03.jpg',
-    'assets/images/temp_04.jpg',
+    'assets/images/temp_00.png',
+    'assets/images/temp_01.png',
+    'assets/images/temp_02.png',
+    'assets/images/temp_03.png',
+    'assets/images/temp_04.png',
     'assets/images/temp_05.jpg',
     'assets/images/temp_06.jpg',
     'assets/images/temp_07.jpg',
     'assets/images/temp_08.jpg',
-    'assets/images/temp_09.jpg'
+    'assets/images/temp_09.jpg',
+    'assets/images/temp_10.jpg',
+    'assets/images/temp_11.jpg',
+    'assets/images/temp_12.jpg',
+    'assets/images/temp_13.jpg',
+    'assets/images/temp_14.jpg',
   ];
 
   PageController pageController = PageController();
@@ -139,15 +144,15 @@ class TemplatesController extends GetxController with AdsControllerMixin {
   String getSelectedPdfTemplate(int selectedId) {
      switch(selectedId){
       case 0:
-        return 'assets/images/temp_00.jpg';
+         return 'assets/images/temp_00.png';
       case 1:
-         return 'assets/images/temp_01.jpg';
+         return 'assets/images/temp_01.png';
       case 2:
-         return 'assets/images/temp_02.jpg';
+         return 'assets/images/temp_02.png';
        case 3:
-         return 'assets/images/temp_03.jpg';
+         return 'assets/images/temp_03.png';
        case 4:
-         return 'assets/images/temp_04.jpg';
+         return 'assets/images/temp_04.png';
        case 5:
          return 'assets/images/temp_05.jpg';
        case 6:
@@ -158,6 +163,16 @@ class TemplatesController extends GetxController with AdsControllerMixin {
          return 'assets/images/temp_08.jpg';
        case 9:
          return 'assets/images/temp_09.jpg';
+       case 10:
+         return 'assets/images/temp_10.jpg';
+       case 11:
+         return 'assets/images/temp_11.jpg';
+       case 12:
+         return 'assets/images/temp_12.jpg';
+       case 13:
+         return 'assets/images/temp_13.jpg';
+       case 14:
+         return 'assets/images/temp_14.jpg';
        default:
          return 'assets/images/temp_00.jpg';
     }

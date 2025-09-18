@@ -14,6 +14,7 @@ import '../../modules/home_screen/home_controller.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../core/utils/utils.dart';
+import '../../pdf_templates/new_design_temp/new_temp_design.dart';
 import '../../pdf_templates/simple_blue_template/simple_blue_template_pdf.dart';
 import '../../pdf_templates/simple_red_template/simple_red_temp_pdf.dart';
 import '../../pdf_templates/grey_wallpaper_temp/gery_wall_pdf.dart';
@@ -69,6 +70,12 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
   Future<Uint8List>? pdf07;
   Future<Uint8List>? pdf08;
   Future<Uint8List>? pdf09;
+  //NEW TEMPLATES
+  Future<Uint8List>? pdf10;
+  Future<Uint8List>? pdf11;
+  Future<Uint8List>? pdf12;
+  Future<Uint8List>? pdf13;
+  Future<Uint8List>? pdf14;
 
   final homeScController = Get.put(HomeController());
   final estListController = Get.put(EstimateListController());
@@ -486,25 +493,25 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
     switch (tempId) {
       case 0:
-        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
+        pdfData = await NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
         break;
       case 1:
-        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 1);
+        pdfData = await NewTempDesigns.createPreviewPdf(invoiceDataModel!, templateIdNo: 1);
         break;
       case 2:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
+        pdfData = await NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
         break;
       case 3:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
+        pdfData = await NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
          break;
       case 4:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
+        pdfData = await NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
          break;
       case 5:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
+        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
          break;
       case 6:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
+        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
          break;
       case 7:
         pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 7);
@@ -515,8 +522,23 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
       case 9:
         pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 9);
          break;
+      case 10:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 10);
+        break;
+      case 11:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 11);
+        break;
+      case 12:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 12);
+        break;
+      case 13:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 13);
+        break;
+      case 14:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 14);
+        break;
       default:
-        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!, templateIdNo: 0);
+        pdfData = await NewTempDesigns.createPreviewPdf(invoiceDataModel!, templateIdNo: 0);
     }
 
     await LanguageSelection.updateLocale(
@@ -643,16 +665,21 @@ class PdfPreviewController extends GetxController with AdsControllerMixin {
 
     debugPrint('getPDFTemplates called');
 
-    pdf00 = SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
-    pdf01 = SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 1);
-    pdf02 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
-    pdf03 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
-    pdf04 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
-    pdf05 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
-    pdf06 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
+    pdf00 = NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 0);
+    pdf01 = NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 1);
+    pdf02 = NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 2);
+    pdf03 = NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 3);
+    pdf04 = NewTempDesigns.createPreviewPdf(invoiceDataModel!,templateIdNo: 4);
+    pdf05 = SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 5);
+    pdf06 = SimpleRedAndBluePDFTemplate.createPreviewPdf(invoiceDataModel!,templateIdNo: 6);
     pdf07 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 7);
     pdf08 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 8);
     pdf09 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 9);
+    pdf10 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 10);
+    pdf11 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 11);
+    pdf12 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 12);
+    pdf13 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 13);
+    pdf14 = WithImagesPDFTemplates.createPreviewPdf(invoiceDataModel!,templateIdNo: 14);
   }
 
   // void selectProBillTemplate() {

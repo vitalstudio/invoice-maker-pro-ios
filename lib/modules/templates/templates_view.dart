@@ -429,33 +429,33 @@ class TemplatesView extends GetView<TemplatesController> {
                         width: double.infinity,
                       ),
                     ),
-                    // Visibility(
-                    //   visible: !AppSingletons.isSubscriptionEnabled.value,
-                    //   child: Visibility(
-                    //     visible: index != 0 && index != 1 ,
-                    //     child: CustomPaint(
-                    //       size: const Size(40, 40), // Full-size overlay
-                    //       painter: TrianglePainter(
-                    //         color: proIconColor, // Color changes based on the condition
-                    //       ),
-                    //       child: Container(
-                    //         height: 50,
-                    //         width: 40,
-                    //           padding: const EdgeInsets.only(left: 15),
-                    //           child: Transform.rotate(
-                    //             angle: -0.854,
-                    //             child: const Text('PRO',
-                    //               style: TextStyle(
-                    //                   color: sWhite,
-                    //                   fontFamily: 'Montserrat',
-                    //                   fontSize: 10,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    Visibility(
+                      visible: true,
+                      child: Visibility(
+                        visible: index < 5,
+                        child: CustomPaint(
+                          size: const Size(40, 40), // Full-size overlay
+                          painter: TrianglePainter(
+                            color: mainPurpleColor, // Color changes based on the condition
+                          ),
+                          child: Container(
+                            height: 50,
+                            width: 40,
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Transform.rotate(
+                                angle: -0.854,
+                                child: const Text('New',
+                                  style: TextStyle(
+                                      color: sWhite,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                          ),
+                        ),
+                      ),
+                    ),
                     Container(
                       decoration: BoxDecoration(
                           color: controller.selectedTempIndexId.value == index

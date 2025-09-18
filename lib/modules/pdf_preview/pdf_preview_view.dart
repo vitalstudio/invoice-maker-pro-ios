@@ -9,6 +9,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 // import '../../core/utils/triangle_painter.dart';
 import '../../core/utils/dialogue_to_select_language.dart';
+import '../../core/utils/triangle_painter.dart';
 import '../../pdf_templates/simple_red_template/simple_red_temp_pdf.dart';
 import 'package:open_file_manager/open_file_manager.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
@@ -661,58 +662,91 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
       controller: controller.scrollController,
       children: [
         const SizedBox(width: 20,),
+
+
         Obx(() {
-          return Container(
-            height: 600,
-            width: 300,
-            margin: EdgeInsets.only(
-                top: controller.fullyVisibleIndex.value == 0 ? 5 : 15,
-                bottom: controller.fullyVisibleIndex.value == 0 ? 90 : 100
-            ),
-            child: FutureBuilder<Uint8List>(
-              future: controller.pdf00,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CupertinoActivityIndicator(
-                    color: mainPurpleColor, radius: 15,));
-                } else if (snapshot.hasError) {
-                  return const Center(child: Text('LOADING...'));
-                } else if (snapshot.hasData) {
-                  return PdfPreviewCustom(
-                    scrollViewDecoration: const BoxDecoration(
-                      color: orangeLight_1,
-                    ),
-                    loadingWidget: const CupertinoActivityIndicator(
+          return Stack(
+            children: [
+              Container(
+                height: 600,
+                width: 300,
+                margin: EdgeInsets.only(
+                    top: controller.fullyVisibleIndex.value == 0 ? 5 : 15,
+                    bottom: controller.fullyVisibleIndex.value == 0 ? 90 : 100
+                ),
+                child: FutureBuilder<Uint8List>(
+                  future: controller.pdf00,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CupertinoActivityIndicator(
+                        color: mainPurpleColor, radius: 15,));
+                    } else if (snapshot.hasError) {
+                      return const Center(child: Text('LOADING...'));
+                    } else if (snapshot.hasData) {
+                      return PdfPreviewCustom(
+                        scrollViewDecoration: const BoxDecoration(
+                          color: orangeLight_1,
+                        ),
+                        loadingWidget: const CupertinoActivityIndicator(
+                          color: mainPurpleColor,
+                          radius: 20,
+                        ),
+                        pageFormat: PdfPageFormat.a4,
+                        previewPageMargin: const EdgeInsets.all(8.0),
+                        build: (format) => snapshot.data!,
+                      );
+
+
+                      //   SfPdfViewerTheme(
+                      //   data: SfPdfViewerThemeData(
+                      //     backgroundColor: orangeLight_1,
+                      //     progressBarColor: mainPurpleColor,
+                      //   ),
+                      //   child: SfPdfViewer.memory(
+                      //     snapshot.data!,
+                      //     onTap: (_){
+                      //
+                      //         Get.toNamed(Routes.pdfTemplateSelect);
+                      //         AppSingletons.isEditingOnlyTemplate.value = true;
+                      //         debugPrint('ABC 2');
+                      //
+                      //     },
+                      //   ),
+                      // );
+                    } else {
+                      return Center(child: Text('LOADING...'.tr));
+                    }
+                  },
+                ),
+              ),
+              Visibility(
+                visible: true,
+                child: Visibility(
+                  visible: true,
+                  child: CustomPaint(
+                    size: const Size(40, 40),
+                    painter: TrianglePainter(
                       color: mainPurpleColor,
-                      radius: 20,
                     ),
-                    pageFormat: PdfPageFormat.a4,
-                    previewPageMargin: const EdgeInsets.all(8.0),
-                    build: (format) => snapshot.data!,
-                  );
-
-
-                  //   SfPdfViewerTheme(
-                  //   data: SfPdfViewerThemeData(
-                  //     backgroundColor: orangeLight_1,
-                  //     progressBarColor: mainPurpleColor,
-                  //   ),
-                  //   child: SfPdfViewer.memory(
-                  //     snapshot.data!,
-                  //     onTap: (_){
-                  //
-                  //         Get.toNamed(Routes.pdfTemplateSelect);
-                  //         AppSingletons.isEditingOnlyTemplate.value = true;
-                  //         debugPrint('ABC 2');
-                  //
-                  //     },
-                  //   ),
-                  // );
-                } else {
-                  return Center(child: Text('LOADING...'.tr));
-                }
-              },
-            ),
+                    child: Container(
+                      height: 50,
+                      width: 40,
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Transform.rotate(
+                        angle: -0.854,
+                        child: const Text('New',
+                          style: TextStyle(
+                            color: sWhite,
+                            fontFamily: 'Montserrat',
+                            fontSize: 10,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           );
         }),
         Obx(() {
@@ -1201,6 +1235,277 @@ class PdfPreviewView extends GetView<PdfPreviewController> {
             ),
           );
         }),
+        Obx(() {
+          return Container(
+            height: 600,
+            width: 300,
+            margin: EdgeInsets.only(
+                top: controller.fullyVisibleIndex.value == 10 ? 5 : 15,
+                bottom: controller.fullyVisibleIndex.value == 10 ? 90 : 100
+            ),
+            child: FutureBuilder<Uint8List>(
+              future: controller.pdf10,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CupertinoActivityIndicator(
+                    color: mainPurpleColor, radius: 15,));
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('LOADING...'));
+                } else if (snapshot.hasData) {
+                  return PdfPreviewCustom(
+                    scrollViewDecoration: const BoxDecoration(
+                      color: orangeLight_1,
+                    ),
+                    loadingWidget: const CupertinoActivityIndicator(
+                      color: mainPurpleColor,
+                      radius: 20,
+                    ),
+                    pageFormat: PdfPageFormat.a4,
+                    previewPageMargin: const EdgeInsets.all(8.0),
+                    build: (format) => snapshot.data!,
+                  );
+
+
+                  //   SfPdfViewerTheme(
+                  //   data: SfPdfViewerThemeData(
+                  //     backgroundColor: orangeLight_1,
+                  //     progressBarColor: mainPurpleColor,
+                  //   ),
+                  //   child: SfPdfViewer.memory(
+                  //     snapshot.data!,
+                  //     onTap: (_){
+                  //
+                  //         Get.toNamed(Routes.pdfTemplateSelect);
+                  //         AppSingletons.isEditingOnlyTemplate.value = true;
+                  //         debugPrint('ABC 2');
+                  //
+                  //     },
+                  //   ),
+                  // );
+                } else {
+                  return Center(child: Text('no_pdf_data'.tr));
+                }
+              },
+            ),
+          );
+        }),
+        Obx(() {
+          return Container(
+            height: 600,
+            width: 300,
+            margin: EdgeInsets.only(
+                top: controller.fullyVisibleIndex.value == 11 ? 5 : 15,
+                bottom: controller.fullyVisibleIndex.value == 11 ? 90 : 100
+            ),
+            child: FutureBuilder<Uint8List>(
+              future: controller.pdf11,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CupertinoActivityIndicator(
+                    color: mainPurpleColor, radius: 15,));
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('LOADING...'));
+                } else if (snapshot.hasData) {
+                  return PdfPreviewCustom(
+                    scrollViewDecoration: const BoxDecoration(
+                      color: orangeLight_1,
+                    ),
+                    loadingWidget: const CupertinoActivityIndicator(
+                      color: mainPurpleColor,
+                      radius: 20,
+                    ),
+                    pageFormat: PdfPageFormat.a4,
+                    previewPageMargin: const EdgeInsets.all(8.0),
+                    build: (format) => snapshot.data!,
+                  );
+
+
+                  //   SfPdfViewerTheme(
+                  //   data: SfPdfViewerThemeData(
+                  //     backgroundColor: orangeLight_1,
+                  //     progressBarColor: mainPurpleColor,
+                  //   ),
+                  //   child: SfPdfViewer.memory(
+                  //     snapshot.data!,
+                  //     onTap: (_){
+                  //
+                  //         Get.toNamed(Routes.pdfTemplateSelect);
+                  //         AppSingletons.isEditingOnlyTemplate.value = true;
+                  //         debugPrint('ABC 2');
+                  //
+                  //     },
+                  //   ),
+                  // );
+                } else {
+                  return Center(child: Text('no_pdf_data'.tr));
+                }
+              },
+            ),
+          );
+        }),
+        Obx(() {
+          return Container(
+            height: 600,
+            width: 300,
+            margin: EdgeInsets.only(
+                top: controller.fullyVisibleIndex.value == 12 ? 5 : 15,
+                bottom: controller.fullyVisibleIndex.value == 12 ? 90 : 100
+            ),
+            child: FutureBuilder<Uint8List>(
+              future: controller.pdf12,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CupertinoActivityIndicator(
+                    color: mainPurpleColor, radius: 15,));
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('LOADING...'));
+                } else if (snapshot.hasData) {
+                  return PdfPreviewCustom(
+                    scrollViewDecoration: const BoxDecoration(
+                      color: orangeLight_1,
+                    ),
+                    loadingWidget: const CupertinoActivityIndicator(
+                      color: mainPurpleColor,
+                      radius: 20,
+                    ),
+                    pageFormat: PdfPageFormat.a4,
+                    previewPageMargin: const EdgeInsets.all(8.0),
+                    build: (format) => snapshot.data!,
+                  );
+
+
+                  //   SfPdfViewerTheme(
+                  //   data: SfPdfViewerThemeData(
+                  //     backgroundColor: orangeLight_1,
+                  //     progressBarColor: mainPurpleColor,
+                  //   ),
+                  //   child: SfPdfViewer.memory(
+                  //     snapshot.data!,
+                  //     onTap: (_){
+                  //
+                  //         Get.toNamed(Routes.pdfTemplateSelect);
+                  //         AppSingletons.isEditingOnlyTemplate.value = true;
+                  //         debugPrint('ABC 2');
+                  //
+                  //     },
+                  //   ),
+                  // );
+                } else {
+                  return Center(child: Text('no_pdf_data'.tr));
+                }
+              },
+            ),
+          );
+        }),
+        Obx(() {
+          return Container(
+            height: 600,
+            width: 300,
+            margin: EdgeInsets.only(
+                top: controller.fullyVisibleIndex.value == 13 ? 5 : 15,
+                bottom: controller.fullyVisibleIndex.value == 13 ? 90 : 100
+            ),
+            child: FutureBuilder<Uint8List>(
+              future: controller.pdf13,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CupertinoActivityIndicator(
+                    color: mainPurpleColor, radius: 15,));
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('LOADING...'));
+                } else if (snapshot.hasData) {
+                  return PdfPreviewCustom(
+                    scrollViewDecoration: const BoxDecoration(
+                      color: orangeLight_1,
+                    ),
+                    loadingWidget: const CupertinoActivityIndicator(
+                      color: mainPurpleColor,
+                      radius: 20,
+                    ),
+                    pageFormat: PdfPageFormat.a4,
+                    previewPageMargin: const EdgeInsets.all(8.0),
+                    build: (format) => snapshot.data!,
+                  );
+
+
+                  //   SfPdfViewerTheme(
+                  //   data: SfPdfViewerThemeData(
+                  //     backgroundColor: orangeLight_1,
+                  //     progressBarColor: mainPurpleColor,
+                  //   ),
+                  //   child: SfPdfViewer.memory(
+                  //     snapshot.data!,
+                  //     onTap: (_){
+                  //
+                  //         Get.toNamed(Routes.pdfTemplateSelect);
+                  //         AppSingletons.isEditingOnlyTemplate.value = true;
+                  //         debugPrint('ABC 2');
+                  //
+                  //     },
+                  //   ),
+                  // );
+                } else {
+                  return Center(child: Text('no_pdf_data'.tr));
+                }
+              },
+            ),
+          );
+        }),
+        Obx(() {
+          return Container(
+            height: 600,
+            width: 300,
+            margin: EdgeInsets.only(
+                top: controller.fullyVisibleIndex.value == 14 ? 5 : 15,
+                bottom: controller.fullyVisibleIndex.value == 14 ? 90 : 100
+            ),
+            child: FutureBuilder<Uint8List>(
+              future: controller.pdf14,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CupertinoActivityIndicator(
+                    color: mainPurpleColor, radius: 15,));
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('LOADING...'));
+                } else if (snapshot.hasData) {
+                  return PdfPreviewCustom(
+                    scrollViewDecoration: const BoxDecoration(
+                      color: orangeLight_1,
+                    ),
+                    loadingWidget: const CupertinoActivityIndicator(
+                      color: mainPurpleColor,
+                      radius: 20,
+                    ),
+                    pageFormat: PdfPageFormat.a4,
+                    previewPageMargin: const EdgeInsets.all(8.0),
+                    build: (format) => snapshot.data!,
+                  );
+
+
+                  //   SfPdfViewerTheme(
+                  //   data: SfPdfViewerThemeData(
+                  //     backgroundColor: orangeLight_1,
+                  //     progressBarColor: mainPurpleColor,
+                  //   ),
+                  //   child: SfPdfViewer.memory(
+                  //     snapshot.data!,
+                  //     onTap: (_){
+                  //
+                  //         Get.toNamed(Routes.pdfTemplateSelect);
+                  //         AppSingletons.isEditingOnlyTemplate.value = true;
+                  //         debugPrint('ABC 2');
+                  //
+                  //     },
+                  //   ),
+                  // );
+                } else {
+                  return Center(child: Text('no_pdf_data'.tr));
+                }
+              },
+            ),
+          );
+        }),
+
         const SizedBox(width: 20,),
       ],
     );

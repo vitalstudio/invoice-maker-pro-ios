@@ -13,6 +13,7 @@ import '../../core/services/ads_helper.dart';
 import '../../core/utils/utils.dart';
 import '../../database/database_helper.dart';
 import '../../model/data_model.dart';
+import '../../pdf_templates/new_design_temp/new_temp_design.dart';
 import '../../pdf_templates/purple_temp/purple_template.dart';
 import '../../pdf_templates/simple_red_template/simple_red_temp_pdf.dart';
 import '../estimate/estimate_list_controller.dart';
@@ -225,25 +226,25 @@ class SavedPdfController extends GetxController{
 
     switch (tempId) {
       case 0:
-        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(dataModelPdf!,templateIdNo: 0);
+        pdfData = await NewTempDesigns.createPreviewPdf(dataModelPdf!,templateIdNo: 0);
         break;
       case 1:
-        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(dataModelPdf!, templateIdNo: 1);
+        pdfData = await NewTempDesigns.createPreviewPdf(dataModelPdf!, templateIdNo: 1);
         break;
       case 2:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!, templateIdNo: 2);
+        pdfData = await NewTempDesigns.createPreviewPdf(dataModelPdf!, templateIdNo: 2);
         break;
       case 3:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!,templateIdNo: 3);
+        pdfData = await NewTempDesigns.createPreviewPdf(dataModelPdf!,templateIdNo: 3);
         break;
       case 4:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!, templateIdNo: 4);
+        pdfData = await NewTempDesigns.createPreviewPdf(dataModelPdf!, templateIdNo: 4);
         break;
       case 5:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!, templateIdNo: 5);
+        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(dataModelPdf!, templateIdNo: 5);
         break;
       case 6:
-        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!, templateIdNo: 6);
+        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(dataModelPdf!, templateIdNo: 6);
         break;
       case 7:
         pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!, templateIdNo: 7);
@@ -254,8 +255,23 @@ class SavedPdfController extends GetxController{
       case 9:
         pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!, templateIdNo: 9);
         break;
+      case 10:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!,templateIdNo: 10);
+        break;
+      case 11:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!,templateIdNo: 11);
+        break;
+      case 12:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!,templateIdNo: 12);
+        break;
+      case 13:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!,templateIdNo: 13);
+        break;
+      case 14:
+        pdfData = await WithImagesPDFTemplates.createPreviewPdf(dataModelPdf!,templateIdNo: 14);
+        break;
       default:
-        pdfData = await SimpleRedAndBluePDFTemplate.createPreviewPdf(dataModelPdf!,templateIdNo: 0);
+        pdfData = await NewTempDesigns.createPreviewPdf(dataModelPdf!,templateIdNo: 0);
     }
 
     await LanguageSelection.updateLocale(
