@@ -69,7 +69,7 @@ class ItemScreenView extends GetView<ItemScreenController> {
       body: WillPopScope(
         onWillPop: () async {
           if (AppSingletons().isComingFromBottomBar == false) {
-            print('Navigating to invoiceInputView');
+            debugPrint('Navigating to invoiceInputView');
             // Get.offNamed(Routes.invoiceInputView);
             Get.back();
           }
@@ -121,7 +121,7 @@ class ItemScreenView extends GetView<ItemScreenController> {
                         'assets/icons/empty_box.png',
                         height: 120,
                         width: 120,
-                        color: mainPurpleColor.withOpacity(0.7),
+                        color: mainPurpleColor.withValues(alpha: 0.7),
                       ),
                        Center(
                         child: Text(
@@ -244,16 +244,16 @@ class ItemScreenView extends GetView<ItemScreenController> {
                               return AppSingletons.isStartDeletingItem.value
                                   ? Obx(() {
                                 return Checkbox(
-                                  value: note.isChecked.value ?? false,
+                                  value: note.isChecked.value,
                                   activeColor: blackColor,
                                   onChanged: (bool? value) {
                                     if (value !=
                                         null) { // Ensure value is not null
                                       note.isChecked.value = value;
-                                      print(
+                                      debugPrint(
                                           'isChecked: ${note.isChecked.value}');
                                     } else {
-                                      print(
+                                      debugPrint(
                                           'Received null value'); // This shouldn't happen normally
                                     }
                                   },
@@ -717,7 +717,7 @@ class ItemScreenView extends GetView<ItemScreenController> {
                                 'assets/icons/empty_box.png',
                                 height: 120,
                                 width: 120,
-                                color: mainPurpleColor.withOpacity(0.7),
+                                color: mainPurpleColor.withValues(alpha: 0.7),
                               ),
                               const Center(
                                 child: Text(
@@ -842,16 +842,16 @@ class ItemScreenView extends GetView<ItemScreenController> {
                                       return AppSingletons.isStartDeletingItem.value
                                           ? Obx(() {
                                         return Checkbox(
-                                          value: note.isChecked.value ?? false,
+                                          value: note.isChecked.value,
                                           activeColor: blackColor,
                                           onChanged: (bool? value) {
                                             if (value !=
                                                 null) { // Ensure value is not null
                                               note.isChecked.value = value;
-                                              print(
+                                              debugPrint(
                                                   'isChecked: ${note.isChecked.value}');
                                             } else {
-                                              print(
+                                              debugPrint(
                                                   'Received null value'); // This shouldn't happen normally
                                             }
                                           },

@@ -534,8 +534,8 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
             end: Alignment.bottomCenter,
             begin: Alignment.topCenter,
             colors: [
-              mainPurpleColor.withOpacity(0.4),
-              mainPurpleColor.withOpacity(0.7),
+              mainPurpleColor.withValues(alpha: 0.4),
+              mainPurpleColor.withValues(alpha: 0.7),
               mainPurpleColor,
             ]
           )
@@ -1018,7 +1018,7 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                   children: [
                     TableRow(
                       decoration: BoxDecoration(
-                          color: greyColor.withOpacity(0.6),
+                          color: greyColor.withValues(alpha: 0.6),
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(8),
                               topRight: Radius.circular(8))),
@@ -1107,7 +1107,7 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
                         }),
                     TableRow(
                       decoration: BoxDecoration(
-                          color: greyColor.withOpacity(0.6),
+                          color: greyColor.withValues(alpha: 0.6),
                           borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(8),
                               bottomLeft: Radius.circular(8))),
@@ -1541,7 +1541,7 @@ class ShareChartDetailView extends GetView<ShareChartDetailController> {
     Color color;
     do {
       color =
-          Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+          Color((Random().nextDouble() * 0xFFFFFF).toInt()).withValues(alpha: 1.0);
     } while (color.computeLuminance() > 0.8);
 
     return color;

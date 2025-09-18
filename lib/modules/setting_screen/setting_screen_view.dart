@@ -145,8 +145,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
                         borderRadius: BorderRadius.circular(7),
                         gradient: LinearGradient(
                           colors: [
-                            proIconColor.withOpacity(0.4),
-                            proIconColor.withOpacity(0.6),
+                            proIconColor.withValues(alpha: 0.4),
+                            proIconColor.withValues(alpha: 0.6),
                             proIconColor,
                           ]
                         )
@@ -272,7 +272,7 @@ class SettingScreenView extends GetView<SettingScreenController> {
                         'ios_prompt'.tr);
                   }
                   catch (e) {
-                    print("Error: $e");
+                    debugPrint("Error: $e");
                   }
                 }
               },
@@ -469,8 +469,8 @@ class SettingScreenView extends GetView<SettingScreenController> {
                                  borderRadius: BorderRadius.circular(7),
                                  gradient: LinearGradient(
                                      colors: [
-                                       proIconColor.withOpacity(0.4),
-                                       proIconColor.withOpacity(0.6),
+                                       proIconColor.withValues(alpha: 0.4),
+                                       proIconColor.withValues(alpha: 0.6),
                                        proIconColor,
                                      ]
                                  )

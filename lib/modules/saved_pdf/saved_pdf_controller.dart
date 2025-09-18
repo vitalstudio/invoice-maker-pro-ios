@@ -78,7 +78,7 @@ class SavedPdfController extends GetxController{
   void _loadBannerAd() {
     bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -286,8 +286,8 @@ class SavedPdfController extends GetxController{
       final directory = await getTemporaryDirectory();
       final filePath = '${directory.path}\\$filename';
 
-      print("Directory Path: $directory");
-      print("File Path: $filePath");
+      debugPrint("Directory Path: $directory");
+      debugPrint("File Path: $filePath");
 
       final file = File(filePath);
       await file.writeAsBytes(pdfData);

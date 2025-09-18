@@ -111,7 +111,7 @@ class TemplatesController extends GetxController with AdsControllerMixin {
   void _loadBannerAd() {
     bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -259,7 +259,7 @@ class TemplatesController extends GetxController with AdsControllerMixin {
         purchaseOrderNo: AppSingletons.poNumber?.value ?? '',
         uniqueNumber: AppSingletons.invoiceNumberId?.value ?? '',
         languageName: AppSingletons.languageName?.value ?? '',
-        selectedTemplateId: newTemplateId ?? '0',
+        selectedTemplateId: newTemplateId,
         creationDate: AppSingletons.creationDate.value.toString(),
         dueDate: AppSingletons.dueDate.value.toString(),
         discountInTotal: AppSingletons.discountAmount.value,
@@ -294,7 +294,7 @@ class TemplatesController extends GetxController with AdsControllerMixin {
         discountPercentage: AppSingletons.discountPercentage?.value ?? '',
         taxPercentage: AppSingletons.taxPercentage?.value ?? '',
         partiallyPaidAmount: AppSingletons.partialPaymentAmount?.value ?? '',
-        documentStatus: AppSingletons.invoiceStatus.value ?? '',
+        documentStatus: AppSingletons.invoiceStatus.value,
         unlockTempIdsList: AppSingletons().unlockedTempIdsList.toList()
     );
 

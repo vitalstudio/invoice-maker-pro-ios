@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
 import '../../core/constants/color/color.dart';
 
@@ -58,7 +57,13 @@ class InvoicesLineChart extends StatelessWidget {
                       },
                     ),
                     belowBarData: BarAreaData(
-                        show: true, color: mainPurpleColor.withOpacity(0.2)),
+                        show: true, color: mainPurpleColor.withValues(
+                        alpha: 0.2,
+                        red: mainPurpleColor.r,
+                        blue: mainPurpleColor.b,
+                        green: mainPurpleColor.g,
+
+                      )),
                     barWidth: 3,
                     preventCurveOverShooting: true,
                     show: true,
@@ -142,9 +147,9 @@ class InvoicesLineChart extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        mainPurpleColor.withOpacity(0.7),
-                        mainPurpleColor.withOpacity(0.5),
-                        mainPurpleColor.withOpacity(0.2),
+                        mainPurpleColor.withValues(alpha: 0.7),
+                        mainPurpleColor.withValues(alpha: 0.5),
+                        mainPurpleColor.withValues(alpha: 0.2),
                       ])),
               barWidth: 2,
               preventCurveOverShooting: true,

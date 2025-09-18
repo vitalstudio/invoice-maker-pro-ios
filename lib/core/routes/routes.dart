@@ -98,7 +98,7 @@ abstract class Routes {
     GetPage(name: estimateInputView, page: ()=>  EstimateEntranceView(),binding: EstimateEntranceBinding()),
     GetPage(name: chartsView, page: ()=>  const ChartsView(),binding: ChartsBinding()),
     GetPage(name: proScreenView, page: ()=>  const ProScreenView(),binding: ProScreenBinding()),
-    GetPage(name: savedPdfView, page: ()=>  SavedPdfView(),binding: SavedPdfBinding()),
+    GetPage(name: savedPdfView, page: ()=>  const SavedPdfView(),binding: SavedPdfBinding()),
     GetPage(name: shareChartDetailView, page: ()=>  const ShareChartDetailView(),binding: ShareChartDetailBinding()),
   ];
 }

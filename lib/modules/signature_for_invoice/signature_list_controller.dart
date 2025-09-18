@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../core/app_singletons/app_singletons.dart';
@@ -39,7 +40,7 @@ class SignatureListController extends GetxController{
   void _loadBannerAd() {
     bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -59,7 +60,7 @@ class SignatureListController extends GetxController{
     isLoading.value = true;
     final list = await signatureDbHelper!.getSignatureList();
     signatureList.assignAll(list);
-    print("Signature list: ${signatureList.length}");
+    debugPrint("Signature list: ${signatureList.length}");
     isLoading.value = false;
   }
 

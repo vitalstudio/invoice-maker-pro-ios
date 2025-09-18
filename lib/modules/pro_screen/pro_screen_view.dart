@@ -136,8 +136,8 @@ class ProScreenView extends GetView<ProScreenController> {
                               borderRadius: BorderRadius.circular(5),
                               gradient: LinearGradient(colors: [
                                 mainPurpleColor,
-                                mainPurpleColor.withOpacity(0.7),
-                                mainPurpleColor.withOpacity(0.4)
+                                mainPurpleColor.withValues(alpha: 0.7),
+                                mainPurpleColor.withValues(alpha: 0.4)
                               ])),
                           child: const Text(
                             'Pro',
@@ -1506,8 +1506,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                   borderRadius: BorderRadius.circular(5),
                                   gradient: LinearGradient(colors: [
                                     mainPurpleColor,
-                                    mainPurpleColor.withOpacity(0.7),
-                                    mainPurpleColor.withOpacity(0.4)
+                                    mainPurpleColor.withValues(alpha: 0.7),
+                                    mainPurpleColor.withValues(alpha: 0.4)
                                   ])),
                               child: const Text(
                                 'Pro',
@@ -2064,8 +2064,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                 borderRadius: BorderRadius.circular(50),
                                 gradient: LinearGradient(colors: [
                                   mainPurpleColor,
-                                  mainPurpleColor.withOpacity(0.7),
-                                  mainPurpleColor.withOpacity(0.4)
+                                  mainPurpleColor.withValues(alpha: 0.7),
+                                  mainPurpleColor.withValues(alpha: 0.4)
                                 ])),
                             alignment: Alignment.center,
                             child: const Text(

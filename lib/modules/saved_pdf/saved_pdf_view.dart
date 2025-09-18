@@ -8,7 +8,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import '../../core/utils/dialogue_to_select_language.dart';
 import 'saved_pdf_controller.dart';
 import 'package:open_file_manager/open_file_manager.dart';
 import 'package:printing/printing.dart';
@@ -21,6 +20,8 @@ import '../../core/utils/utils.dart';
 import '../bottom_nav_bar/bottom_nav_bar_controller.dart';
 
 class SavedPdfView extends GetView<SavedPdfController>{
+  const SavedPdfView({super.key});
+
   @override
   Widget build(BuildContext context) {
 
@@ -508,7 +509,7 @@ class SavedPdfView extends GetView<SavedPdfController>{
                             return const Center(child: Text('LOADING...'));
                           } else if (snapshot.hasData) {
                             return SfPdfViewerTheme(
-                              data: SfPdfViewerThemeData(
+                              data: const SfPdfViewerThemeData(
                                 backgroundColor: orangeLight_1,
                                 progressBarColor: mainPurpleColor,
                               ),

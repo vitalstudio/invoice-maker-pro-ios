@@ -112,6 +112,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
@@ -123,20 +124,20 @@ import '../app_singletons/app_singletons.dart';
 
 class InAppServicesForIOS extends GetxController {
 
-  StreamSubscription<dynamic>? _subscription;
+  // StreamSubscription<dynamic>? _subscription;
 
-  static const Set<String> _kIds = <String>{
-    'weekly_invoice_pro',
-    'monthly_invoice_pro',
-    'yearly_invoice_pro'
-  };
+  // static const Set<String> _kIds = <String>{
+  //   'weekly_invoice_pro',
+  //   'monthly_invoice_pro',
+  //   'yearly_invoice_pro'
+  // };
 
 // Call this method in the main.dart file
   Future<void> initPlatformState() async {
     // await Purchases.setDebugLogsEnabled(true);
 
     PurchasesConfiguration configuration;
-    print("initPlatformState");
+    debugPrint("initPlatformState");
 
     configuration = PurchasesConfiguration("appl_eQscdnEIAawXjsITtfNidCoISSo");
 
@@ -150,7 +151,7 @@ class InAppServicesForIOS extends GetxController {
       Offerings offerings = await Purchases.getOfferings();
       if (offerings.current != null &&
           offerings.current!.availablePackages.isNotEmpty) {
-        print("Flutter Offerings:: ${offerings.current!.availablePackages}");
+        debugPrint("Flutter Offerings:: ${offerings.current!.availablePackages}");
         allPackages = offerings.current!.availablePackages;
 
         // Display packages for sale

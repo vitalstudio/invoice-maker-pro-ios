@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../core/routes/routes.dart';
-import '../../core/utils/unlock_temp_dialogue.dart';
 import '../../core/constants/app_constants/App_Constants.dart';
 import '../../core/utils/triangle_painter.dart';
 import '../../core/app_singletons/app_singletons.dart';
@@ -21,7 +20,9 @@ class TemplatesView extends GetView<TemplatesController> {
         .size
         .width);
 
-    final controller = Get.put<TemplatesController>(TemplatesController());
+    // final controller = Get.put<TemplatesController>(TemplatesController());
+
+    Get.find<TemplatesController>();
 
     bool checkIsMobileLayout = AppConstants.isMobileScreen.value;
 
@@ -50,7 +51,6 @@ class TemplatesView extends GetView<TemplatesController> {
             icon: const Icon(
               Icons.arrow_back,
               color: sWhite,
-              size: 16,
             ),
           ),
           actions: [
@@ -191,7 +191,7 @@ class TemplatesView extends GetView<TemplatesController> {
                               decoration: BoxDecoration(
                                   color: controller.selectedTempIndexId.value ==
                                       index
-                                      ? mainPurpleColor.withOpacity(0.2)
+                                      ? mainPurpleColor.withValues(alpha: 0.2)
                                       : Colors.transparent,
                                   border: Border.all(
                                       color: controller.selectedTempIndexId
@@ -266,7 +266,6 @@ class TemplatesView extends GetView<TemplatesController> {
           icon: const Icon(
             Icons.arrow_back,
             color: sWhite,
-            size: 16,
           ),
         ),
         actions: [
@@ -459,7 +458,7 @@ class TemplatesView extends GetView<TemplatesController> {
                     Container(
                       decoration: BoxDecoration(
                           color: controller.selectedTempIndexId.value == index
-                              ? mainPurpleColor.withOpacity(0.2)
+                              ? mainPurpleColor.withValues(alpha: 0.2)
                               : Colors.transparent,
                           border: Border.all(
                               color: controller.selectedTempIndexId.value ==

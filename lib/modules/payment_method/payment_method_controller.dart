@@ -42,7 +42,7 @@ class PaymentMethodController extends GetxController{
   void _loadBannerAd() {
     bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -63,7 +63,7 @@ class PaymentMethodController extends GetxController{
     final list = await paymentDbHelper!.getPaymentList();
     paymentList.assignAll(list);
 
-    print('Payment list: ${paymentList.length}');
+    debugPrint('Payment list: ${paymentList.length}');
     isLoading.value = false;
   }
 

@@ -60,7 +60,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.english
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -102,7 +102,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.german
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -144,7 +144,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.indonesian
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -186,7 +186,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.french
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -228,7 +228,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.spanish
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -270,7 +270,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.arabic
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -312,7 +312,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.chinese
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -354,7 +354,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.russian
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -396,7 +396,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.portuguese
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(
@@ -438,7 +438,7 @@ class LanguageSelection {
                             decoration: AppSingletons.selectedNewLanguage.value
                                 == AppConstants.japanese
                                 ? BoxDecoration(
-                              color: mainPurpleColor.withOpacity(0.15),
+                              color: mainPurpleColor.withValues(alpha: 0.15),
                             )
                                 : const BoxDecoration(),
                             child: Container(

@@ -1075,7 +1075,7 @@ class EstimateListView extends GetView<EstimateListController> {
               'assets/icons/empty_box.png',
               height: 120,
               width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
+              color: mainPurpleColor.withValues(alpha: 0.7),
             ),
              Text(
               'tap_plus_to_create_estimate'.tr,
@@ -1286,7 +1286,7 @@ class EstimateListView extends GetView<EstimateListController> {
               'assets/icons/empty_box.png',
               height: 120,
               width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
+              color: mainPurpleColor.withValues(alpha: 0.7),
             ),
              Text(
               '${'no'.tr} ${'estimate'.tr}',
@@ -1498,7 +1498,7 @@ class EstimateListView extends GetView<EstimateListController> {
               'assets/icons/empty_box.png',
               height: 120,
               width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
+              color: mainPurpleColor.withValues(alpha: 0.7),
             ),
              Text(
               '${'no'.tr} ${'estimate'.tr}',
@@ -1710,7 +1710,7 @@ class EstimateListView extends GetView<EstimateListController> {
               'assets/icons/empty_box.png',
               height: 120,
               width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
+              color: mainPurpleColor.withValues(alpha: 0.7),
             ),
             Text(
               '${'no'.tr} ${'estimate'.tr}',
@@ -1923,7 +1923,7 @@ class EstimateListView extends GetView<EstimateListController> {
               'assets/icons/empty_box.png',
               height: 120,
               width: 120,
-              color: mainPurpleColor.withOpacity(0.7),
+              color: mainPurpleColor.withValues(alpha: 0.7),
             ),
              Text(
               '${'no'.tr} ${'estimate'.tr}',
@@ -1994,7 +1994,7 @@ class EstimateListView extends GetView<EstimateListController> {
                       },
                       onSelected: (String value) {
                         controller.selectedName.value = value;
-                        print(value);
+                        debugPrint(value);
                       },
                       child: Container(
                         width: double.infinity,

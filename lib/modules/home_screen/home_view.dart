@@ -1519,7 +1519,7 @@ class HomeView extends GetView<HomeController> {
                     'assets/icons/empty_box.png',
                     height: 120,
                     width: 120,
-                    color: mainPurpleColor.withOpacity(0.7),
+                    color: mainPurpleColor.withValues(alpha: 0.7),
                   ),
                   Text(
                     'tap_plus_to_create_invoice'.tr,
@@ -1770,7 +1770,7 @@ class HomeView extends GetView<HomeController> {
                     'assets/icons/empty_box.png',
                     height: 120,
                     width: 120,
-                    color: mainPurpleColor.withOpacity(0.7),
+                    color: mainPurpleColor.withValues(alpha: 0.7),
                   ),
                   Text(
                     'no_invoice'.tr,
@@ -2043,7 +2043,7 @@ class HomeView extends GetView<HomeController> {
                     'assets/icons/empty_box.png',
                     height: 120,
                     width: 120,
-                    color: mainPurpleColor.withOpacity(0.7),
+                    color: mainPurpleColor.withValues(alpha: 0.7),
                   ),
                   Text(
                     'no_invoice'.tr,
@@ -2313,7 +2313,7 @@ class HomeView extends GetView<HomeController> {
                     'assets/icons/empty_box.png',
                     height: 120,
                     width: 120,
-                    color: mainPurpleColor.withOpacity(0.7),
+                    color: mainPurpleColor.withValues(alpha: 0.7),
                   ),
                   Text(
                     'no_invoice'.tr,
@@ -2563,7 +2563,7 @@ class HomeView extends GetView<HomeController> {
                     'assets/icons/empty_box.png',
                     height: 120,
                     width: 120,
-                    color: mainPurpleColor.withOpacity(0.7),
+                    color: mainPurpleColor.withValues(alpha: 0.7),
                   ),
                   Text(
                     'no_invoice'.tr,
@@ -2634,7 +2634,7 @@ class HomeView extends GetView<HomeController> {
                       },
                       onSelected: (String value) {
                         controller.selectedName.value = value;
-                        print(value);
+                        debugPrint(value);
                       },
                       child: Container(
                         width: double.infinity,

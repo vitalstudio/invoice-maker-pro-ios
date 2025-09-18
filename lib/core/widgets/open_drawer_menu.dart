@@ -160,7 +160,7 @@ class DrawerMenuOpen extends StatelessWidget {
                           'ios_prompt'.tr);
                     }
                     catch (e) {
-                      print("Error: $e");
+                      debugPrint("Error: $e");
                     }
                   }
                 },

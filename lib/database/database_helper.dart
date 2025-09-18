@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:flutter/widgets.dart';
+
 import '../../model/company_model.dart';
 import '../../model/data_model.dart';
 import 'package:path/path.dart';
@@ -295,9 +297,9 @@ class DBHelper {
     await dbItem!.query('itemTable');
 
     if (queryItem.isEmpty) {
-      print('No items found in the database.');
+      debugPrint('No items found in the database.');
     } else {
-      print('Retrieved ${queryItem.length} items from the database.');
+      debugPrint('Retrieved ${queryItem.length} items from the database.');
     }
 
     return queryItem.map((e) => ItemModel.fromMap(e)).toList();

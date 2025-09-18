@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import '../../core/constants/app_constants/App_Constants.dart';
 import '../../core/services/ads_controller.dart';
 import '../../core/services/ads_helper.dart';
 import '../../core/utils/dialogue_to_select_language.dart';
@@ -15,18 +14,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../core/utils/utils.dart';
 import '../../pdf_templates/new_design_temp/new_temp_design.dart';
-import '../../pdf_templates/simple_blue_template/simple_blue_template_pdf.dart';
 import '../../pdf_templates/simple_red_template/simple_red_temp_pdf.dart';
-import '../../pdf_templates/grey_wallpaper_temp/gery_wall_pdf.dart';
-import '../../pdf_templates/blue_black_dotted_temp/black_dotted_pdf.dart';
-import '../../pdf_templates/orange_black_temp/orange_temp_pdf.dart';
-import '../../pdf_templates/pink_and_blue_temp/pink_temp_pdf.dart';
 import '../../model/data_model.dart';
 import '../../../database/database_helper.dart';
 import '../../core/app_singletons/app_singletons.dart';
-import '../../pdf_templates/black_yellow_temp/black_yellow_template.dart';
-import '../../pdf_templates/blue_tap_temp/blue_tap_template.dart';
-import '../../pdf_templates/mat_brown_temp/mat_brown.dart';
 import '../../pdf_templates/purple_temp/purple_template.dart';
 
 class PdfPreviewController extends GetxController with AdsControllerMixin {

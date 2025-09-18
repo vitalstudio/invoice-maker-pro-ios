@@ -43,7 +43,7 @@ class TermAndConditionController extends GetxController{
   void _loadBannerAd() {
     bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -63,7 +63,7 @@ class TermAndConditionController extends GetxController{
     isLoading.value = true;
     final list = await termDbHelper!.getTermList();
     termList.assignAll(list);
-    print("Term list: ${termList.length}");
+    debugPrint("Term list: ${termList.length}");
     isLoading.value = false;
   }
   void deleteTerm(int id) async {

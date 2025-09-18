@@ -94,7 +94,7 @@ class ClientListView extends GetView<ClientListController> {
                           'assets/icons/empty_box.png',
                           height: 120,
                           width: 120,
-                          color: mainPurpleColor.withOpacity(0.7),
+                          color: mainPurpleColor.withValues(alpha: 0.7),
                         ),
                       ),
                        Center(
@@ -235,10 +235,10 @@ class ClientListView extends GetView<ClientListController> {
                                       if (value !=
                                           null) { // Ensure value is not null
                                         note.isChecked.value = value;
-                                        print('isChecked: ${note.isChecked
+                                        debugPrint('isChecked: ${note.isChecked
                                             .value}');
                                       } else {
-                                        print('Received null value');
+                                        debugPrint('Received null value');
                                       }
                                     },
                                   );
@@ -653,7 +653,7 @@ class ClientListView extends GetView<ClientListController> {
                                     height: 120,
                                     width: 120,
                                     color: mainPurpleColor
-                                        .withOpacity(0.7),
+                                        .withValues(alpha: 0.7),
                                   ),
                                 ),
                                 const Center(
@@ -795,10 +795,10 @@ class ClientListView extends GetView<ClientListController> {
                                                 if (value !=
                                                     null) { // Ensure value is not null
                                                   note.isChecked.value = value;
-                                                  print('isChecked: ${note.isChecked
+                                                  debugPrint('isChecked: ${note.isChecked
                                                       .value}');
                                                 } else {
-                                                  print('Received null value');
+                                                  debugPrint('Received null value');
                                                 }
                                               },
                                             );
