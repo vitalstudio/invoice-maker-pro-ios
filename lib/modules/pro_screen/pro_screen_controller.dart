@@ -28,6 +28,7 @@ class ProScreenController extends GetxController implements PurchaseCallback{
 
   RxBool isUserPro = false.obs;
   RxString discountYearlyPricePerWeek = ''.obs;
+  RxString monthlyAmountPerWeek = ''.obs;
 
   RxString lifeTimeValue = ''.obs;
   RxString yearlyPurchaseValue = ''.obs;
@@ -37,12 +38,22 @@ class ProScreenController extends GetxController implements PurchaseCallback{
   RxString discPercInMonthlyAmount = ''.obs;
   RxString discPercInYearlyAmount = ''.obs;
 
+  RxInt currentScrollImg = 0.obs;
+
   List imagesList = [
     'assets/images/slide1.jpg',
     'assets/images/slide2.jpg',
     'assets/images/slide3.jpg',
     'assets/images/slide4.jpg',
     'assets/images/slide5.jpg',
+  ];
+
+  List newSlidesImages = [
+    'assets/new_pro_screen/1_srl.png',
+    'assets/new_pro_screen/2_srl.png',
+    'assets/new_pro_screen/3_srl.png',
+    'assets/new_pro_screen/4_srl.png',
+    'assets/new_pro_screen/5_srl.png',
   ];
 
   void nowGetProductsForAndroid() async {
@@ -64,6 +75,8 @@ class ProScreenController extends GetxController implements PurchaseCallback{
 
     double yearlyPrice = productsDetailsAndroid[3].rawPrice;
     double yearlyPricePerWeek = yearlyPrice / 52;
+    double monthlyPrice = productsDetailsAndroid[1].rawPrice;
+    double monthlyPerWeek = monthlyPrice / 4.33;
     String currencyCode = productsDetailsAndroid[3].currencyCode;
     debugPrint('CurrencyCode: $currencyCode');
 
@@ -72,6 +85,7 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     debugPrint('CurrencySymbol: $symbolFromCode');
 
     discountYearlyPricePerWeek.value = '$symbolFromCode ${yearlyPricePerWeek.toStringAsFixed(2)}';
+    monthlyAmountPerWeek.value = '$symbolFromCode ${monthlyPerWeek.toStringAsFixed(2)}';
 
     debugPrint('CV: ${discountYearlyPricePerWeek.value}');
 
@@ -267,6 +281,21 @@ class ProScreenController extends GetxController implements PurchaseCallback{
       return '/lifetime'.tr.obs;
     }
     return ''.obs;
+  }
+
+  RxString getSelectedPeriodTitle() {
+    switch(AppSingletons.selectedPlanForProInvoice.value){
+      case 1:
+        return 'yearly'.tr.obs;
+      case 2:
+        return 'monthly'.tr.obs;
+      case 3:
+        return 'weekly'.tr.obs;
+      case 4:
+        return 'lifetime'.tr.obs;
+      default:
+        return ''.obs;
+    }
   }
 
   String calculateMonthlyPercentage(
