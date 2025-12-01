@@ -2293,7 +2293,7 @@ class ProScreenView extends GetView<ProScreenController> {
                           AppSingletons.storedAppLanguage.value ==
                               AppConstants.arabic
                               ? 20 : 0,
-                          right: 10
+                              right: 10
                           ),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 5),
@@ -2327,16 +2327,44 @@ class ProScreenView extends GetView<ProScreenController> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(
-                        height: 250,
+                        height: 260,
                         child: CarouselSlider(
                           items: controller.newSlidesImages
                               .map((e) =>
-                              SizedBox(
-                                height: double.infinity,
-                                child: Image.asset(
-                                  e.toString(),
-                                  fit: BoxFit.fill,
-                                ),
+                              Stack(
+                                children: [
+                                  Positioned(
+                                    left: 0,
+                                    right: 0,
+                                    bottom: 5,
+                                    top: 0,
+                                    child: SizedBox(
+                                      height: double.infinity,
+                                      child: Image.asset(
+                                        e.toString(),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                      left: 0,
+                                      right: 0,
+                                      bottom: 0,
+                                      child: Obx(() {
+                                        return Text(
+                                          controller
+                                              .textOfSlidesImages[controller
+                                              .currentScrollImg.value],
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              fontFamily: 'Montserrat',
+                                              color: blackColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w400
+                                          ),
+                                        );
+                                      })),
+                                ],
                               ))
                               .toList(),
                           options: CarouselOptions(
@@ -2383,120 +2411,8 @@ class ProScreenView extends GetView<ProScreenController> {
                   const SizedBox(height: 20,),
                   Obx(() {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         AppSingletons.selectedPlanForProInvoice.value = 1;
-                      },
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Positioned(
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(17),
-                                    border: AppSingletons.selectedPlanForProInvoice
-                                        .value == 1
-                                        ? Border.all(
-                                      color: mainPurpleColor,
-                                      width: 2.5,
-                                    ) : Border.all(
-                                      color: grey_5,
-                                      width: 2.5,
-                                    )
-                                ),
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 15
-                                ),
-                                padding: const EdgeInsets.all(5),
-                                child: ListTile(
-                                    leading: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'yearly'.tr,
-                                          style: const TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 16,
-                                              color: blackColor
-                                          ),
-                                        ),
-                                        const SizedBox(height: 3,),
-                                        Text(
-                                          controller.yearlyPurchaseValue.value.isNotEmpty
-                                              ? controller.yearlyPurchaseValue.value
-                                              : '0.00',
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w600,
-                                              color: blackColor,
-                                              fontSize: 15
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    trailing: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          controller.discountYearlyPricePerWeek.value.isNotEmpty
-                                              ? controller.discountYearlyPricePerWeek.value
-                                              : '0.00',
-                                          style: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w700,
-                                              color: AppSingletons.selectedPlanForProInvoice
-                                                  .value == 1 ? mainPurpleColor : grey_4,
-                                              fontSize: 20
-                                          ),
-                                        ),
-                                        Text(
-                                          '/${'week'.tr}',
-                                          style: const TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w600,
-                                              color: blackColor,
-                                              fontSize: 17
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                ),
-                              ),
-                          ),
-                          Positioned(
-                            right: 40,
-                            top: -10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: starColor,
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 1,
-                              ),
-                              child: Text(
-                                  '${controller.discPercInYearlyAmount.value} % ${'off'.tr}',
-                                style: const TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                    color: sWhite,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-                  const SizedBox(height: 15,),
-                  Obx(() {
-                    return GestureDetector(
-                      onTap: (){
-                        AppSingletons.selectedPlanForProInvoice.value = 2;
                       },
                       child: Stack(
                         clipBehavior: Clip.none,
@@ -2505,8 +2421,9 @@ class ProScreenView extends GetView<ProScreenController> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(17),
-                                  border: AppSingletons.selectedPlanForProInvoice
-                                      .value == 2
+                                  border: AppSingletons
+                                      .selectedPlanForProInvoice
+                                      .value == 1
                                       ? Border.all(
                                     color: mainPurpleColor,
                                     width: 2.5,
@@ -2522,10 +2439,11 @@ class ProScreenView extends GetView<ProScreenController> {
                               child: ListTile(
                                   leading: Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
                                     children: [
                                       Text(
-                                        'monthly'.tr,
+                                        'yearly'.tr,
                                         style: const TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w700,
@@ -2535,9 +2453,11 @@ class ProScreenView extends GetView<ProScreenController> {
                                       ),
                                       const SizedBox(height: 3,),
                                       Text(
-                                        controller.monthlyPurchaseValue.value.isNotEmpty
-                                        ? controller.monthlyPurchaseValue.value
-                                        : '0.00',
+                                        controller.yearlyPurchaseValue.value
+                                            .isNotEmpty
+                                            ? controller.yearlyPurchaseValue
+                                            .value
+                                            : '0.00',
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
                                             fontFamily: 'Montserrat',
@@ -2552,14 +2472,19 @@ class ProScreenView extends GetView<ProScreenController> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        controller.monthlyAmountPerWeek.value.isNotEmpty
-                                        ? controller.monthlyAmountPerWeek.value
-                                        : '0.00',
+                                        controller.discountYearlyPricePerWeek
+                                            .value.isNotEmpty
+                                            ? controller
+                                            .discountYearlyPricePerWeek.value
+                                            : '0.00',
                                         style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w700,
-                                            color: AppSingletons.selectedPlanForProInvoice
-                                                .value == 2 ? mainPurpleColor : grey_4,
+                                            color: AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value == 1
+                                                ? mainPurpleColor
+                                                : grey_4,
                                             fontSize: 20
                                         ),
                                       ),
@@ -2590,7 +2515,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                 vertical: 1,
                               ),
                               child: Text(
-                                '${controller.discPercInMonthlyAmount.value} % ${'off'.tr}',
+                                '${controller.discPercInYearlyAmount
+                                    .value} % ${'off'.tr}',
                                 style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
@@ -2607,7 +2533,129 @@ class ProScreenView extends GetView<ProScreenController> {
                   const SizedBox(height: 15,),
                   Obx(() {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
+                        AppSingletons.selectedPlanForProInvoice.value = 2;
+                      },
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Positioned(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(17),
+                                  border: AppSingletons
+                                      .selectedPlanForProInvoice
+                                      .value == 2
+                                      ? Border.all(
+                                    color: mainPurpleColor,
+                                    width: 2.5,
+                                  ) : Border.all(
+                                    color: grey_5,
+                                    width: 2.5,
+                                  )
+                              ),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 15
+                              ),
+                              padding: const EdgeInsets.all(5),
+                              child: ListTile(
+                                  leading: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text(
+                                        'monthly'.tr,
+                                        style: const TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16,
+                                            color: blackColor
+                                        ),
+                                      ),
+                                      const SizedBox(height: 3,),
+                                      Text(
+                                        controller.monthlyPurchaseValue.value
+                                            .isNotEmpty
+                                            ? controller.monthlyPurchaseValue
+                                            .value
+                                            : '0.00',
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w600,
+                                            color: blackColor,
+                                            fontSize: 15
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        controller.monthlyAmountPerWeek.value
+                                            .isNotEmpty
+                                            ? controller.monthlyAmountPerWeek
+                                            .value
+                                            : '0.00',
+                                        style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w700,
+                                            color: AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value == 2
+                                                ? mainPurpleColor
+                                                : grey_4,
+                                            fontSize: 20
+                                        ),
+                                      ),
+                                      Text(
+                                        '/${'week'.tr}',
+                                        style: const TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w600,
+                                            color: blackColor,
+                                            fontSize: 17
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 40,
+                            top: -10,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: starColor,
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 1,
+                              ),
+                              child: Text(
+                                '${controller.discPercInMonthlyAmount
+                                    .value} % ${'off'.tr}',
+                                style: const TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                  color: sWhite,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                  const SizedBox(height: 15,),
+                  Obx(() {
+                    return GestureDetector(
+                      onTap: () {
                         AppSingletons.selectedPlanForProInvoice.value = 3;
                       },
                       child: Container(
@@ -2628,27 +2676,27 @@ class ProScreenView extends GetView<ProScreenController> {
                         ),
                         padding: const EdgeInsets.all(5),
                         child: ListTile(
-                            leading: Text(
-                              'weekly'.tr,
-                              style: const TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16,
-                                  color: blackColor
-                              ),
+                          leading: Text(
+                            'weekly'.tr,
+                            style: const TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
+                                color: blackColor
                             ),
-                            trailing:  Text(
-                              controller.weeklyPurchaseValue.value.isNotEmpty
-                              ? controller.weeklyPurchaseValue.value
-                              : '0.00',
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700,
-                                  color: AppSingletons.selectedPlanForProInvoice
-                                      .value == 3 ? mainPurpleColor : grey_4,
-                                  fontSize: 20
-                              ),
+                          ),
+                          trailing: Text(
+                            controller.weeklyPurchaseValue.value.isNotEmpty
+                                ? controller.weeklyPurchaseValue.value
+                                : '0.00',
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w700,
+                                color: AppSingletons.selectedPlanForProInvoice
+                                    .value == 3 ? mainPurpleColor : grey_4,
+                                fontSize: 20
                             ),
+                          ),
                         ),
                       ),
                     );
@@ -2656,7 +2704,7 @@ class ProScreenView extends GetView<ProScreenController> {
                   const SizedBox(height: 15,),
                   Obx(() {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         AppSingletons.selectedPlanForProInvoice.value = 4;
                       },
                       child: Stack(
@@ -2689,14 +2737,15 @@ class ProScreenView extends GetView<ProScreenController> {
                                     color: blackColor
                                 ),
                               ),
-                              trailing:  Text(
+                              trailing: Text(
                                 controller.lifeTimeValue.value.isNotEmpty
-                                ? controller.lifeTimeValue.value
-                                : '0.00',
+                                    ? controller.lifeTimeValue.value
+                                    : '0.00',
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w700,
-                                    color: AppSingletons.selectedPlanForProInvoice
+                                    color: AppSingletons
+                                        .selectedPlanForProInvoice
                                         .value == 4 ? mainPurpleColor : grey_4,
                                     fontSize: 20
                                 ),
@@ -2732,14 +2781,15 @@ class ProScreenView extends GetView<ProScreenController> {
                   }),
                   const SizedBox(height: 40,),
                   Center(
-                    child: Image.asset('assets/new_pro_screen/no-limited-heading.png',
+                    child: Image.asset(
+                      'assets/new_pro_screen/no-limited-heading.png',
                       width: 250,
                     ),
                   ),
                   const SizedBox(height: 20,),
                   Container(
                     margin: const EdgeInsets.symmetric(
-                      horizontal: 20
+                        horizontal: 20
                     ),
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
@@ -2898,30 +2948,36 @@ class ProScreenView extends GetView<ProScreenController> {
                         )),
                         Expanded(child: Container(
                           decoration: BoxDecoration(
-                            color: offWhite,
-                            borderRadius: BorderRadius.circular(15)
+                              color: offWhite,
+                              borderRadius: BorderRadius.circular(15)
                           ),
                           padding: const EdgeInsets.symmetric(
-                            vertical: 5
+                              vertical: 5
                           ),
                           child: Column(
                             children: [
                               Image.asset('assets/new_pro_screen/pro.png',
-                               height: 30,
-                               width: 50,
+                                height: 30,
+                                width: 50,
                               ),
                               const SizedBox(height: 15,),
-                              const Icon(Icons.check,color: mainPurpleColor,size: 22,),
+                              const Icon(
+                                Icons.check, color: mainPurpleColor, size: 22,),
                               const SizedBox(height: 14,),
-                              const Icon(Icons.check,color: mainPurpleColor,size: 22,),
+                              const Icon(
+                                Icons.check, color: mainPurpleColor, size: 22,),
                               const SizedBox(height: 14,),
-                              const Icon(Icons.check,color: mainPurpleColor,size: 22,),
+                              const Icon(
+                                Icons.check, color: mainPurpleColor, size: 22,),
                               const SizedBox(height: 14,),
-                              const Icon(Icons.check,color: mainPurpleColor,size: 22,),
+                              const Icon(
+                                Icons.check, color: mainPurpleColor, size: 22,),
                               const SizedBox(height: 14,),
-                              const Icon(Icons.check,color: mainPurpleColor,size: 22,),
+                              const Icon(
+                                Icons.check, color: mainPurpleColor, size: 22,),
                               const SizedBox(height: 14,),
-                              const Icon(Icons.check,color: mainPurpleColor,size: 22,),
+                              const Icon(
+                                Icons.check, color: mainPurpleColor, size: 22,),
 
                             ],
                           ),
@@ -2959,15 +3015,18 @@ class ProScreenView extends GetView<ProScreenController> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
                                 children: [
                                   RatingBar(
                                     ratingWidget: RatingWidget(
-                                        full: const Icon(Icons.star,color: blueLightTwo,),
-                                        half: const Icon(Icons.star_half,color: blueLightTwo,),
-                                        empty: const Icon(Icons.star_border),
+                                      full: const Icon(
+                                        Icons.star, color: blueLightTwo,),
+                                      half: const Icon(
+                                        Icons.star_half, color: blueLightTwo,),
+                                      empty: const Icon(Icons.star_border),
                                     ),
-                                    onRatingUpdate: (double value) {  },
+                                    onRatingUpdate: (double value) {},
                                     itemCount: 5,
                                     minRating: 1,
                                     maxRating: 5,
@@ -3018,15 +3077,18 @@ class ProScreenView extends GetView<ProScreenController> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
                                 children: [
                                   RatingBar(
                                     ratingWidget: RatingWidget(
-                                      full: const Icon(Icons.star,color: blueLightTwo,),
-                                      half: const Icon(Icons.star_half,color: blueLightTwo,),
+                                      full: const Icon(
+                                        Icons.star, color: blueLightTwo,),
+                                      half: const Icon(
+                                        Icons.star_half, color: blueLightTwo,),
                                       empty: const Icon(Icons.star_border),
                                     ),
-                                    onRatingUpdate: (double value) {  },
+                                    onRatingUpdate: (double value) {},
                                     itemCount: 5,
                                     minRating: 1,
                                     maxRating: 5,
@@ -3077,15 +3139,18 @@ class ProScreenView extends GetView<ProScreenController> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
                                 children: [
                                   RatingBar(
                                     ratingWidget: RatingWidget(
-                                      full: const Icon(Icons.star,color: blueLightTwo,),
-                                      half: const Icon(Icons.star_half,color: blueLightTwo,),
+                                      full: const Icon(
+                                        Icons.star, color: blueLightTwo,),
+                                      half: const Icon(
+                                        Icons.star_half, color: blueLightTwo,),
                                       empty: const Icon(Icons.star_border),
                                     ),
-                                    onRatingUpdate: (double value) {  },
+                                    onRatingUpdate: (double value) {},
                                     itemCount: 5,
                                     minRating: 1,
                                     maxRating: 5,
@@ -3135,7 +3200,7 @@ class ProScreenView extends GetView<ProScreenController> {
                   const SizedBox(height: 20,),
                   Obx(() {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         AppSingletons.selectedPlanForProInvoice.value = 1;
                       },
                       child: Stack(
@@ -3145,7 +3210,8 @@ class ProScreenView extends GetView<ProScreenController> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(17),
-                                  border: AppSingletons.selectedPlanForProInvoice
+                                  border: AppSingletons
+                                      .selectedPlanForProInvoice
                                       .value == 1
                                       ? Border.all(
                                     color: mainPurpleColor,
@@ -3162,7 +3228,8 @@ class ProScreenView extends GetView<ProScreenController> {
                               child: ListTile(
                                   leading: Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
                                     children: [
                                       Text(
                                         'yearly'.tr,
@@ -3175,8 +3242,10 @@ class ProScreenView extends GetView<ProScreenController> {
                                       ),
                                       const SizedBox(height: 3,),
                                       Text(
-                                        controller.yearlyPurchaseValue.value.isNotEmpty
-                                            ? controller.yearlyPurchaseValue.value
+                                        controller.yearlyPurchaseValue.value
+                                            .isNotEmpty
+                                            ? controller.yearlyPurchaseValue
+                                            .value
                                             : '0.00',
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
@@ -3192,14 +3261,19 @@ class ProScreenView extends GetView<ProScreenController> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        controller.discountYearlyPricePerWeek.value.isNotEmpty
-                                            ? controller.discountYearlyPricePerWeek.value
+                                        controller.discountYearlyPricePerWeek
+                                            .value.isNotEmpty
+                                            ? controller
+                                            .discountYearlyPricePerWeek.value
                                             : '0.00',
                                         style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w700,
-                                            color: AppSingletons.selectedPlanForProInvoice
-                                                .value == 1 ? mainPurpleColor : grey_4,
+                                            color: AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value == 1
+                                                ? mainPurpleColor
+                                                : grey_4,
                                             fontSize: 20
                                         ),
                                       ),
@@ -3230,7 +3304,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                 vertical: 1,
                               ),
                               child: Text(
-                                '${controller.discPercInYearlyAmount.value} % ${'off'.tr}',
+                                '${controller.discPercInYearlyAmount
+                                    .value} % ${'off'.tr}',
                                 style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
@@ -3247,7 +3322,7 @@ class ProScreenView extends GetView<ProScreenController> {
                   const SizedBox(height: 15,),
                   Obx(() {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         AppSingletons.selectedPlanForProInvoice.value = 2;
                       },
                       child: Stack(
@@ -3257,7 +3332,8 @@ class ProScreenView extends GetView<ProScreenController> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(17),
-                                  border: AppSingletons.selectedPlanForProInvoice
+                                  border: AppSingletons
+                                      .selectedPlanForProInvoice
                                       .value == 2
                                       ? Border.all(
                                     color: mainPurpleColor,
@@ -3274,7 +3350,8 @@ class ProScreenView extends GetView<ProScreenController> {
                               child: ListTile(
                                   leading: Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
                                     children: [
                                       Text(
                                         'monthly'.tr,
@@ -3287,8 +3364,10 @@ class ProScreenView extends GetView<ProScreenController> {
                                       ),
                                       const SizedBox(height: 3,),
                                       Text(
-                                        controller.monthlyPurchaseValue.value.isNotEmpty
-                                            ? controller.monthlyPurchaseValue.value
+                                        controller.monthlyPurchaseValue.value
+                                            .isNotEmpty
+                                            ? controller.monthlyPurchaseValue
+                                            .value
                                             : '0.00',
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
@@ -3304,14 +3383,19 @@ class ProScreenView extends GetView<ProScreenController> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        controller.monthlyAmountPerWeek.value.isNotEmpty
-                                            ? controller.monthlyAmountPerWeek.value
+                                        controller.monthlyAmountPerWeek.value
+                                            .isNotEmpty
+                                            ? controller.monthlyAmountPerWeek
+                                            .value
                                             : '0.00',
                                         style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w700,
-                                            color: AppSingletons.selectedPlanForProInvoice
-                                                .value == 2 ? mainPurpleColor : grey_4,
+                                            color: AppSingletons
+                                                .selectedPlanForProInvoice
+                                                .value == 2
+                                                ? mainPurpleColor
+                                                : grey_4,
                                             fontSize: 20
                                         ),
                                       ),
@@ -3342,7 +3426,8 @@ class ProScreenView extends GetView<ProScreenController> {
                                 vertical: 1,
                               ),
                               child: Text(
-                                '${controller.discPercInMonthlyAmount.value} % ${'off'.tr}',
+                                '${controller.discPercInMonthlyAmount
+                                    .value} % ${'off'.tr}',
                                 style: const TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
@@ -3359,7 +3444,7 @@ class ProScreenView extends GetView<ProScreenController> {
                   const SizedBox(height: 15,),
                   Obx(() {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         AppSingletons.selectedPlanForProInvoice.value = 3;
                       },
                       child: Container(
@@ -3389,7 +3474,7 @@ class ProScreenView extends GetView<ProScreenController> {
                                 color: blackColor
                             ),
                           ),
-                          trailing:  Text(
+                          trailing: Text(
                             controller.weeklyPurchaseValue.value.isNotEmpty
                                 ? controller.weeklyPurchaseValue.value
                                 : '0.00',
@@ -3408,7 +3493,7 @@ class ProScreenView extends GetView<ProScreenController> {
                   const SizedBox(height: 15,),
                   Obx(() {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         AppSingletons.selectedPlanForProInvoice.value = 4;
                       },
                       child: Stack(
@@ -3441,14 +3526,15 @@ class ProScreenView extends GetView<ProScreenController> {
                                     color: blackColor
                                 ),
                               ),
-                              trailing:  Text(
+                              trailing: Text(
                                 controller.lifeTimeValue.value.isNotEmpty
                                     ? controller.lifeTimeValue.value
                                     : '0.00',
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w700,
-                                    color: AppSingletons.selectedPlanForProInvoice
+                                    color: AppSingletons
+                                        .selectedPlanForProInvoice
                                         .value == 4 ? mainPurpleColor : grey_4,
                                     fontSize: 20
                                 ),
@@ -3569,162 +3655,164 @@ class ProScreenView extends GetView<ProScreenController> {
               ),
             ),
             Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: GestureDetector(
-                  onTap: (){
-                    if (Platform.isAndroid) {
-                      if (AppSingletons.selectedPlanForProInvoice.value ==
-                          1) {
-                        controller.buyProduct(
-                            controller.productsDetailsAndroid[3]);
-                        debugPrint(
-                            'VALUE: ${controller.productsDetailsAndroid[3]
-                                .rawPrice}');
-                      }
-                      else if (AppSingletons.selectedPlanForProInvoice
-                          .value ==
-                          2) {
-                        controller.buyProduct(
-                            controller.productsDetailsAndroid[1]);
-                        debugPrint(
-                            'VALUE: ${controller.productsDetailsAndroid[1]
-                                .rawPrice}');
-                      }
-                      else if (AppSingletons.selectedPlanForProInvoice
-                          .value ==
-                          3) {
-                        controller.buyProduct(
-                            controller.productsDetailsAndroid[2]);
-                        debugPrint(
-                            'VALUE: ${controller.productsDetailsAndroid[2]
-                                .rawPrice}');
-                      }
-                      else {
-                        controller.buyProduct(
-                            controller.productsDetailsAndroid[0]);
-                        debugPrint(
-                            'VALUE: ${controller.productsDetailsAndroid[0]
-                                .rawPrice}');
-                      }
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: GestureDetector(
+                onTap: () {
+                  if (Platform.isAndroid) {
+                    if (AppSingletons.selectedPlanForProInvoice.value ==
+                        1) {
+                      controller.buyProduct(
+                          controller.productsDetailsAndroid[3]);
+                      debugPrint(
+                          'VALUE: ${controller.productsDetailsAndroid[3]
+                              .rawPrice}');
                     }
-                    else if (Platform.isIOS) {
-                      // 1 = yearly
-                      // 2 = Monthly
-                      // 3 = Weekly
-                      // 4 = Lifetime
-
-                      if (AppSingletons.selectedPlanForProInvoice.value ==
-                          1) {
-                        controller.buyProductIOS(
-                            controller.productsDetailsIOS.value[2]);
-                      }
-                      else if (AppSingletons.selectedPlanForProInvoice
-                          .value ==
-                          2) {
-                        controller.buyProductIOS(
-                            controller.productsDetailsIOS.value[1]);
-                      }
-                      else if (AppSingletons.selectedPlanForProInvoice
-                          .value ==
-                          3) {
-                        controller.buyProductIOS(
-                            controller.productsDetailsIOS.value[0]);
-                      }
-                      else {
-                        controller.buyProductIOS(
-                            controller.productsDetailsIOS.value[3]);
-                      }
-
-                      // controller.buyProductIOS(controller.productsDetailsIOS.value[
-                      // AppSingletons.selectedPlanForProInvoice.value - 1]);
-
+                    else if (AppSingletons.selectedPlanForProInvoice
+                        .value ==
+                        2) {
+                      controller.buyProduct(
+                          controller.productsDetailsAndroid[1]);
+                      debugPrint(
+                          'VALUE: ${controller.productsDetailsAndroid[1]
+                              .rawPrice}');
                     }
-                    SharedPreferencesManager.setValue(
-                        'isAppLaunchFirstTime', false);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.only(
+                    else if (AppSingletons.selectedPlanForProInvoice
+                        .value ==
+                        3) {
+                      controller.buyProduct(
+                          controller.productsDetailsAndroid[2]);
+                      debugPrint(
+                          'VALUE: ${controller.productsDetailsAndroid[2]
+                              .rawPrice}');
+                    }
+                    else {
+                      controller.buyProduct(
+                          controller.productsDetailsAndroid[0]);
+                      debugPrint(
+                          'VALUE: ${controller.productsDetailsAndroid[0]
+                              .rawPrice}');
+                    }
+                  }
+                  else if (Platform.isIOS) {
+                    // 1 = yearly
+                    // 2 = Monthly
+                    // 3 = Weekly
+                    // 4 = Lifetime
+
+                    if (AppSingletons.selectedPlanForProInvoice.value ==
+                        1) {
+                      controller.buyProductIOS(
+                          controller.productsDetailsIOS.value[2]);
+                    }
+                    else if (AppSingletons.selectedPlanForProInvoice
+                        .value ==
+                        2) {
+                      controller.buyProductIOS(
+                          controller.productsDetailsIOS.value[1]);
+                    }
+                    else if (AppSingletons.selectedPlanForProInvoice
+                        .value ==
+                        3) {
+                      controller.buyProductIOS(
+                          controller.productsDetailsIOS.value[0]);
+                    }
+                    else {
+                      controller.buyProductIOS(
+                          controller.productsDetailsIOS.value[3]);
+                    }
+
+                    // controller.buyProductIOS(controller.productsDetailsIOS.value[
+                    // AppSingletons.selectedPlanForProInvoice.value - 1]);
+
+                  }
+                  SharedPreferencesManager.setValue(
+                      'isAppLaunchFirstTime', false);
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(
                       left: 20,
                       right: 20,
                       bottom: 10
-                    ),
-                    color: sWhite,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          height: 60,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('assets/new_pro_screen/continue-btn.png',)
+                  ),
+                  color: sWhite,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 60,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                'assets/new_pro_screen/continue-btn.png',)
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'continue'.tr,
+                              style: const TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 16,
+                                  color: sWhite
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'continue'.tr,
-                               style: const TextStyle(
-                                   fontFamily: 'Montserrat',
-                                   fontWeight: FontWeight.w700,
-                                   fontSize: 16,
-                                   color: sWhite
-                               ),
-                              ),
-                              const SizedBox(width: 10,),
-                              Image.asset('assets/new_pro_screen/continue-arrow.png',
-                               height: 15,
-                               width: 20,
-                              )
-                            ],
-                          ),
+                            const SizedBox(width: 10,),
+                            Image.asset(
+                              'assets/new_pro_screen/continue-arrow.png',
+                              height: 15,
+                              width: 20,
+                            )
+                          ],
                         ),
-                        Visibility(
-                          visible: true,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              TextButton(
-                                  onPressed: () {
-                                    Uri url = Uri.parse(
-                                        'https://vitalappstudio.blogspot.com/2024/08/%20Invoice%20Maker%20Receipt%20Creator.html');
-                                    launchUrl(url);
-                                  },
-                                  child: Text('privacy_policy'.tr,
-                                    style: const TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      color: blackColor,
-                                      fontSize: 13,),
-                                  )),
+                      ),
+                      Visibility(
+                        visible: true,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton(
+                                onPressed: () {
+                                  Uri url = Uri.parse(
+                                      'https://vitalappstudio.blogspot.com/2024/08/%20Invoice%20Maker%20Receipt%20Creator.html');
+                                  launchUrl(url);
+                                },
+                                child: Text('privacy_policy'.tr,
+                                  style: const TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: blackColor,
+                                    fontSize: 13,),
+                                )),
 
-                              Container(
-                                height: 20,
-                                width: 2,
-                                color: blackColor,
-                              ),
-                              TextButton(
-                                  onPressed: () {
-                                    Uri url = Uri.parse(
-                                        'https://vitalappstudio.blogspot.com/2024/04/terms%20of%20use.html');
-                                    launchUrl(url);
-                                  },
-                                  child: Text('term_of_services'.tr,
-                                    style: const TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      color: blackColor,
-                                      fontSize: 13,),
-                                  )),
-                            ],
-                          ),
+                            Container(
+                              height: 20,
+                              width: 2,
+                              color: blackColor,
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Uri url = Uri.parse(
+                                      'https://vitalappstudio.blogspot.com/2024/04/terms%20of%20use.html');
+                                  launchUrl(url);
+                                },
+                                child: Text('term_of_services'.tr,
+                                  style: const TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: blackColor,
+                                    fontSize: 13,),
+                                )),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
+              ),
             )
           ],
         ),

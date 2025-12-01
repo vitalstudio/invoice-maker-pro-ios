@@ -56,6 +56,14 @@ class ProScreenController extends GetxController implements PurchaseCallback{
     'assets/new_pro_screen/5_srl.png',
   ];
 
+  List textOfSlidesImages = [
+    "Make your business Profile",
+    "Download and Print Invoice PDF",
+    "Add Signature",
+    "Unlimited Invoice Templates",
+    "Complete Report Analysis",
+  ];
+
   void nowGetProductsForAndroid() async {
     List<ProductDetails> items = await InAppServices().getStoreProducts();
     productsDetailsAndroid.assignAll(items);

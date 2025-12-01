@@ -54,6 +54,8 @@ void main() async {
       // DevicePreview(enabled: true, builder: (context) => const MyApp())
       const MyApp()
   );
+
+
 }
 
 class MyApp extends StatelessWidget {
